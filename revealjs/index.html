@@ -5,45 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI, 이제 대화만 하는 게 아닙니다</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
   <style>
     :root {
-      --r-background-color: #0f172a;
+      --r-background-color: #ffffff;
       --r-main-font: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
       --r-heading-font: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
       --r-main-font-size: 32px;
-      --r-heading-color: #f1f5f9;
-      --r-main-color: #cbd5e1;
-      --r-link-color: #60a5fa;
+      --r-heading-color: #1e293b;
+      --r-main-color: #475569;
+      --r-link-color: #2563eb;
       --r-selection-background-color: #3b82f6;
     }
 
     .reveal { font-weight: 400; }
-    .reveal h1 { font-size: 2.2em; font-weight: 800; line-height: 1.3; }
-    .reveal h2 { font-size: 1.5em; font-weight: 700; color: #e2e8f0; margin-bottom: 10px; }
+    .reveal h1 { font-size: 2.2em; font-weight: 800; line-height: 1.3; color: #1e293b; }
+    .reveal h2 { font-size: 1.5em; font-weight: 700; color: #1e293b; margin-bottom: 10px; }
     .reveal h3 { font-size: 1.0em; font-weight: 600; }
-    .reveal p, .reveal li { line-height: 1.6; }
+    .reveal p, .reveal li { line-height: 1.6; color: #475569; }
     .reveal ul { list-style: none; padding-left: 0; }
-    .reveal ul li::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+    .reveal ul li::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 10px; vertical-align: middle; background: #94a3b8; }
 
     /* 슬라이드 타입별 배경 */
-    .slide-title { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%); }
+    .slide-title { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #eff6ff 100%); }
     .slide-section { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%); }
-    .slide-content { background: #0f172a; }
-    .slide-warning { background: linear-gradient(135deg, #0f172a 0%, #422006 100%); }
-    .slide-cta { background: linear-gradient(135deg, #0f172a 0%, #052e16 100%); }
+    .slide-content { background: #ffffff; }
+    .slide-warning { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); }
+    .slide-cta { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); }
 
     /* 강조 텍스트 */
-    .text-blue { color: #60a5fa; }
-    .text-green { color: #4ade80; }
-    .text-red { color: #f87171; }
-    .text-yellow { color: #fbbf24; }
-    .text-purple { color: #c084fc; }
+    .text-blue { color: #2563eb; }
+    .text-green { color: #16a34a; }
+    .text-red { color: #dc2626; }
+    .text-yellow { color: #d97706; }
+    .text-purple { color: #7c3aed; }
     .text-white { color: #ffffff; }
-    .text-dim { color: #64748b; }
-    .text-glow { color: #60a5fa; text-shadow: 0 0 20px rgba(96,165,250,0.4); }
+    .text-dim { color: #94a3b8; }
+    .text-glow { color: #2563eb; text-shadow: 0 0 20px rgba(37,99,235,0.3); }
 
     /* 태그/뱃지 */
     .badge {
@@ -54,10 +54,10 @@
       font-weight: 700;
       letter-spacing: 0.5px;
     }
-    .badge-blue { background: rgba(59,130,246,0.2); border: 1px solid rgba(59,130,246,0.4); color: #60a5fa; }
-    .badge-green { background: rgba(34,197,94,0.2); border: 1px solid rgba(34,197,94,0.4); color: #4ade80; }
-    .badge-red { background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.4); color: #f87171; }
-    .badge-purple { background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.4); color: #c084fc; }
+    .badge-blue { background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.3); color: #2563eb; }
+    .badge-green { background: rgba(22,163,74,0.1); border: 1px solid rgba(22,163,74,0.3); color: #16a34a; }
+    .badge-red { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.3); color: #dc2626; }
+    .badge-purple { background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.3); color: #7c3aed; }
 
     /* Before/After 그리드 */
     .compare-grid {
@@ -71,46 +71,45 @@
     .card {
       padding: 22px 26px;
       border-radius: 14px;
-      backdrop-filter: blur(10px);
     }
 
     .card-before {
-      background: rgba(239,68,68,0.08);
-      border: 1px solid rgba(239,68,68,0.25);
+      background: rgba(220,38,38,0.04);
+      border: 1px solid rgba(220,38,38,0.15);
     }
-    .card-before h3 { color: #f87171; margin-bottom: 12px; }
-    .card-before ul li::before { background: #f87171; }
-    .card-before ul li { font-size: 0.65em; color: #94a3b8; margin: 6px 0; }
+    .card-before h3 { color: #dc2626; margin-bottom: 12px; }
+    .card-before ul li::before { background: #dc2626; }
+    .card-before ul li { font-size: 0.65em; color: #64748b; margin: 6px 0; }
 
     .card-after {
-      background: rgba(34,197,94,0.08);
-      border: 1px solid rgba(34,197,94,0.25);
+      background: rgba(22,163,74,0.04);
+      border: 1px solid rgba(22,163,74,0.15);
     }
-    .card-after h3 { color: #4ade80; margin-bottom: 12px; }
-    .card-after ul li::before { background: #4ade80; }
-    .card-after ul li { font-size: 0.65em; color: #cbd5e1; margin: 6px 0; }
+    .card-after h3 { color: #16a34a; margin-bottom: 12px; }
+    .card-after ul li::before { background: #16a34a; }
+    .card-after ul li { font-size: 0.65em; color: #334155; margin: 6px 0; }
 
     .card-before ul li strong, .card-after ul li strong {
-      color: #f1f5f9;
+      color: #1e293b;
     }
 
     /* 하이라이트 박스 */
     .highlight-box {
-      background: rgba(59,130,246,0.1);
-      border-left: 4px solid #3b82f6;
+      background: rgba(37,99,235,0.05);
+      border-left: 4px solid #2563eb;
       padding: 14px 20px;
       border-radius: 0 12px 12px 0;
       margin-top: 16px;
       font-size: 0.68em;
       text-align: left;
-      color: #94a3b8;
+      color: #64748b;
     }
-    .highlight-box strong { color: #60a5fa; }
+    .highlight-box strong { color: #2563eb; }
 
-    /* 코드 블록 스타일 */
+    /* 코드 블록 스타일 (dark 유지 — 코드는 다크가 가독성 좋음) */
     .code-box {
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #1e293b;
+      border: 1px solid #334155;
       border-radius: 10px;
       padding: 14px 20px;
       font-family: 'Consolas', 'Monaco', monospace;
@@ -133,31 +132,32 @@
       margin-top: 12px;
       border-radius: 12px;
       overflow: hidden;
+      border: 1px solid #e2e8f0;
     }
     .reveal table th {
-      background: rgba(59,130,246,0.25);
-      color: #60a5fa;
+      background: rgba(37,99,235,0.08);
+      color: #2563eb;
       padding: 12px 16px;
       text-align: left;
       font-weight: 600;
-      border-bottom: 1px solid rgba(59,130,246,0.2);
+      border-bottom: 1px solid #e2e8f0;
     }
     .reveal table td {
       padding: 10px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      color: #cbd5e1;
+      border-bottom: 1px solid #f1f5f9;
+      color: #475569;
     }
     .reveal table tr:nth-child(even) td {
-      background: rgba(255,255,255,0.02);
+      background: #f8fafc;
     }
-    .reveal table td strong { color: #f1f5f9; }
+    .reveal table td strong { color: #1e293b; }
 
     /* 이모지 크게 */
     .emoji-hero { font-size: 3em; margin-bottom: 16px; }
 
-    /* 섹션 슬라이드 스타일 */
+    /* 섹션 슬라이드 스타일 (보라 그라디언트 유지) */
     .section-slide h1 { color: #ffffff; text-shadow: 0 0 30px rgba(168,85,247,0.5); }
-    .section-slide p { color: rgba(255,255,255,0.7); font-size: 0.75em; }
+    .section-slide p { color: rgba(255,255,255,0.8); font-size: 0.75em; }
 
     /* CTA 스텝 */
     .cta-step {
@@ -165,8 +165,8 @@
       align-items: center;
       gap: 18px;
       padding: 16px 22px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.02);
+      border: 1px solid rgba(0,0,0,0.06);
       border-radius: 14px;
       margin: 10px 0;
       text-align: left;
@@ -175,7 +175,7 @@
     .cta-step .num {
       width: 40px;
       height: 40px;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
       color: white;
       border-radius: 50%;
       display: flex;
@@ -189,25 +189,25 @@
     /* 인용문 */
     .quote {
       font-style: italic;
-      color: #94a3b8;
+      color: #64748b;
       font-size: 0.65em;
       margin-top: 20px;
       line-height: 1.8;
     }
 
     /* 비교표 특수 */
-    .vs-table td:first-child { font-weight: 700; color: #94a3b8; width: 90px; }
-    .vs-table td:nth-child(2) { color: #f87171; }
-    .vs-table td:nth-child(3) { color: #4ade80; }
+    .vs-table td:first-child { font-weight: 700; color: #64748b; width: 90px; }
+    .vs-table td:nth-child(2) { color: #dc2626; }
+    .vs-table td:nth-child(3) { color: #16a34a; }
 
     /* 타임라인 강조 */
-    .timeline-table td:first-child { color: #60a5fa; font-weight: 700; white-space: nowrap; }
-    .timeline-table tr:last-child td { color: #fbbf24; }
+    .timeline-table td:first-child { color: #2563eb; font-weight: 700; white-space: nowrap; }
+    .timeline-table tr:last-child td { color: #d97706; }
 
     /* 데코: 그라데이션 라인 */
     .gradient-line {
       height: 3px;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+      background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899);
       border-radius: 2px;
       margin: 14px auto;
       width: 200px;
@@ -218,11 +218,11 @@
     .warn-list li {
       font-size: 0.68em;
       margin: 14px 0;
-      color: #cbd5e1;
+      color: #475569;
       line-height: 1.5;
     }
     .warn-list li::before { display: none; }
-    .warn-list li strong { color: #fbbf24; }
+    .warn-list li strong { color: #b45309; }
 
     /* 통계 카드 */
     .stat-grid {
@@ -234,13 +234,13 @@
     }
     .stat-card {
       padding: 16px 20px;
-      background: rgba(239,68,68,0.06);
-      border: 1px solid rgba(239,68,68,0.2);
+      background: rgba(220,38,38,0.04);
+      border: 1px solid rgba(220,38,38,0.15);
       border-radius: 12px;
       font-size: 0.6em;
     }
-    .stat-card .stat-num { font-size: 1.8em; font-weight: 800; color: #f87171; }
-    .stat-card .stat-label { color: #94a3b8; margin-top: 4px; }
+    .stat-card .stat-num { font-size: 1.8em; font-weight: 800; color: #dc2626; }
+    .stat-card .stat-label { color: #64748b; margin-top: 4px; }
 
     /* 기능 카드 그리드 */
     .feature-grid {
@@ -252,14 +252,14 @@
     }
     .feature-card {
       padding: 16px 20px;
-      background: rgba(59,130,246,0.06);
-      border: 1px solid rgba(59,130,246,0.15);
+      background: rgba(37,99,235,0.04);
+      border: 1px solid rgba(37,99,235,0.12);
       border-radius: 12px;
       font-size: 0.6em;
     }
     .feature-card .feature-icon { font-size: 1.6em; margin-bottom: 6px; }
-    .feature-card .feature-title { font-weight: 700; color: #e2e8f0; margin-bottom: 4px; }
-    .feature-card .feature-desc { color: #94a3b8; line-height: 1.5; }
+    .feature-card .feature-title { font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .feature-card .feature-desc { color: #64748b; line-height: 1.5; }
 
     /* 예시 카드 */
     .example-grid {
@@ -271,23 +271,23 @@
     }
     .example-card {
       padding: 14px 16px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
       font-size: 0.55em;
     }
-    .example-card .ex-title { font-weight: 700; color: #e2e8f0; margin-bottom: 6px; }
-    .example-card .ex-desc { color: #94a3b8; line-height: 1.5; }
+    .example-card .ex-title { font-weight: 700; color: #1e293b; margin-bottom: 6px; }
+    .example-card .ex-desc { color: #64748b; line-height: 1.5; }
     .example-card .ex-tag { display: inline-block; margin-top: 6px; padding: 2px 10px; border-radius: 20px; font-size: 0.85em; }
-    .tag-file { background: rgba(96,165,250,0.15); color: #60a5fa; }
-    .tag-api { background: rgba(168,85,247,0.15); color: #c084fc; }
-    .tag-terminal { background: rgba(251,191,36,0.15); color: #fbbf24; }
-    .tag-multi { background: rgba(74,222,128,0.15); color: #4ade80; }
+    .tag-file { background: rgba(37,99,235,0.1); color: #2563eb; }
+    .tag-api { background: rgba(124,58,237,0.1); color: #7c3aed; }
+    .tag-terminal { background: rgba(217,119,6,0.1); color: #d97706; }
+    .tag-multi { background: rgba(22,163,74,0.1); color: #16a34a; }
 
     /* 슬라이드 번호 */
-    .reveal .slide-number { font-family: 'Pretendard'; font-size: 14px; color: #475569; }
+    .reveal .slide-number { font-family: 'Pretendard'; font-size: 14px; color: #94a3b8; }
 
-    /* ==================== 신규 CSS: 컨설팅 스타일 컴포넌트 ==================== */
+    /* ==================== 컨설팅 스타일 컴포넌트 ==================== */
 
     /* 어젠다 번호 */
     .agenda-num {
@@ -296,7 +296,7 @@
       justify-content: center;
       width: 36px;
       height: 36px;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
       color: #ffffff;
       border-radius: 50%;
       font-weight: 800;
@@ -309,15 +309,15 @@
       align-items: center;
       gap: 16px;
       padding: 12px 18px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
       margin: 8px 0;
       font-size: 0.65em;
       text-align: left;
     }
-    .agenda-item .agenda-title { font-weight: 700; color: #e2e8f0; }
-    .agenda-item .agenda-desc { color: #64748b; font-size: 0.9em; margin-top: 2px; }
+    .agenda-item .agenda-title { font-weight: 700; color: #1e293b; }
+    .agenda-item .agenda-desc { color: #94a3b8; font-size: 0.9em; margin-top: 2px; }
 
     /* Executive Summary 3컬럼 */
     .exec-grid {
@@ -329,30 +329,30 @@
     }
     .exec-card {
       padding: 18px 20px;
-      background: rgba(59,130,246,0.06);
-      border: 1px solid rgba(59,130,246,0.15);
+      background: rgba(37,99,235,0.04);
+      border: 1px solid rgba(37,99,235,0.12);
       border-radius: 12px;
       font-size: 0.6em;
     }
     .exec-card .exec-num {
       font-size: 1.6em;
       font-weight: 800;
-      color: #60a5fa;
+      color: #2563eb;
       margin-bottom: 6px;
     }
-    .exec-card .exec-title { font-weight: 700; color: #e2e8f0; margin-bottom: 4px; }
-    .exec-card .exec-desc { color: #94a3b8; line-height: 1.5; }
+    .exec-card .exec-title { font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .exec-card .exec-desc { color: #64748b; line-height: 1.5; }
 
     /* 파란 stat 카드 (성장/긍정 지표) */
     .stat-card-blue {
       padding: 16px 20px;
-      background: rgba(59,130,246,0.06);
-      border: 1px solid rgba(59,130,246,0.2);
+      background: rgba(37,99,235,0.04);
+      border: 1px solid rgba(37,99,235,0.15);
       border-radius: 12px;
       font-size: 0.6em;
     }
-    .stat-card-blue .stat-num { font-size: 1.8em; font-weight: 800; color: #60a5fa; }
-    .stat-card-blue .stat-label { color: #94a3b8; margin-top: 4px; }
+    .stat-card-blue .stat-num { font-size: 1.8em; font-weight: 800; color: #2563eb; }
+    .stat-card-blue .stat-label { color: #64748b; margin-top: 4px; }
 
     /* 5단계 수평 바 (Maturity Model) */
     .maturity-container {
@@ -373,22 +373,22 @@
       font-size: 1.4em;
       margin-bottom: 4px;
     }
-    .maturity-bar .maturity-title { font-weight: 700; color: #e2e8f0; margin-bottom: 3px; }
-    .maturity-bar .maturity-desc { color: #94a3b8; line-height: 1.4; }
+    .maturity-bar .maturity-title { font-weight: 700; color: #1e293b; margin-bottom: 3px; }
+    .maturity-bar .maturity-desc { color: #64748b; line-height: 1.4; }
     .maturity-bar.active {
-      background: rgba(59,130,246,0.15);
-      border: 2px solid rgba(59,130,246,0.5);
-      box-shadow: 0 0 20px rgba(59,130,246,0.2);
+      background: rgba(37,99,235,0.06);
+      border: 2px solid rgba(37,99,235,0.3);
+      box-shadow: 0 0 16px rgba(37,99,235,0.1);
     }
     .maturity-bar.inactive {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      opacity: 0.6;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      opacity: 0.7;
     }
     .maturity-bar.future {
-      background: rgba(255,255,255,0.02);
-      border: 1px dashed rgba(255,255,255,0.1);
-      opacity: 0.4;
+      background: #fafafa;
+      border: 1px dashed #d1d5db;
+      opacity: 0.5;
     }
 
     /* 부서별 카드 그리드 */
@@ -401,15 +401,15 @@
     }
     .dept-card {
       padding: 14px 16px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
       font-size: 0.52em;
     }
     .dept-card .dept-icon { font-size: 1.6em; margin-bottom: 4px; }
-    .dept-card .dept-name { font-weight: 700; color: #e2e8f0; margin-bottom: 4px; }
-    .dept-card .dept-use { color: #60a5fa; margin-bottom: 3px; }
-    .dept-card .dept-focus { color: #4ade80; font-size: 0.9em; }
+    .dept-card .dept-name { font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .dept-card .dept-use { color: #2563eb; margin-bottom: 3px; }
+    .dept-card .dept-focus { color: #16a34a; font-size: 0.9em; }
 
     /* ROI 테이블 */
     .roi-table {
@@ -420,22 +420,23 @@
       margin-top: 12px;
       border-radius: 12px;
       overflow: hidden;
+      border: 1px solid #e2e8f0;
     }
     .roi-table th {
-      background: rgba(59,130,246,0.25);
-      color: #60a5fa;
+      background: rgba(37,99,235,0.08);
+      color: #2563eb;
       padding: 10px 14px;
       text-align: left;
       font-weight: 600;
-      border-bottom: 1px solid rgba(59,130,246,0.2);
+      border-bottom: 1px solid #e2e8f0;
     }
     .roi-table td {
       padding: 9px 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      color: #cbd5e1;
+      border-bottom: 1px solid #f1f5f9;
+      color: #475569;
     }
-    .roi-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
-    .roi-table .saved { color: #4ade80; font-weight: 700; }
+    .roi-table tr:nth-child(even) td { background: #f8fafc; }
+    .roi-table .saved { color: #16a34a; font-weight: 700; }
 
     /* 로드맵 그리드 */
     .roadmap-grid {
@@ -457,39 +458,39 @@
     }
     .roadmap-phase .phase-title {
       font-weight: 700;
-      color: #e2e8f0;
+      color: #1e293b;
       margin-bottom: 6px;
     }
-    .roadmap-phase .phase-items { color: #94a3b8; line-height: 1.6; }
+    .roadmap-phase .phase-items { color: #64748b; line-height: 1.6; }
     .roadmap-phase .phase-outcome {
       margin-top: 8px;
       padding-top: 8px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(0,0,0,0.06);
       font-weight: 600;
     }
     .phase-30 {
-      background: rgba(74,222,128,0.06);
-      border: 1px solid rgba(74,222,128,0.2);
+      background: rgba(22,163,74,0.04);
+      border: 1px solid rgba(22,163,74,0.15);
     }
-    .phase-30 .phase-label { color: #4ade80; }
-    .phase-30 .phase-outcome { color: #4ade80; }
+    .phase-30 .phase-label { color: #16a34a; }
+    .phase-30 .phase-outcome { color: #16a34a; }
     .phase-60 {
-      background: rgba(59,130,246,0.06);
-      border: 1px solid rgba(59,130,246,0.2);
+      background: rgba(37,99,235,0.04);
+      border: 1px solid rgba(37,99,235,0.15);
     }
-    .phase-60 .phase-label { color: #60a5fa; }
-    .phase-60 .phase-outcome { color: #60a5fa; }
+    .phase-60 .phase-label { color: #2563eb; }
+    .phase-60 .phase-outcome { color: #2563eb; }
     .phase-90 {
-      background: rgba(168,85,247,0.06);
-      border: 1px solid rgba(168,85,247,0.2);
+      background: rgba(124,58,237,0.04);
+      border: 1px solid rgba(124,58,237,0.15);
     }
-    .phase-90 .phase-label { color: #c084fc; }
-    .phase-90 .phase-outcome { color: #c084fc; }
+    .phase-90 .phase-label { color: #7c3aed; }
+    .phase-90 .phase-outcome { color: #7c3aed; }
 
     /* 출처 표기 */
     .source-note {
       font-size: 0.45em;
-      color: #475569;
+      color: #94a3b8;
       text-align: right;
       margin-top: 10px;
       font-style: italic;
@@ -505,22 +506,22 @@
     }
     .tool-card {
       padding: 14px 16px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
       font-size: 0.52em;
     }
-    .tool-card .tool-name { font-weight: 700; color: #e2e8f0; margin-bottom: 4px; }
-    .tool-card .tool-desc { color: #94a3b8; line-height: 1.4; margin-bottom: 6px; }
+    .tool-card .tool-name { font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .tool-card .tool-desc { color: #64748b; line-height: 1.4; margin-bottom: 6px; }
     .tool-card .tool-tag {
       display: inline-block;
       padding: 2px 8px;
       border-radius: 20px;
       font-size: 0.85em;
     }
-    .tool-tag-all { background: rgba(74,222,128,0.15); color: #4ade80; }
-    .tool-tag-dev { background: rgba(251,191,36,0.15); color: #fbbf24; }
-    .tool-tag-biz { background: rgba(96,165,250,0.15); color: #60a5fa; }
+    .tool-tag-all { background: rgba(22,163,74,0.1); color: #16a34a; }
+    .tool-tag-dev { background: rgba(217,119,6,0.1); color: #d97706; }
+    .tool-tag-biz { background: rgba(37,99,235,0.1); color: #2563eb; }
 
     /* 레퍼런스 리스트 */
     .ref-list {
@@ -530,12 +531,12 @@
     }
     .ref-list li {
       font-size: 0.55em;
-      color: #64748b;
+      color: #94a3b8;
       margin: 8px 0;
       line-height: 1.5;
     }
     .ref-list li::before { display: none; }
-    .ref-list li strong { color: #94a3b8; }
+    .ref-list li strong { color: #64748b; }
   </style>
 </head>
 <body>
@@ -543,16 +544,16 @@
     <div class="slides">
 
       <!-- ==================== 슬라이드 1: 타이틀 ==================== -->
-      <section data-background-gradient="linear-gradient(135deg, #0f172a, #1e3a5f, #0f172a)">
+      <section data-background-gradient="linear-gradient(135deg, #eff6ff, #dbeafe, #eff6ff)">
         <div class="emoji-hero">🤖</div>
         <h1>AI, 이제 대화만 하는 게<br><span class="text-glow">아닙니다</span></h1>
         <div class="gradient-line"></div>
-        <p style="color:#94a3b8; font-size:0.7em;">채팅에서 실행으로 — 에이전트 AI로 더 편해지는 업무 환경</p>
+        <p style="color:#64748b; font-size:0.7em;">채팅에서 실행으로 — 에이전트 AI로 더 편해지는 업무 환경</p>
         <br>
         <span class="badge badge-blue">2026년 2월 | 사내 세미나</span>
       </section>
 
-      <!-- ==================== 슬라이드 2: 어젠다 (신규) ==================== -->
+      <!-- ==================== 슬라이드 2: 어젠다 ==================== -->
       <section>
         <h2>📑 Agenda</h2>
         <div style="max-width:700px; margin:10px auto 0;">
@@ -594,7 +595,7 @@
         </div>
       </section>
 
-      <!-- ==================== 슬라이드 3: Executive Summary (신규) ==================== -->
+      <!-- ==================== 슬라이드 3: Executive Summary ==================== -->
       <section>
         <h2>📌 Executive Summary</h2>
         <div class="highlight-box" style="text-align:center; max-width:780px; margin:10px auto 14px; font-size:0.72em;">
@@ -623,24 +624,24 @@
       <!-- ==================== 슬라이드 4: 현재 채팅 AI의 역할과 한계 ==================== -->
       <section>
         <h2>💬 현재 채팅 AI의 역할과 한계</h2>
-        <p style="font-size:0.68em; color:#94a3b8;">ChatGPT, Claude 웹 — <strong class="text-blue">브라우저 안에서 대화</strong></p>
+        <p style="font-size:0.68em; color:#64748b;">ChatGPT, Claude 웹 — <strong class="text-blue">브라우저 안에서 대화</strong></p>
         <div class="compare-grid">
-          <div class="card" style="background:rgba(59,130,246,0.06); border:1px solid rgba(59,130,246,0.2);">
-            <h3 style="color:#60a5fa;">우리가 하는 것</h3>
+          <div class="card" style="background:rgba(37,99,235,0.04); border:1px solid rgba(37,99,235,0.12);">
+            <h3 style="color:#2563eb;">우리가 하는 것</h3>
             <ul>
-              <li style="font-size:0.65em; color:#cbd5e1;">💬 질문을 <strong>텍스트로 입력</strong></li>
-              <li style="font-size:0.65em; color:#cbd5e1;">📋 답변을 <strong>복사해서 붙여넣기</strong></li>
-              <li style="font-size:0.65em; color:#cbd5e1;">🔄 서식 정리, 저장, 공유는 <strong>직접</strong></li>
-              <li style="font-size:0.65em; color:#cbd5e1;">📎 파일 업로드하면 <strong>텍스트로 답변</strong></li>
+              <li style="font-size:0.65em; color:#334155;">💬 질문을 <strong>텍스트로 입력</strong></li>
+              <li style="font-size:0.65em; color:#334155;">📋 답변을 <strong>복사해서 붙여넣기</strong></li>
+              <li style="font-size:0.65em; color:#334155;">🔄 서식 정리, 저장, 공유는 <strong>직접</strong></li>
+              <li style="font-size:0.65em; color:#334155;">📎 파일 업로드하면 <strong>텍스트로 답변</strong></li>
             </ul>
           </div>
-          <div class="card" style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2);">
-            <h3 style="color:#f87171;">AI가 못하는 것</h3>
+          <div class="card" style="background:rgba(220,38,38,0.04); border:1px solid rgba(220,38,38,0.12);">
+            <h3 style="color:#dc2626;">AI가 못하는 것</h3>
             <ul>
-              <li style="font-size:0.65em; color:#94a3b8;">🚫 내 PC의 파일을 <strong>직접 열거나 수정</strong></li>
-              <li style="font-size:0.65em; color:#94a3b8;">🚫 이메일 보내기, 캘린더 <strong>직접 조작</strong></li>
-              <li style="font-size:0.65em; color:#94a3b8;">🚫 사내 시스템에 <strong>로그인·조회</strong></li>
-              <li style="font-size:0.65em; color:#94a3b8;">🚫 여러 단계를 <strong>알아서 순서대로</strong> 처리</li>
+              <li style="font-size:0.65em; color:#64748b;">🚫 내 PC의 파일을 <strong>직접 열거나 수정</strong></li>
+              <li style="font-size:0.65em; color:#64748b;">🚫 이메일 보내기, 캘린더 <strong>직접 조작</strong></li>
+              <li style="font-size:0.65em; color:#64748b;">🚫 사내 시스템에 <strong>로그인·조회</strong></li>
+              <li style="font-size:0.65em; color:#64748b;">🚫 여러 단계를 <strong>알아서 순서대로</strong> 처리</li>
             </ul>
           </div>
         </div>
@@ -708,25 +709,25 @@
           </div>
         </div>
         <div class="feature-grid" style="margin-top:18px;">
-          <div class="feature-card" style="background:rgba(251,191,36,0.06); border-color:rgba(251,191,36,0.15);">
-            <div class="feature-title" style="color:#fbbf24;">🔧 도구 사용 (Tool Use)</div>
+          <div class="feature-card" style="background:rgba(217,119,6,0.04); border-color:rgba(217,119,6,0.12);">
+            <div class="feature-title" style="color:#d97706;">🔧 도구 사용 (Tool Use)</div>
             <div class="feature-desc">파일, 터미널, API, 웹 브라우저 등을 AI가 직접 호출</div>
           </div>
-          <div class="feature-card" style="background:rgba(74,222,128,0.06); border-color:rgba(74,222,128,0.15);">
-            <div class="feature-title" style="color:#4ade80;">🧠 자율 판단 (Autonomy)</div>
+          <div class="feature-card" style="background:rgba(22,163,74,0.04); border-color:rgba(22,163,74,0.12);">
+            <div class="feature-title" style="color:#16a34a;">🧠 자율 판단 (Autonomy)</div>
             <div class="feature-desc">사용자가 설정한 범위 안에서 판단하여 업무 부담 경감</div>
           </div>
         </div>
       </section>
 
-      <!-- ==================== 슬라이드 7: Industry Data (신규) ==================== -->
+      <!-- ==================== 슬라이드 7: Industry Data ==================== -->
       <section>
         <h2>📊 시장이 주목하는 이유</h2>
-        <p style="font-size:0.6em; color:#94a3b8;">에이전트 AI 시장은 빠르게 성장하고 있으며, 더 좋은 도구가 계속 등장하고 있습니다</p>
+        <p style="font-size:0.6em; color:#64748b;">에이전트 AI 시장은 빠르게 성장하고 있으며, 더 좋은 도구가 계속 등장하고 있습니다</p>
         <div class="stat-grid">
           <div class="stat-card-blue">
             <div class="stat-num">$47B</div>
-            <div class="stat-label">2030년 에이전트 AI 시장 예상 규모<br><span style="color:#60a5fa;">2024년 $5.6B → CAGR 42%</span></div>
+            <div class="stat-label">2030년 에이전트 AI 시장 예상 규모<br><span style="color:#2563eb;">2024년 $5.6B → CAGR 42%</span></div>
           </div>
           <div class="stat-card-blue">
             <div class="stat-num">82%</div>
@@ -932,10 +933,10 @@
         </div>
       </section>
 
-      <!-- ==================== 슬라이드 16: 부서별 AI 도우미 활용 기회 (신규) ==================== -->
+      <!-- ==================== 슬라이드 16: 부서별 AI 도우미 활용 기회 ==================== -->
       <section>
         <h2>🏢 부서별 AI 도우미 활용 기회</h2>
-        <p style="font-size:0.6em; color:#94a3b8;">각 부서의 반복 업무를 AI가 보조하면, 담당자는 더 가치 있는 업무에 집중할 수 있습니다</p>
+        <p style="font-size:0.6em; color:#64748b;">각 부서의 반복 업무를 AI가 보조하면, 담당자는 더 가치 있는 업무에 집중할 수 있습니다</p>
         <div class="dept-grid">
           <div class="dept-card">
             <div class="dept-icon">👥</div>
@@ -976,10 +977,10 @@
         </div>
       </section>
 
-      <!-- ==================== 슬라이드 17: ROI — 예상 시간 절감 효과 (신규) ==================== -->
+      <!-- ==================== 슬라이드 17: ROI — 예상 시간 절감 효과 ==================== -->
       <section>
         <h2>⏱️ 예상 시간 절감 효과</h2>
-        <p style="font-size:0.6em; color:#94a3b8;">반복 업무에 소요되는 시간을 AI 도우미가 줄여줄 수 있습니다</p>
+        <p style="font-size:0.6em; color:#64748b;">반복 업무에 소요되는 시간을 AI 도우미가 줄여줄 수 있습니다</p>
         <table class="roi-table">
           <thead>
             <tr>
@@ -1048,33 +1049,33 @@
         </div>
       </section>
 
-      <!-- ==================== 슬라이드 19: 5단계 업무 편의성 향상 모델 (신규) ==================== -->
+      <!-- ==================== 슬라이드 19: 5단계 업무 편의성 향상 모델 ==================== -->
       <section>
         <h2>📈 5단계 업무 편의성 향상 모델</h2>
-        <p style="font-size:0.6em; color:#94a3b8;">우리 조직은 현재 어디에 있으며, 다음 단계에서 어떤 편리함을 기대할 수 있을까요?</p>
+        <p style="font-size:0.6em; color:#64748b;">우리 조직은 현재 어디에 있으며, 다음 단계에서 어떤 편리함을 기대할 수 있을까요?</p>
         <div class="maturity-container">
           <div class="maturity-bar active">
-            <div class="maturity-level" style="color:#4ade80;">Lv.1</div>
+            <div class="maturity-level" style="color:#16a34a;">Lv.1</div>
             <div class="maturity-title">정보 검색 편의</div>
             <div class="maturity-desc">질문하면 답변 받기<br>웹 채팅 AI 활용</div>
           </div>
           <div class="maturity-bar active">
-            <div class="maturity-level" style="color:#60a5fa;">Lv.2</div>
+            <div class="maturity-level" style="color:#2563eb;">Lv.2</div>
             <div class="maturity-title">문서 작성 보조</div>
             <div class="maturity-desc">초안 작성, 번역,<br>요약 보조</div>
           </div>
           <div class="maturity-bar inactive">
-            <div class="maturity-level" style="color:#c084fc;">Lv.3</div>
+            <div class="maturity-level" style="color:#7c3aed;">Lv.3</div>
             <div class="maturity-title">반복 업무 자동화</div>
             <div class="maturity-desc">파일 처리, 데이터 취합<br>에이전트 AI 시작</div>
           </div>
           <div class="maturity-bar future">
-            <div class="maturity-level" style="color:#fbbf24;">Lv.4</div>
+            <div class="maturity-level" style="color:#d97706;">Lv.4</div>
             <div class="maturity-title">부서 업무 효율화</div>
             <div class="maturity-desc">워크플로우 자동화<br>시스템 연동</div>
           </div>
           <div class="maturity-bar future">
-            <div class="maturity-level" style="color:#f87171;">Lv.5</div>
+            <div class="maturity-level" style="color:#dc2626;">Lv.5</div>
             <div class="maturity-title">전사 업무 최적화</div>
             <div class="maturity-desc">부서 간 자동 협업<br>의사결정 보조</div>
           </div>
@@ -1112,7 +1113,7 @@
       <!-- ==================== 슬라이드 22: 산업계가 주목하는 변화 ==================== -->
       <section>
         <h2>📉 산업계가 주목하는 변화</h2>
-        <p style="font-size:0.6em; color:#94a3b8;">AI 에이전트가 소프트웨어 시장 구조를 변화시키고 있습니다</p>
+        <p style="font-size:0.6em; color:#64748b;">AI 에이전트가 소프트웨어 시장 구조를 변화시키고 있습니다</p>
         <div class="stat-grid">
           <div class="stat-card">
             <div class="stat-num">-1조$</div>
@@ -1138,10 +1139,10 @@
         <div class="source-note">Source: Bloomberg, Yahoo Finance (2026.01~02)</div>
       </section>
 
-      <!-- ==================== 슬라이드 23: 도구 안내 (신규) ==================== -->
+      <!-- ==================== 슬라이드 23: 도구 안내 ==================== -->
       <section>
         <h2>🛠️ 지금 사용할 수 있는 AI 도구들</h2>
-        <p style="font-size:0.6em; color:#94a3b8;">용도와 접근성에 따라 선택할 수 있습니다</p>
+        <p style="font-size:0.6em; color:#64748b;">용도와 접근성에 따라 선택할 수 있습니다</p>
         <div class="tool-grid">
           <div class="tool-card">
             <div class="tool-name">Claude Cowork</div>
@@ -1180,25 +1181,25 @@
       </section>
 
       <!-- ==================== 슬라이드 24: 현실적 고려사항 ==================== -->
-      <section data-background-gradient="linear-gradient(135deg, #0f172a, #422006)">
+      <section data-background-gradient="linear-gradient(135deg, #fffbeb, #fef3c7)">
         <h2>⚠️ 현실적 고려사항</h2>
-        <p style="font-size:0.6em; color:#fbbf24;">기대만큼 중요한 주의점</p>
+        <p style="font-size:0.6em; color:#b45309;">기대만큼 중요한 주의점</p>
         <ul class="warn-list" style="max-width:750px; margin:10px auto 0;">
           <li>👁️ <strong>사람의 감독은 필수</strong><br>
-            <span style="color:#94a3b8; font-size:0.85em; padding-left:28px;">AI가 처리한 결과는 반드시 사람이 검토·승인. "유능한 비서에게 맡기듯" 결과물 확인 필요</span></li>
+            <span style="color:#64748b; font-size:0.85em; padding-left:28px;">AI가 처리한 결과는 반드시 사람이 검토·승인. "유능한 비서에게 맡기듯" 결과물 확인 필요</span></li>
           <li>⚖️ <strong>100% 완벽하지 않음</strong><br>
-            <span style="color:#94a3b8; font-size:0.85em; padding-left:28px;">특히 숫자, 날짜, 고유명사는 꼭 확인. 환각(Hallucination) 가능성 인지</span></li>
+            <span style="color:#64748b; font-size:0.85em; padding-left:28px;">특히 숫자, 날짜, 고유명사는 꼭 확인. 환각(Hallucination) 가능성 인지</span></li>
           <li>🔒 <strong>보안과 권한 관리</strong><br>
-            <span style="color:#94a3b8; font-size:0.85em; padding-left:28px;">민감한 데이터 접근 범위를 명확히 설정. 사내 보안 정책과 병행 필수</span></li>
+            <span style="color:#64748b; font-size:0.85em; padding-left:28px;">민감한 데이터 접근 범위를 명확히 설정. 사내 보안 정책과 병행 필수</span></li>
           <li>📊 <strong>먼저 시작하면 더 큰 효과</strong><br>
-            <span style="color:#94a3b8; font-size:0.85em; padding-left:28px;">적극 활용하는 팀이 더 빠르게 업무 효율을 높이고 있습니다. 작은 것부터 시작해보세요.</span></li>
+            <span style="color:#64748b; font-size:0.85em; padding-left:28px;">적극 활용하는 팀이 더 빠르게 업무 효율을 높이고 있습니다. 작은 것부터 시작해보세요.</span></li>
         </ul>
       </section>
 
-      <!-- ==================== 슬라이드 25: 30/60/90일 실행 로드맵 (신규) ==================== -->
+      <!-- ==================== 슬라이드 25: 30/60/90일 실행 로드맵 ==================== -->
       <section>
         <h2>🗓️ 30/60/90일 실행 로드맵</h2>
-        <p style="font-size:0.6em; color:#94a3b8;">단계별로 천천히 시작하면 됩니다. 작은 시작이 큰 변화로 이어집니다.</p>
+        <p style="font-size:0.6em; color:#64748b;">단계별로 천천히 시작하면 됩니다. 작은 시작이 큰 변화로 이어집니다.</p>
         <div class="roadmap-grid">
           <div class="roadmap-phase phase-30">
             <div class="phase-label">30일</div>
@@ -1237,20 +1238,20 @@
       </section>
 
       <!-- ==================== 슬라이드 26: CTA ==================== -->
-      <section data-background-gradient="linear-gradient(135deg, #0f172a, #052e16)">
+      <section data-background-gradient="linear-gradient(135deg, #f0fdf4, #dcfce7)">
         <h2>🎯 내일부터 시작할 수 있는 것</h2>
         <div style="max-width:700px; margin:16px auto 0;">
           <div class="cta-step">
             <div class="num">1</div>
-            <div><strong class="text-white">관찰하기</strong> <span class="text-dim">—</span> 이번 주 내 업무 중 <strong class="text-blue">"복사-붙여넣기 반복"</strong>, <strong class="text-blue">"여러 시스템 왔다갔다"</strong> 작업 3개 적기</div>
+            <div><strong style="color:#1e293b;">관찰하기</strong> <span class="text-dim">—</span> 이번 주 내 업무 중 <strong class="text-blue">"복사-붙여넣기 반복"</strong>, <strong class="text-blue">"여러 시스템 왔다갔다"</strong> 작업 3개 적기</div>
           </div>
           <div class="cta-step">
             <div class="num">2</div>
-            <div><strong class="text-white">실험하기</strong> <span class="text-dim">—</span> 그중 가장 간단한 1개를 에이전트 AI로 시도. <strong class="text-green">Claude Cowork, Copilot Studio</strong> 등 활용</div>
+            <div><strong style="color:#1e293b;">실험하기</strong> <span class="text-dim">—</span> 그중 가장 간단한 1개를 에이전트 AI로 시도. <strong class="text-green">Claude Cowork, Copilot Studio</strong> 등 활용</div>
           </div>
           <div class="cta-step">
             <div class="num">3</div>
-            <div><strong class="text-white">공유하기</strong> <span class="text-dim">—</span> 결과를 팀에 공유하고, 함께 확장할 업무 찾기. <strong class="text-purple">작은 성공이 큰 변화의 시작</strong></div>
+            <div><strong style="color:#1e293b;">공유하기</strong> <span class="text-dim">—</span> 결과를 팀에 공유하고, 함께 확장할 업무 찾기. <strong class="text-purple">작은 성공이 큰 변화의 시작</strong></div>
           </div>
         </div>
         <div class="quote">
@@ -1260,7 +1261,7 @@
         </div>
       </section>
 
-      <!-- ==================== 슬라이드 27: References & Sources (신규) ==================== -->
+      <!-- ==================== 슬라이드 27: References & Sources ==================== -->
       <section>
         <h2>📚 References & Sources</h2>
         <ul class="ref-list">
@@ -1274,7 +1275,7 @@
           <li><strong>Google</strong> — Gemini for Workspace: agent capabilities and productivity features</li>
         </ul>
         <div class="gradient-line" style="margin-top:20px;"></div>
-        <p style="font-size:0.55em; color:#64748b; margin-top:12px;">
+        <p style="font-size:0.55em; color:#94a3b8; margin-top:12px;">
           본 자료는 사내 교육 목적으로 작성되었습니다. 인용된 데이터는 각 출처의 공개 자료를 기반으로 합니다.
         </p>
         <span class="badge badge-blue" style="margin-top:12px;">2026년 2월 | 사내 세미나</span>
