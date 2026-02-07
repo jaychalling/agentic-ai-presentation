@@ -375,21 +375,37 @@
     }
     .maturity-bar .maturity-title { font-weight: 700; color: #1e293b; margin-bottom: 3px; }
     .maturity-bar .maturity-desc { color: #64748b; line-height: 1.4; }
-    .maturity-bar.active {
-      background: rgba(37,99,235,0.06);
-      border: 2px solid rgba(37,99,235,0.3);
+    /* 레벨별 고유 색상 */
+    .maturity-bar.lv1 {
+      background: rgba(22,163,74,0.08);
+      border: 2px solid rgba(22,163,74,0.4);
+      box-shadow: 0 0 16px rgba(22,163,74,0.1);
+    }
+    .maturity-bar.lv1 .maturity-title { color: #15803d; }
+    .maturity-bar.lv2 {
+      background: rgba(37,99,235,0.08);
+      border: 2px solid rgba(37,99,235,0.4);
       box-shadow: 0 0 16px rgba(37,99,235,0.1);
     }
-    .maturity-bar.inactive {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
+    .maturity-bar.lv2 .maturity-title { color: #1d4ed8; }
+    .maturity-bar.lv3 {
+      background: rgba(124,58,237,0.08);
+      border: 2px solid rgba(124,58,237,0.4);
+      box-shadow: 0 0 16px rgba(124,58,237,0.1);
+    }
+    .maturity-bar.lv3 .maturity-title { color: #6d28d9; }
+    .maturity-bar.lv4 {
+      background: rgba(217,119,6,0.06);
+      border: 1px dashed rgba(217,119,6,0.4);
       opacity: 0.7;
     }
-    .maturity-bar.future {
-      background: #fafafa;
-      border: 1px dashed #d1d5db;
-      opacity: 0.5;
+    .maturity-bar.lv4 .maturity-title { color: #b45309; }
+    .maturity-bar.lv5 {
+      background: rgba(220,38,38,0.05);
+      border: 1px dashed rgba(220,38,38,0.35);
+      opacity: 0.55;
     }
+    .maturity-bar.lv5 .maturity-title { color: #b91c1c; }
 
     /* 부서별 카드 그리드 */
     .dept-grid {
@@ -522,6 +538,8 @@
     .tool-tag-all { background: rgba(22,163,74,0.1); color: #16a34a; }
     .tool-tag-dev { background: rgba(217,119,6,0.1); color: #d97706; }
     .tool-tag-biz { background: rgba(37,99,235,0.1); color: #2563eb; }
+    .tool-tag-company { background: rgba(220,38,38,0.08); color: #dc2626; border: 1.5px solid rgba(220,38,38,0.3); font-weight: 700; }
+    .tool-tag-external { background: rgba(148,163,184,0.1); color: #94a3b8; }
 
     /* 레퍼런스 리스트 */
     .ref-list {
@@ -548,83 +566,15 @@
         <div class="emoji-hero">🤖</div>
         <h1>AI, 이제 대화만 하는 게<br><span class="text-glow">아닙니다</span></h1>
         <div class="gradient-line"></div>
-        <p style="color:#64748b; font-size:0.7em;">채팅에서 실행으로 — 에이전트 AI로 더 편해지는 업무 환경</p>
+        <p style="color:#64748b; font-size:0.7em;">채팅에서 실행으로 — 에이전틱 AI로 더 편해지는 업무 환경</p>
         <br>
-        <span class="badge badge-blue">2026년 2월 | 사내 세미나</span>
+        <span class="badge badge-blue">2026년 2월 | 차량개발기획팀 정보공유회</span>
       </section>
 
-      <!-- ==================== 슬라이드 2: 어젠다 ==================== -->
+      <!-- ==================== 슬라이드 2: 현재 웹 AI의 역할과 한계 ==================== -->
       <section>
-        <h2>📑 Agenda</h2>
-        <div style="max-width:700px; margin:10px auto 0;">
-          <div class="agenda-item">
-            <div class="agenda-num">1</div>
-            <div>
-              <div class="agenda-title">현황 분석 — 현재 AI 활용의 한계</div>
-              <div class="agenda-desc">채팅 AI의 역할과 업무 실행 사이의 간극</div>
-            </div>
-          </div>
-          <div class="agenda-item">
-            <div class="agenda-num">2</div>
-            <div>
-              <div class="agenda-title">핵심 비교 — 웹 채팅 vs 에이전트 AI</div>
-              <div class="agenda-desc">4가지 핵심 차이점: 파일, API, 터미널, 자율 실행</div>
-            </div>
-          </div>
-          <div class="agenda-item">
-            <div class="agenda-num">3</div>
-            <div>
-              <div class="agenda-title">업무 적용 — 부서별 활용 기회와 예상 효과</div>
-              <div class="agenda-desc">실무 예시, 부서별 활용, 시간 절감 시뮬레이션</div>
-            </div>
-          </div>
-          <div class="agenda-item">
-            <div class="agenda-num">4</div>
-            <div>
-              <div class="agenda-title">시장 동향 — 산업계의 변화와 도구 안내</div>
-              <div class="agenda-desc">타임라인, 시장 데이터, 활용 가능한 도구 소개</div>
-            </div>
-          </div>
-          <div class="agenda-item">
-            <div class="agenda-num">5</div>
-            <div>
-              <div class="agenda-title">실행 계획 — 30/60/90일 로드맵</div>
-              <div class="agenda-desc">고려사항, 단계별 도입 계획, 시작 가이드</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ==================== 슬라이드 3: Executive Summary ==================== -->
-      <section>
-        <h2>📌 Executive Summary</h2>
-        <div class="highlight-box" style="text-align:center; max-width:780px; margin:10px auto 14px; font-size:0.72em;">
-          <strong>에이전트 AI는 반복적인 업무 부담을 줄여,<br>구성원이 더 가치 있는 일에 집중할 수 있게 합니다.</strong>
-        </div>
-        <div class="exec-grid">
-          <div class="exec-card">
-            <div class="exec-num">01</div>
-            <div class="exec-title">채팅에서 실행으로의 전환</div>
-            <div class="exec-desc">AI가 텍스트 답변을 넘어 파일 처리, 시스템 연동, 업무 자동화를 직접 수행하는 시대가 시작되었습니다.</div>
-          </div>
-          <div class="exec-card">
-            <div class="exec-num">02</div>
-            <div class="exec-title">반복 업무 자동화로 시간 절감</div>
-            <div class="exec-desc">복사-붙여넣기, 데이터 취합, 정기 보고 등 반복 업무를 AI가 보조하여 주당 5~10시간 절감이 기대됩니다.</div>
-          </div>
-          <div class="exec-card">
-            <div class="exec-num">03</div>
-            <div class="exec-title">지금이 시작하기 좋은 시점</div>
-            <div class="exec-desc">기술 성숙도가 실무 수준에 도달했으며, 먼저 시작하면 조직 전체의 업무 효율이 빠르게 향상됩니다.</div>
-          </div>
-        </div>
-        <div class="source-note">본 자료는 사내 업무 효율화를 위한 기술 트렌드 분석 보고서입니다.</div>
-      </section>
-
-      <!-- ==================== 슬라이드 4: 현재 채팅 AI의 역할과 한계 ==================== -->
-      <section>
-        <h2>💬 현재 채팅 AI의 역할과 한계</h2>
-        <p style="font-size:0.68em; color:#64748b;">ChatGPT, Claude 웹 — <strong class="text-blue">브라우저 안에서 대화</strong></p>
+        <h2>💬 현재 웹 AI의 역할과 한계</h2>
+        <p style="font-size:0.68em; color:#64748b;">ChatGPT, Gemini, Claude — <strong class="text-blue">브라우저 안에서 대화</strong></p>
         <div class="compare-grid">
           <div class="card" style="background:rgba(37,99,235,0.04); border:1px solid rgba(37,99,235,0.12);">
             <h3 style="color:#2563eb;">우리가 하는 것</h3>
@@ -654,7 +604,7 @@
       <section>
         <h2>현재 업무에서의 AI 활용 한계</h2>
         <table>
-          <thead><tr><th>상황</th><th>웹 AI의 한계</th><th>결국 내가 해야 하는 것</th></tr></thead>
+          <thead><tr><th>상황</th><th>웹 AI (ChatGPT, Gemini, Claude)</th><th>결국 내가 해야 하는 것</th></tr></thead>
           <tbody>
             <tr>
               <td>📁 "엑셀 데이터 분석해줘"</td>
@@ -679,16 +629,17 @@
           </tbody>
         </table>
         <div class="highlight-box" style="text-align:center; max-width:750px; margin:16px auto 0;">
-          <strong>핵심 문제:</strong> AI의 정보 제공 능력과 실제 업무 실행 사이의 간극
+          <strong>핵심 문제:</strong> AI의 정보 제공 능력과 실제 업무 실행 사이의 간극<br>
+          "AI를 잘 활용해야 한다"는 말은 <strong>이 수준의 웹 AI (ChatGPT, Gemini, Claude)를 말하는 게 아닙니다.</strong>
         </div>
       </section>
 
-      <!-- ==================== 슬라이드 6: 에이전트 AI = 업무를 도와주는 AI 도우미 ==================== -->
+      <!-- ==================== 슬라이드 4: 에이전틱 AI = 업무를 도와주는 AI 도우미 ==================== -->
       <section>
-        <h2>💡 에이전트 AI = <span class="text-glow">업무를 도와주는 AI 도우미</span></h2>
+        <h2>💡 에이전틱 AI = <span class="text-glow">업무를 도와주는 AI 도우미</span></h2>
         <div class="compare-grid">
           <div class="card card-before">
-            <h3>❌ 웹 채팅 AI</h3>
+            <h3>❌ 웹 AI</h3>
             <ul>
               <li><strong>브라우저 안에 갇혀 있음</strong></li>
               <li>텍스트 입력 → 텍스트 출력</li>
@@ -698,7 +649,7 @@
             </ul>
           </div>
           <div class="card card-after">
-            <h3>✅ 에이전트 AI</h3>
+            <h3>✅ 에이전틱 AI</h3>
             <ul>
               <li><strong>내 PC·시스템에서 직접 실행</strong></li>
               <li>파일 읽기/쓰기, 프로그램 조작</li>
@@ -717,17 +668,21 @@
             <div class="feature-title" style="color:#16a34a;">🧠 자율 판단 (Autonomy)</div>
             <div class="feature-desc">사용자가 설정한 범위 안에서 판단하여 업무 부담 경감</div>
           </div>
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.12);">
+            <div class="feature-title" style="color:#dc2626;">🔥 토큰 사용량 차이</div>
+            <div class="feature-desc">웹 AI: 질문당 수백~수천 토큰 / 에이전틱 AI: 작업당 수만~수십만 토큰. 비용 구조가 근본적으로 다름</div>
+          </div>
         </div>
       </section>
 
       <!-- ==================== 슬라이드 7: Industry Data ==================== -->
       <section>
         <h2>📊 시장이 주목하는 이유</h2>
-        <p style="font-size:0.6em; color:#64748b;">에이전트 AI 시장은 빠르게 성장하고 있으며, 더 좋은 도구가 계속 등장하고 있습니다</p>
+        <p style="font-size:0.6em; color:#64748b;">에이전틱 AI 시장은 빠르게 성장하고 있으며, 더 좋은 도구가 계속 등장하고 있습니다</p>
         <div class="stat-grid">
           <div class="stat-card-blue">
             <div class="stat-num">$47B</div>
-            <div class="stat-label">2030년 에이전트 AI 시장 예상 규모<br><span style="color:#2563eb;">2024년 $5.6B → CAGR 42%</span></div>
+            <div class="stat-label">2030년 에이전틱 AI 시장 예상 규모<br><span style="color:#2563eb;">2024년 $5.6B → CAGR 42%</span></div>
           </div>
           <div class="stat-card-blue">
             <div class="stat-num">82%</div>
@@ -735,11 +690,11 @@
           </div>
           <div class="stat-card-blue">
             <div class="stat-num">65%</div>
-            <div class="stat-label">2026년 내 에이전트 AI<br>도입 예정 기업 비율</div>
+            <div class="stat-label">2026년 내 에이전틱 AI<br>도입 예정 기업 비율</div>
           </div>
           <div class="stat-card-blue">
             <div class="stat-num">3.2x</div>
-            <div class="stat-label">에이전트 AI 도입 기업의<br>평균 업무 생산성 향상 배율</div>
+            <div class="stat-label">에이전틱 AI 도입 기업의<br>평균 업무 생산성 향상 배율</div>
           </div>
         </div>
         <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
@@ -748,11 +703,11 @@
         <div class="source-note">Sources: MarketsandMarkets (2025), Gartner AI Survey (2025), McKinsey Digital Report (2025)</div>
       </section>
 
-      <!-- ==================== 슬라이드 8: 섹션 — 웹 채팅 vs 에이전트 AI ==================== -->
+      <!-- ==================== 슬라이드 8: 섹션 — 웹 AI vs 에이전틱 AI ==================== -->
       <section data-background-gradient="linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7)" class="section-slide">
         <div class="emoji-hero">⚡</div>
-        <h1>웹 채팅 vs 에이전트 AI</h1>
-        <p>정확히 뭐가 다른지, 4가지 핵심 능력으로 비교합니다</p>
+        <h1>웹 AI vs 에이전틱 AI</h1>
+        <p>"AI 잘 쓴다" = 에이전틱 AI를 쓴다는 뜻. 정확히 뭐가 다른지 4가지로 비교합니다</p>
       </section>
 
       <!-- ==================== 슬라이드 9: 차이점 1 — 파일 시스템 직접 접근 ==================== -->
@@ -761,7 +716,7 @@
         <p style="font-size:0.6em; color:#64748b;">내 컴퓨터의 파일을 직접 읽고, 수정하고, 새로 만든다</p>
         <div class="compare-grid">
           <div class="card card-before">
-            <h3>❌ 웹 채팅 AI</h3>
+            <h3>❌ 웹 AI</h3>
             <ul>
               <li>파일 내용을 <strong>복사해서 붙여넣기</strong></li>
               <li>결과도 <strong>텍스트로만</strong> 받음</li>
@@ -770,7 +725,7 @@
             </ul>
           </div>
           <div class="card card-after">
-            <h3>✅ 에이전트 AI</h3>
+            <h3>✅ 에이전틱 AI</h3>
             <ul>
               <li>폴더 내 엑셀 파일 <strong>전부 자동 읽기</strong></li>
               <li>분석 후 <strong>새 엑셀 파일로 저장</strong></li>
@@ -792,7 +747,7 @@
         <p style="font-size:0.6em; color:#64748b;">이메일, 캘린더, 사내 시스템, 외부 서비스에 직접 연결</p>
         <div class="compare-grid">
           <div class="card card-before">
-            <h3>❌ 웹 채팅 AI</h3>
+            <h3>❌ 웹 AI</h3>
             <ul>
               <li>"이렇게 메일 쓰세요" → <strong>복사해서 내가 발송</strong></li>
               <li>"일정을 이렇게 잡으세요" → <strong>캘린더에 내가 입력</strong></li>
@@ -801,7 +756,7 @@
             </ul>
           </div>
           <div class="card card-after">
-            <h3>✅ 에이전트 AI</h3>
+            <h3>✅ 에이전틱 AI</h3>
             <ul>
               <li>Outlook API로 <strong>이메일 직접 작성·발송</strong></li>
               <li>Calendar API로 <strong>일정 자동 등록</strong></li>
@@ -830,7 +785,7 @@
         <p style="font-size:0.6em; color:#64748b;">스크립트 작성·실행, 파일 변환, 데이터 처리를 AI가 직접</p>
         <div class="compare-grid">
           <div class="card card-before">
-            <h3>❌ 웹 채팅 AI</h3>
+            <h3>❌ 웹 AI</h3>
             <ul>
               <li>"이 명령어를 입력하세요" → <strong>안내만</strong></li>
               <li>복사해서 터미널에 <strong>내가 직접 입력</strong></li>
@@ -839,7 +794,7 @@
             </ul>
           </div>
           <div class="card card-after">
-            <h3>✅ 에이전트 AI</h3>
+            <h3>✅ 에이전틱 AI</h3>
             <ul>
               <li>스크립트를 <strong>작성하고 바로 실행</strong></li>
               <li>에러 발생 시 <strong>자동으로 수정 후 재시도</strong></li>
@@ -861,7 +816,7 @@
         <p style="font-size:0.6em; color:#64748b;">10단계 업무를 한번에 지시 → AI가 스스로 계획하고 실행</p>
         <div class="compare-grid">
           <div class="card card-before">
-            <h3>❌ 웹 채팅 AI</h3>
+            <h3>❌ 웹 AI</h3>
             <ul>
               <li>1단계 질문 → 답변 → 복사</li>
               <li>2단계 질문 → 답변 → 복사</li>
@@ -871,7 +826,7 @@
             </ul>
           </div>
           <div class="card card-after">
-            <h3>✅ 에이전트 AI</h3>
+            <h3>✅ 에이전틱 AI</h3>
             <ul>
               <li>전체 업무를 <strong>한번에 지시</strong></li>
               <li>AI가 단계를 <strong>스스로 계획</strong></li>
@@ -882,7 +837,7 @@
           </div>
         </div>
         <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
-          웹 채팅: <strong>"한 턴에 한 동작"</strong> &nbsp;→&nbsp; 에이전트: <strong>"한 번 지시에 전체 워크플로우"</strong>
+          웹 AI: <strong>"한 턴에 한 동작"</strong> &nbsp;→&nbsp; 에이전틱 AI: <strong>"한 번 지시에 전체 워크플로우"</strong>
         </div>
       </section>
 
@@ -890,7 +845,7 @@
       <section data-background-gradient="linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7)" class="section-slide">
         <div class="emoji-hero">💼</div>
         <h1>실제 업무 적용 사례</h1>
-        <p>다양한 부서에서 바로 활용 가능한 에이전트 AI 적용 예시</p>
+        <p>다양한 부서에서 바로 활용 가능한 에이전틱 AI 적용 예시</p>
       </section>
 
       <!-- ==================== 슬라이드 15: 업무별 활용 예시 ==================== -->
@@ -929,55 +884,11 @@
           </div>
         </div>
         <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
-          공통점: 모두 <strong>"여러 시스템을 넘나들며 반복하는 작업"</strong> → 에이전트 AI가 가장 잘 도와줄 수 있는 영역
+          공통점: 모두 <strong>"여러 시스템을 넘나들며 반복하는 작업"</strong> → 에이전틱 AI가 가장 잘 도와줄 수 있는 영역
         </div>
       </section>
 
-      <!-- ==================== 슬라이드 16: 부서별 AI 도우미 활용 기회 ==================== -->
-      <section>
-        <h2>🏢 부서별 AI 도우미 활용 기회</h2>
-        <p style="font-size:0.6em; color:#64748b;">각 부서의 반복 업무를 AI가 보조하면, 담당자는 더 가치 있는 업무에 집중할 수 있습니다</p>
-        <div class="dept-grid">
-          <div class="dept-card">
-            <div class="dept-icon">👥</div>
-            <div class="dept-name">인사 (HR)</div>
-            <div class="dept-use">채용 서류 스크리닝, 온보딩 문서 자동 생성</div>
-            <div class="dept-focus">→ 담당자는 면접·조직문화에 집중</div>
-          </div>
-          <div class="dept-card">
-            <div class="dept-icon">💰</div>
-            <div class="dept-name">재무 (Finance)</div>
-            <div class="dept-use">경비 취합, 월말 정산표 자동 작성</div>
-            <div class="dept-focus">→ 담당자는 분석·전략 수립에 집중</div>
-          </div>
-          <div class="dept-card">
-            <div class="dept-icon">📢</div>
-            <div class="dept-name">마케팅 (Marketing)</div>
-            <div class="dept-use">경쟁사 모니터링, 콘텐츠 초안 작성</div>
-            <div class="dept-focus">→ 담당자는 전략·크리에이티브에 집중</div>
-          </div>
-          <div class="dept-card">
-            <div class="dept-icon">🤝</div>
-            <div class="dept-name">영업 (Sales)</div>
-            <div class="dept-use">고객 리서치 자동화, 제안서 초안 생성</div>
-            <div class="dept-focus">→ 담당자는 고객 관계·협상에 집중</div>
-          </div>
-          <div class="dept-card">
-            <div class="dept-icon">🏗️</div>
-            <div class="dept-name">경영지원 (Admin)</div>
-            <div class="dept-use">문서 정리·분류, 정기 보고 자동화</div>
-            <div class="dept-focus">→ 담당자는 기획·운영 개선에 집중</div>
-          </div>
-          <div class="dept-card">
-            <div class="dept-icon">💻</div>
-            <div class="dept-name">IT</div>
-            <div class="dept-use">로그 분석, 반복 배포 자동화, 문서화</div>
-            <div class="dept-focus">→ 담당자는 아키텍처·혁신에 집중</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ==================== 슬라이드 17: ROI — 예상 시간 절감 효과 ==================== -->
+      <!-- ==================== 슬라이드 16: ROI — 예상 시간 절감 효과 ==================== -->
       <section>
         <h2>⏱️ 예상 시간 절감 효과</h2>
         <p style="font-size:0.6em; color:#64748b;">반복 업무에 소요되는 시간을 AI 도우미가 줄여줄 수 있습니다</p>
@@ -1029,11 +940,11 @@
         <div class="source-note">수치는 업무 유형 및 조직 환경에 따라 달라질 수 있습니다. McKinsey Digital (2025) 참고.</div>
       </section>
 
-      <!-- ==================== 슬라이드 18: 웹 채팅 vs 에이전트 AI 총정리 ==================== -->
+      <!-- ==================== 슬라이드 18: 웹 AI vs 에이전틱 AI 총정리 ==================== -->
       <section>
-        <h2>📋 웹 채팅 vs 에이전트 AI — 총정리</h2>
+        <h2>📋 웹 AI vs 에이전틱 AI — 총정리</h2>
         <table class="vs-table">
-          <thead><tr><th>구분</th><th>💬 웹 채팅 AI</th><th>🤖 에이전트 AI</th></tr></thead>
+          <thead><tr><th>구분</th><th>💬 웹 AI</th><th>🤖 에이전틱 AI</th></tr></thead>
           <tbody>
             <tr><td><strong>비유</strong></td><td>전화 상담원</td><td>전문 비서 (직접 처리)</td></tr>
             <tr><td><strong>파일</strong></td><td>열 수 없음, 텍스트만</td><td>직접 읽기/쓰기/생성</td></tr>
@@ -1044,8 +955,8 @@
           </tbody>
         </table>
         <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
-          실제 사례: 비개발 직군 임원이 30시트 엑셀 재무모델을 <strong>프롬프트 2~3개로</strong> 자동 분석 시스템 전환<br>
-          코딩 경험 없이도 <strong>에이전트가 코드 작성·실행까지</strong> 모두 처리
+          "AI 활용 능력"이란 ChatGPT, Gemini, Claude에 질문 잘 하는 것이 아닙니다.<br>
+          <strong>에이전틱 AI로 업무를 직접 처리하게 하는 것</strong> — 이것이 진짜 AI 활용입니다.
         </div>
       </section>
 
@@ -1054,41 +965,41 @@
         <h2>📈 5단계 업무 편의성 향상 모델</h2>
         <p style="font-size:0.6em; color:#64748b;">우리 조직은 현재 어디에 있으며, 다음 단계에서 어떤 편리함을 기대할 수 있을까요?</p>
         <div class="maturity-container">
-          <div class="maturity-bar active">
+          <div class="maturity-bar lv1">
             <div class="maturity-level" style="color:#16a34a;">Lv.1</div>
             <div class="maturity-title">정보 검색 편의</div>
-            <div class="maturity-desc">질문하면 답변 받기<br>웹 채팅 AI 활용</div>
+            <div class="maturity-desc">질문하면 답변 받기<br>웹 AI 활용</div>
           </div>
-          <div class="maturity-bar active">
+          <div class="maturity-bar lv2">
             <div class="maturity-level" style="color:#2563eb;">Lv.2</div>
             <div class="maturity-title">문서 작성 보조</div>
             <div class="maturity-desc">초안 작성, 번역,<br>요약 보조</div>
           </div>
-          <div class="maturity-bar inactive">
+          <div class="maturity-bar lv3">
             <div class="maturity-level" style="color:#7c3aed;">Lv.3</div>
             <div class="maturity-title">반복 업무 자동화</div>
-            <div class="maturity-desc">파일 처리, 데이터 취합<br>에이전트 AI 시작</div>
+            <div class="maturity-desc">파일 처리, 데이터 취합<br>에이전틱 AI 시작</div>
           </div>
-          <div class="maturity-bar future">
+          <div class="maturity-bar lv4">
             <div class="maturity-level" style="color:#d97706;">Lv.4</div>
             <div class="maturity-title">부서 업무 효율화</div>
             <div class="maturity-desc">워크플로우 자동화<br>시스템 연동</div>
           </div>
-          <div class="maturity-bar future">
+          <div class="maturity-bar lv5">
             <div class="maturity-level" style="color:#dc2626;">Lv.5</div>
             <div class="maturity-title">전사 업무 최적화</div>
             <div class="maturity-desc">부서 간 자동 협업<br>의사결정 보조</div>
           </div>
         </div>
         <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
-          대부분의 조직은 현재 <strong>Lv.1~2 단계</strong>입니다. 에이전트 AI 도입으로 <strong>Lv.3으로의 전환</strong>이 지금 시작되고 있습니다.
+          대부분의 조직은 현재 <strong>Lv.1~2 단계</strong>입니다. 에이전틱 AI 도입으로 <strong>Lv.3으로의 전환</strong>이 지금 시작되고 있습니다.
         </div>
       </section>
 
-      <!-- ==================== 슬라이드 20: 섹션 — 에이전트 AI의 등장과 확산 ==================== -->
+      <!-- ==================== 슬라이드 20: 섹션 — 에이전틱 AI의 등장과 확산 ==================== -->
       <section data-background-gradient="linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7)" class="section-slide">
         <div class="emoji-hero">⏰</div>
-        <h1>에이전트 AI의 등장과 확산</h1>
+        <h1>에이전틱 AI의 등장과 확산</h1>
         <p>불과 3개월 사이에 일어난 변화를 살펴봅니다</p>
       </section>
 
@@ -1098,10 +1009,11 @@
         <table class="timeline-table">
           <thead><tr><th>시점</th><th>사건</th><th>의미</th></tr></thead>
           <tbody>
-            <tr><td>2025.11.24</td><td>Claude Opus 4.5 출시</td><td>에이전트 AI 성능이 실무 수준 돌파</td></tr>
-            <tr><td>2026.01.12</td><td>Claude Cowork 공개</td><td>비개발자도 에이전트 AI 사용 가능</td></tr>
+            <tr><td>2025.11.24</td><td>Claude Opus 4.5 출시</td><td>에이전틱 AI 성능이 실무 수준 돌파</td></tr>
+            <tr><td>2025.12.19</td><td>OpenAI GPT-5.2-Codex 출시</td><td>코딩 특화 에이전틱 AI, 본격 경쟁 시작</td></tr>
+            <tr><td>2026.01.12</td><td>Claude Cowork 공개</td><td>비개발자도 에이전틱 AI 사용 가능</td></tr>
             <tr><td>2026.01~02</td><td>SaaS 시장 재편 가속화</td><td>소프트웨어 시장 구조 변화 시작</td></tr>
-            <tr><td><strong>지금</strong></td><td>에이전트 AI 활용</td><td>본격 확산 초기 단계</td></tr>
+            <tr><td><strong>지금</strong></td><td>에이전틱 AI 활용</td><td>본격 확산 초기 단계</td></tr>
           </tbody>
         </table>
         <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
@@ -1133,8 +1045,11 @@
           </div>
         </div>
         <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
-          사용자는 <strong>더 적은 도구로 더 많은 일을 처리</strong>할 수 있는 시대로 전환 중<br>
-          "엑셀을 쓸 필요 없이 <strong>AI가 직접 데이터를 처리</strong>한다면?"
+          핵심: 이제 <strong>필요한 소프트웨어를 직접 만들어 쓸 수 있는 시대</strong><br>
+          <span style="font-size:0.85em; color:#64748b;">
+            "사내 보고서 자동 취합 도구가 필요하다" → <strong>에이전틱 AI에게 시키면 30분 만에 완성</strong><br>
+            CRM이 비싸다? → 우리 팀에 맞는 간단한 관리 도구를 <strong>직접 만들어 쓰면 됩니다</strong>
+          </span>
         </div>
         <div class="source-note">Source: Bloomberg, Yahoo Finance (2026.01~02)</div>
       </section>
@@ -1143,40 +1058,117 @@
       <section>
         <h2>🛠️ 지금 사용할 수 있는 AI 도구들</h2>
         <p style="font-size:0.6em; color:#64748b;">용도와 접근성에 따라 선택할 수 있습니다</p>
-        <div class="tool-grid">
-          <div class="tool-card">
-            <div class="tool-name">Claude Cowork</div>
-            <div class="tool-desc">웹 기반 에이전트. 파일 처리, 데이터 분석, 문서 작성 등 비개발자도 즉시 사용 가능</div>
-            <span class="tool-tag tool-tag-all">누구나 사용 가능</span>
-          </div>
-          <div class="tool-card">
+        <p style="font-size:0.55em; color:#dc2626; font-weight:600; margin-bottom:4px;">🏢 사내 사용 가능</p>
+        <div class="tool-grid" style="margin-bottom:10px;">
+          <div class="tool-card" style="border-color:rgba(220,38,38,0.3);">
             <div class="tool-name">Claude Code</div>
             <div class="tool-desc">터미널 기반 에이전트. 코드 작성, 시스템 자동화, 복잡한 워크플로우 처리</div>
-            <span class="tool-tag tool-tag-dev">개발자 추천</span>
+            <span class="tool-tag tool-tag-company">사내 사용 가능</span>
           </div>
-          <div class="tool-card">
-            <div class="tool-name">Microsoft Copilot Studio</div>
-            <div class="tool-desc">MS 365 연동 에이전트. Outlook, Teams, SharePoint와 직접 통합</div>
-            <span class="tool-tag tool-tag-biz">기업 환경 최적</span>
+          <div class="tool-card" style="border-color:rgba(220,38,38,0.3);">
+            <div class="tool-name">OpenAI Codex</div>
+            <div class="tool-desc">GPT 기반 코딩 에이전트. 코드 생성·리뷰·자동화, CLI/IDE/웹 모두 지원</div>
+            <span class="tool-tag tool-tag-company">사내 사용 가능</span>
           </div>
-          <div class="tool-card">
-            <div class="tool-name">Google Gemini</div>
-            <div class="tool-desc">Google Workspace 연동. Gmail, 캘린더, 드라이브와 자연스러운 통합</div>
-            <span class="tool-tag tool-tag-all">누구나 사용 가능</span>
+        </div>
+        <p style="font-size:0.55em; color:#94a3b8; font-weight:600; margin-bottom:4px;">📌 참고 — 외부 도구</p>
+        <div class="tool-grid">
+          <div class="tool-card" style="opacity:0.6;">
+            <div class="tool-name">Claude Cowork</div>
+            <div class="tool-desc">웹 기반 에이전트. 파일 처리, 데이터 분석, 문서 작성 등 비개발자도 즉시 사용</div>
+            <span class="tool-tag tool-tag-external">개인 구독 필요</span>
           </div>
-          <div class="tool-card">
+          <div class="tool-card" style="opacity:0.6;">
+            <div class="tool-name">Copilot Studio</div>
+            <div class="tool-desc">MS 365 연동 에이전트. Outlook, Teams, SharePoint 통합</div>
+            <span class="tool-tag tool-tag-external">별도 라이선스</span>
+          </div>
+          <div class="tool-card" style="opacity:0.6;">
+            <div class="tool-name">Google Antigravity</div>
+            <div class="tool-desc">Gemini 기반 IDE형 에이전트. 터미널 없이 GUI로 사용 가능. Pro Plan 시 토큰 넉넉</div>
+            <span class="tool-tag tool-tag-external">개인 추천</span>
+          </div>
+          <div class="tool-card" style="opacity:0.6;">
             <div class="tool-name">ChatGPT Operator</div>
-            <div class="tool-desc">웹 브라우저를 직접 조작하는 에이전트. 웹 기반 업무 자동화에 특화</div>
-            <span class="tool-tag tool-tag-all">누구나 사용 가능</span>
-          </div>
-          <div class="tool-card">
-            <div class="tool-name">Devin / Cursor</div>
-            <div class="tool-desc">소프트웨어 개발 전용 에이전트. 코드 생성·디버깅·배포 자동화</div>
-            <span class="tool-tag tool-tag-dev">개발자 전용</span>
+            <div class="tool-desc">웹 브라우저를 직접 조작하는 에이전트. 웹 업무 자동화</div>
+            <span class="tool-tag tool-tag-external">개인 구독 필요</span>
           </div>
         </div>
         <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
-          처음 시작한다면: <strong>Claude Cowork</strong> (파일 처리) 또는 <strong>Copilot Studio</strong> (MS 365 업무) 추천
+          🏢 회사: <strong>Claude Code</strong> + <strong>OpenAI Codex</strong> 바로 사용 가능<br>
+          🏠 집: <strong>Google Antigravity</strong> — IDE 형식이라 터미널 없이 편하고, Pro Plan($20/월)이면 토큰도 충분
+        </div>
+      </section>
+
+      <!-- ==================== AI와 소통하기 좋은 자료 형식 (신규) ==================== -->
+      <section>
+        <h2>📝 AI와 소통하기 좋은 자료 형식</h2>
+        <p style="font-size:0.6em; color:#64748b;">에이전틱 AI를 잘 활용하려면, AI가 바로 이해하고 처리할 수 있는 형식으로 자료를 관리하는 것이 중요합니다</p>
+        <div class="compare-grid">
+          <div class="card card-before">
+            <h3>❌ AI가 어려워하는 형식</h3>
+            <ul>
+              <li>Word (.docx) — <strong>복잡한 서식에 내용이 묻힘</strong></li>
+              <li>PPT (.pptx) — <strong>레이아웃 해석에 토큰 낭비</strong></li>
+              <li>Excel (.xlsx) — <strong>병합 셀, 서식, 매크로 혼재</strong></li>
+              <li>구두 전달, 산발적 메모 — <strong>구조 없음</strong></li>
+            </ul>
+          </div>
+          <div class="card card-after">
+            <h3>✅ AI가 바로 처리하는 형식</h3>
+            <ul>
+              <li>Markdown (.md) — <strong>문서, 기획, 지시사항</strong></li>
+              <li>CSV (.csv) — <strong>데이터, 표, 목록</strong></li>
+              <li>Plain Text (.txt) — <strong>회의록, 메모, 로그</strong></li>
+              <li>폴더 구조로 정리 — <strong>AI가 맥락 파악 용이</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          핵심: <strong>사람도 읽을 수 있고, AI도 바로 처리할 수 있는 텍스트 기반 형식</strong><br>
+          같은 내용이라도 형식만 바꾸면 AI의 이해도와 처리 속도가 크게 달라집니다.
+        </div>
+      </section>
+
+      <!-- ==================== 에이전틱 AI가 아직 잘 못하는 것 (신규) ==================== -->
+      <section>
+        <h2>🚧 에이전틱 AI가 아직 잘 못하는 것</h2>
+        <p style="font-size:0.6em; color:#64748b;">만능은 아닙니다 — 현재 기술의 한계를 알아야 제대로 활용할 수 있습니다</p>
+        <div class="dept-grid">
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">🎨</div>
+            <div class="dept-name">예쁜 PPT 만들기</div>
+            <div class="dept-use" style="color:#dc2626;">내용 생성은 가능하지만, 인간 수준의 시각 디자인·레이아웃 감각은 아직 부족</div>
+          </div>
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">🤝</div>
+            <div class="dept-name">대면 소통·협상</div>
+            <div class="dept-use" style="color:#dc2626;">회의 참석, 고객 대면, 미묘한 조직 내 역학 판단은 사람의 영역</div>
+          </div>
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">🏢</div>
+            <div class="dept-name">사내 암묵지 활용</div>
+            <div class="dept-use" style="color:#dc2626;">문서화되지 않은 관행, 비공식 프로세스, "○○팀장님 스타일" 같은 맥락</div>
+          </div>
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">📊</div>
+            <div class="dept-name">복잡한 서식의 엑셀</div>
+            <div class="dept-use" style="color:#dc2626;">병합 셀, 조건부 서식, 피벗 차트가 얽힌 엑셀은 깨지기 쉬움</div>
+          </div>
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">⚖️</div>
+            <div class="dept-name">주관적 판단·취향</div>
+            <div class="dept-use" style="color:#dc2626;">"이게 더 낫다"는 감각적 판단, 브랜드 톤앤매너 같은 미세 조정</div>
+          </div>
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">🔄</div>
+            <div class="dept-name">실시간 시스템 연동</div>
+            <div class="dept-use" style="color:#dc2626;">사내 폐쇄망, 레거시 시스템, 실시간 데이터 스트림 접근은 제한적</div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          <strong>잘하는 것에 맡기고, 못하는 것은 사람이 하면 됩니다.</strong><br>
+          AI가 데이터를 정리하면, 사람이 예쁘게 다듬는다 — 이 조합이 가장 효과적입니다.
         </div>
       </section>
 
@@ -1247,7 +1239,7 @@
           </div>
           <div class="cta-step">
             <div class="num">2</div>
-            <div><strong style="color:#1e293b;">실험하기</strong> <span class="text-dim">—</span> 그중 가장 간단한 1개를 에이전트 AI로 시도. <strong class="text-green">Claude Cowork, Copilot Studio</strong> 등 활용</div>
+            <div><strong style="color:#1e293b;">실험하기</strong> <span class="text-dim">—</span> 그중 가장 간단한 1개를 에이전틱 AI로 시도. <strong class="text-green">Claude Cowork, Copilot Studio</strong> 등 활용</div>
           </div>
           <div class="cta-step">
             <div class="num">3</div>
@@ -1255,9 +1247,9 @@
           </div>
         </div>
         <div class="quote">
-          "AI를 잘 활용하는 것은 특별한 능력이 아닙니다.<br>
-          새로운 도구에 익숙해지는 과정일 뿐입니다.<br>
-          스마트폰이 처음 나왔을 때처럼, <strong class="text-green">시작하면 금방 익숙해집니다.</strong>"
+          "AI를 잘 활용한다"는 것은 ChatGPT, Gemini, Claude에 질문을 잘 하는 게 아닙니다.<br>
+          <strong class="text-blue">에이전틱 AI로 업무를 직접 실행하게 하는 것</strong> — 그것이 진짜 AI 활용입니다.<br>
+          스마트폰이 처음 나왔을 때처럼, <strong class="text-green">시작하면 금방 익숙해집니다.</strong>
         </div>
       </section>
 
@@ -1276,9 +1268,9 @@
         </ul>
         <div class="gradient-line" style="margin-top:20px;"></div>
         <p style="font-size:0.55em; color:#94a3b8; margin-top:12px;">
-          본 자료는 사내 교육 목적으로 작성되었습니다. 인용된 데이터는 각 출처의 공개 자료를 기반으로 합니다.
+          본 자료는 차량개발기획팀 정보공유회 목적으로 작성되었습니다. 인용된 데이터는 각 출처의 공개 자료를 기반으로 합니다.
         </p>
-        <span class="badge badge-blue" style="margin-top:12px;">2026년 2월 | 사내 세미나</span>
+        <span class="badge badge-blue" style="margin-top:12px;">2026년 2월 | 차량개발기획팀 정보공유회</span>
       </section>
 
     </div>
