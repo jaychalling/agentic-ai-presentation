@@ -111,13 +111,17 @@
       background: #1e293b;
       border: 1px solid #334155;
       border-radius: 10px;
-      padding: 14px 20px;
-      font-family: 'Consolas', 'Monaco', monospace;
-      font-size: 0.58em;
-      color: #a5f3fc;
+      padding: 16px 28px;
+      font-family: 'Pretendard', 'Consolas', 'Monaco', monospace;
+      font-size: 0.62em;
+      color: #e2e8f0;
       text-align: left;
       margin-top: 10px;
-      line-height: 1.7;
+      line-height: 1.85;
+      letter-spacing: 0.01em;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .code-box .comment { color: #64748b; }
     .code-box .prompt { color: #fbbf24; }
@@ -668,42 +672,28 @@
             <div class="feature-title" style="color:#16a34a;">🧠 자율 판단 (Autonomy)</div>
             <div class="feature-desc">사용자가 설정한 범위 안에서 판단하여 업무 부담 경감</div>
           </div>
-          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.12);">
-            <div class="feature-title" style="color:#dc2626;">🔥 토큰 사용량 차이</div>
-            <div class="feature-desc">웹 AI: 질문당 수백~수천 토큰 / 에이전틱 AI: 작업당 수만~수십만 토큰. 비용 구조가 근본적으로 다름</div>
+        </div>
+        <div style="margin-top:16px; background:rgba(220,38,38,0.05); border:2px solid rgba(220,38,38,0.2); border-radius:12px; padding:14px 20px;">
+          <div style="font-size:0.6em; font-weight:800; color:#dc2626; margin-bottom:8px;">🔥 핵심 차이 — 토큰 사용량</div>
+          <div class="compare-grid" style="margin:0; gap:12px;">
+            <div style="text-align:center; padding:10px; background:rgba(220,38,38,0.04); border-radius:8px;">
+              <div style="font-size:0.5em; color:#94a3b8; margin-bottom:2px;">웹 AI (ChatGPT, Gemini, Claude 웹)</div>
+              <div style="font-size:0.85em; font-weight:800; color:#dc2626;">질문당 수백 ~ 수천 토큰</div>
+              <div style="font-size:0.45em; color:#64748b;">텍스트 입출력만 → 가볍지만 실행 불가</div>
+            </div>
+            <div style="text-align:center; padding:10px; background:rgba(37,99,235,0.04); border-radius:8px;">
+              <div style="font-size:0.5em; color:#94a3b8; margin-bottom:2px;">에이전틱 AI (Claude Code, Codex 등)</div>
+              <div style="font-size:0.85em; font-weight:800; color:#2563eb;">작업당 수만 ~ 수십만 토큰</div>
+              <div style="font-size:0.45em; color:#64748b;">도구 호출·파일 처리·실행까지 → 비용↑ 하지만 결과물 완성</div>
+            </div>
+          </div>
+          <div style="text-align:center; font-size:0.48em; color:#64748b; margin-top:8px;">
+            💡 토큰을 많이 쓴다 = <strong>그만큼 AI가 실제로 일하고 있다</strong>는 뜻. 비용 구조가 근본적으로 다릅니다.
           </div>
         </div>
       </section>
 
-      <!-- ==================== 슬라이드 7: Industry Data ==================== -->
-      <section>
-        <h2>📊 시장이 주목하는 이유</h2>
-        <p style="font-size:0.6em; color:#64748b;">에이전틱 AI 시장은 빠르게 성장하고 있으며, 더 좋은 도구가 계속 등장하고 있습니다</p>
-        <div class="stat-grid">
-          <div class="stat-card-blue">
-            <div class="stat-num">$47B</div>
-            <div class="stat-label">2030년 에이전틱 AI 시장 예상 규모<br><span style="color:#2563eb;">2024년 $5.6B → CAGR 42%</span></div>
-          </div>
-          <div class="stat-card-blue">
-            <div class="stat-num">82%</div>
-            <div class="stat-label">글로벌 기업 중 AI 에이전트를<br>'높은 우선순위'로 분류한 비율</div>
-          </div>
-          <div class="stat-card-blue">
-            <div class="stat-num">65%</div>
-            <div class="stat-label">2026년 내 에이전틱 AI<br>도입 예정 기업 비율</div>
-          </div>
-          <div class="stat-card-blue">
-            <div class="stat-num">3.2x</div>
-            <div class="stat-label">에이전틱 AI 도입 기업의<br>평균 업무 생산성 향상 배율</div>
-          </div>
-        </div>
-        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
-          시장이 성장한다는 것은 = <strong>더 좋은 도구가 계속 나온다</strong>는 의미. 지금 시작하면 도구가 발전할수록 편리함도 함께 커집니다.
-        </div>
-        <div class="source-note">Sources: MarketsandMarkets (2025), Gartner AI Survey (2025), McKinsey Digital Report (2025)</div>
-      </section>
-
-      <!-- ==================== 슬라이드 8: 섹션 — 웹 AI vs 에이전틱 AI ==================== -->
+      <!-- ==================== 슬라이드 7: 섹션 — 웹 AI vs 에이전틱 AI ==================== -->
       <section data-background-gradient="linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7)" class="section-slide">
         <div class="emoji-hero">⚡</div>
         <h1>웹 AI vs 에이전틱 AI</h1>
@@ -734,7 +724,7 @@
             </ul>
           </div>
         </div>
-        <div class="code-box" style="max-width:750px; margin:14px auto 0;">
+        <div class="code-box" style="margin-top:14px;">
           <span class="prompt">💬 프롬프트:</span> "다운로드 폴더에 있는 부서별 현황 엑셀 5개를<br>
           &nbsp;&nbsp;&nbsp;하나로 합치고, 부서별 요약표 만들어서 보고서.xlsx로 저장해줘"<br>
           <span class="result">✅ 결과:</span> 5개 파일 읽기 → 데이터 통합 → 피벗 분석 → 차트 생성 → 파일 저장 완료
@@ -765,10 +755,49 @@
             </ul>
           </div>
         </div>
-        <div class="code-box" style="max-width:750px; margin:14px auto 0;">
+        <div class="code-box" style="margin-top:14px;">
           <span class="prompt">💬 프롬프트:</span> "이번 주 회의 참석자들에게 안건 메일 보내고,<br>
           &nbsp;&nbsp;&nbsp;회의실 예약하고, Teams 채널에 안내 메시지 올려줘"<br>
           <span class="result">✅ 결과:</span> 참석자 조회 → 메일 발송 → 회의실 API 예약 → Teams 메시지 자동 게시
+        </div>
+      </section>
+
+      <!-- ==================== 우리 회사에서의 API 접근 현황 (신규) ==================== -->
+      <section>
+        <h2>🔑 API란? — AI가 시스템에 접근하는 열쇠</h2>
+        <p style="font-size:0.6em; color:#64748b;">API = 프로그램끼리 대화하는 공식 창구. AI가 시스템을 사용하려면 이 창구가 열려 있어야 합니다.</p>
+        <div style="text-align:center; font-size:0.55em; background:#f8fafc; border-radius:12px; padding:14px 20px; max-width:820px; margin:10px auto;">
+          <span style="color:#64748b;">비유:</span> <strong>API가 있다</strong> = 건물에 <strong style="color:#16a34a;">정문(출입카드)</strong>이 있다 → AI가 정식으로 들어감<br>
+          <strong>API가 없다</strong> = <strong style="color:#dc2626;">담벼락만 있다</strong> → AI가 들어갈 수 없음
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px; max-width:860px; margin-left:auto; margin-right:auto;">
+          <div style="background:rgba(22,163,74,0.05); border:2px solid rgba(22,163,74,0.25); border-radius:12px; padding:14px;">
+            <div style="font-size:0.6em; font-weight:800; color:#16a34a; margin-bottom:8px;">✅ API 제공 → AI 접근 가능</div>
+            <div style="font-size:0.5em; line-height:1.8;">
+              <strong>Microsoft Office</strong> — Outlook, Excel, PPT, Teams<br>
+              <strong>SAP</strong> — 구매, 재무, 자재 관리 등<br>
+              <strong>Google Workspace</strong> — Gmail, Drive, Calendar<br>
+              <strong>Slack, Jira, GitHub</strong> 등 상용 SW 대부분
+            </div>
+            <div style="font-size:0.45em; color:#64748b; margin-top:6px;">→ 에이전틱 AI가 <strong>직접 데이터를 읽고, 작성하고, 실행</strong> 가능</div>
+          </div>
+          <div style="background:rgba(220,38,38,0.05); border:2px solid rgba(220,38,38,0.25); border-radius:12px; padding:14px;">
+            <div style="font-size:0.6em; font-weight:800; color:#dc2626; margin-bottom:8px;">❌ API 미제공 → AI 접근 불가</div>
+            <div style="font-size:0.5em; line-height:1.8;">
+              <strong>오토웨이 (사내 인트라넷)</strong> — API 미제공<br>
+              <strong>Vaatz (구매시스템)</strong> — 현재 API 미제공<br>
+              <strong>RWS (연구개발 워크스페이스)</strong> — 현재 API 미제공<br>
+              <span style="color:#94a3b8;">사내 자체 개발 시스템 대부분</span>
+            </div>
+            <div style="font-size:0.45em; color:#64748b; margin-top:6px;">→ 현재 에이전틱 AI로 <strong>자동화할 수 없는 영역</strong></div>
+          </div>
+        </div>
+
+        <div class="highlight-box" style="text-align:center; max-width:820px; margin:12px auto 0;">
+          <strong>미래 방향:</strong> 오토웨이·Vaatz·RWS 등이 API를 제공하게 되면<br>
+          → <strong style="color:#2563eb;">AI가 사내 모든 시스템에 접근 가능</strong> = 진정한 업무 자동화 완성<br>
+          <span style="font-size:0.85em; color:#64748b;">지금은 Office·SAP 등 API가 열린 영역부터 시작하면 됩니다</span>
         </div>
       </section>
 
@@ -803,7 +832,7 @@
             </ul>
           </div>
         </div>
-        <div class="code-box" style="max-width:750px; margin:14px auto 0;">
+        <div class="code-box" style="margin-top:14px;">
           <span class="prompt">💬 프롬프트:</span> "다운로드 폴더의 PDF 50개를 각각 텍스트 추출해서,<br>
           &nbsp;&nbsp;&nbsp;핵심 내용 요약한 표를 엑셀로 만들어줘"<br>
           <span class="result">✅ 결과:</span> PDF 파서 실행 → 50개 파일 순회 → 텍스트 추출 → AI 요약 → 엑셀 저장
@@ -1044,14 +1073,55 @@
             <div class="stat-label">Atlassian / Adobe<br>시장 구조 변화 반영</div>
           </div>
         </div>
-        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
-          핵심: 이제 <strong>필요한 소프트웨어를 직접 만들어 쓸 수 있는 시대</strong><br>
-          <span style="font-size:0.85em; color:#64748b;">
-            "사내 보고서 자동 취합 도구가 필요하다" → <strong>에이전틱 AI에게 시키면 30분 만에 완성</strong><br>
-            CRM이 비싸다? → 우리 팀에 맞는 간단한 관리 도구를 <strong>직접 만들어 쓰면 됩니다</strong>
-          </span>
+        <div class="highlight-box" style="text-align:left; max-width:780px; margin:14px auto 0; padding:14px 20px;">
+          <div style="text-align:center; font-weight:800; margin-bottom:10px;">핵심: 이제 <strong>필요한 소프트웨어를 직접 만들어 쓸 수 있는 시대</strong></div>
+          <div style="font-size:0.55em; display:grid; grid-template-columns:1fr 1fr; gap:6px 16px;">
+            <div>📊 "보고서 자동 취합 도구가 필요하다"<br>→ <strong style="color:#2563eb;">에이전틱 AI에게 시키면 30분 만에 완성</strong></div>
+            <div>🎬 "간단한 동영상 편집기가 필요하다"<br>→ <strong style="color:#2563eb;">자막·컷편집 도구를 직접 만들어 쓰면 됨</strong></div>
+            <div>🏢 "회의실 예약 프로그램이 필요하다"<br>→ <strong style="color:#2563eb;">우리 팀 맞춤 예약 시스템을 직접 만들면 됨</strong></div>
+            <div>🚗 "렉카·탁송차량 배차 시스템이 필요하다"<br>→ <strong style="color:#2563eb;">외주 안 맡기고 직접 만들어 바로 운영 가능</strong></div>
+          </div>
+          <div style="text-align:center; font-size:0.5em; color:#64748b; margin-top:8px;">
+            💡 비싼 SaaS 구독 대신, <strong>우리 업무에 딱 맞는 도구를 AI로 직접 만드는 시대</strong>
+          </div>
         </div>
         <div class="source-note">Source: Bloomberg, Yahoo Finance (2026.01~02)</div>
+      </section>
+
+      <!-- ==================== 곧 사라질 업무 도구들 (신규) ==================== -->
+      <section>
+        <h2>⏳ 에이전틱 AI가 대신하게 될 기존 도구들</h2>
+        <p style="font-size:0.6em; color:#64748b;">지금 익히고 있는 이 도구들, 계속 투자할 가치가 있을까요?</p>
+        <div class="feature-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ Excel VBA 매크로</div>
+            <div class="feature-desc">데이터 취합·정리·보고서 생성 → 에이전틱 AI가 자연어 명령으로 즉시 처리. 복잡한 코드 작성 불필요</div>
+          </div>
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ RPA (UiPath 등)</div>
+            <div class="feature-desc">화면 클릭 자동화 → UI가 바뀌면 깨짐. 에이전틱 AI는 API로 직접 연동하여 안정적 실행</div>
+          </div>
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ 배치 스크립트 (.bat/.ps1)</div>
+            <div class="feature-desc">정기 파일 이동·백업 자동화 → 에이전틱 AI가 상황 판단까지 포함한 유연한 자동화 수행</div>
+          </div>
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ 복잡한 Excel 수식</div>
+            <div class="feature-desc">VLOOKUP, INDEX-MATCH, 피벗 중첩 → "이 데이터에서 ○○ 기준으로 요약해줘" 한 마디로 해결</div>
+          </div>
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ 수작업 메일 취합</div>
+            <div class="feature-desc">첨부파일 다운로드 → 폴더 정리 → 합치기. 에이전틱 AI가 메일 읽기부터 보고서까지 한번에</div>
+          </div>
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ 사내 레거시 매크로</div>
+            <div class="feature-desc">담당자만 아는 자동화 스크립트 → 퇴사 시 유지보수 불가. AI에게 자연어로 설명하면 누구나 실행</div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:12px auto 0;">
+          💡 공통점: <strong>코드를 짜서 자동화</strong>하던 것을 → <strong>말로 시키면 되는 시대</strong><br>
+          <span style="font-size:0.85em; color:#64748b;">VBA 배우는 시간에 에이전틱 AI 활용법을 익히는 것이 더 나은 투자입니다</span>
+        </div>
       </section>
 
       <!-- ==================== 슬라이드 23: 도구 안내 ==================== -->
@@ -1219,7 +1289,7 @@
             <div class="phase-items">
               • 활용 노하우를 팀에 공유<br>
               • 팀 단위 공통 업무에 AI 도우미 적용<br>
-              • 부서별 활용 사례 확산
+              • 팀 내 활용 사례 축적·확산
             </div>
             <div class="phase-outcome">기대 효과: 팀 전체 효율 향상</div>
           </div>
@@ -1239,7 +1309,7 @@
           </div>
           <div class="cta-step">
             <div class="num">2</div>
-            <div><strong style="color:#1e293b;">실험하기</strong> <span class="text-dim">—</span> 그중 가장 간단한 1개를 에이전틱 AI로 시도. <strong class="text-green">Claude Cowork, Copilot Studio</strong> 등 활용</div>
+            <div><strong style="color:#1e293b;">실험하기</strong> <span class="text-dim">—</span> 그중 가장 간단한 1개를 에이전틱 AI로 시도. 사내 사용 가능: <strong class="text-green">Claude Code, OpenAI Codex</strong></div>
           </div>
           <div class="cta-step">
             <div class="num">3</div>
