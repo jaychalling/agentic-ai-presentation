@@ -606,6 +606,12 @@
 
       <!-- ==================== 슬라이드 5: 현재 업무에서의 AI 활용 한계 ==================== -->
       <section>
+        <div style="background:rgba(220,38,38,0.08); border:2.5px solid rgba(220,38,38,0.3); border-radius:14px; padding:16px 24px; max-width:750px; margin:0 auto 16px; text-align:center;">
+          <div style="font-size:0.85em; font-weight:800; color:#dc2626; line-height:1.5;">
+            "AI를 잘 활용해야 한다"는 말은<br>
+            <span style="font-size:1.15em;">이 수준의 웹 AI를 말하는 게 아닙니다</span>
+          </div>
+        </div>
         <h2>현재 업무에서의 AI 활용 한계</h2>
         <table>
           <thead><tr><th>상황</th><th>웹 AI (ChatGPT, Gemini, Claude)</th><th>결국 내가 해야 하는 것</th></tr></thead>
@@ -766,12 +772,12 @@
       <section>
         <h2>🔑 API란? — AI가 시스템에 접근하는 열쇠</h2>
         <p style="font-size:0.6em; color:#64748b;">API = 프로그램끼리 대화하는 공식 창구. AI가 시스템을 사용하려면 이 창구가 열려 있어야 합니다.</p>
-        <div style="text-align:center; font-size:0.55em; background:#f8fafc; border-radius:12px; padding:14px 20px; max-width:820px; margin:10px auto;">
+        <div style="text-align:center; font-size:0.55em; background:#f8fafc; border-radius:12px; padding:14px 20px; max-width:750px; margin:10px auto;">
           <span style="color:#64748b;">비유:</span> <strong>API가 있다</strong> = 건물에 <strong style="color:#16a34a;">정문(출입카드)</strong>이 있다 → AI가 정식으로 들어감<br>
           <strong>API가 없다</strong> = <strong style="color:#dc2626;">담벼락만 있다</strong> → AI가 들어갈 수 없음
         </div>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px; max-width:860px; margin-left:auto; margin-right:auto;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px; max-width:750px; margin-left:auto; margin-right:auto;">
           <div style="background:rgba(22,163,74,0.05); border:2px solid rgba(22,163,74,0.25); border-radius:12px; padding:14px;">
             <div style="font-size:0.6em; font-weight:800; color:#16a34a; margin-bottom:8px;">✅ API 제공 → AI 접근 가능</div>
             <div style="font-size:0.5em; line-height:1.8;">
@@ -794,63 +800,25 @@
           </div>
         </div>
 
-        <div class="highlight-box" style="text-align:center; max-width:820px; margin:12px auto 0;">
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:12px auto 0;">
           <strong>미래 방향:</strong> 오토웨이·Vaatz·RWS 등이 API를 제공하게 되면<br>
           → <strong style="color:#2563eb;">AI가 사내 모든 시스템에 접근 가능</strong> = 진정한 업무 자동화 완성<br>
           <span style="font-size:0.85em; color:#64748b;">지금은 Office·SAP 등 API가 열린 영역부터 시작하면 됩니다</span>
         </div>
       </section>
 
-      <!-- ==================== 슬라이드 11: 섹션 — 터미널 & 자동 실행 ==================== -->
-      <section data-background-gradient="linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7)" class="section-slide">
-        <div class="emoji-hero">⌨️</div>
-        <h1>터미널 & 자동 실행</h1>
-        <p>프로그래머가 아니어도 — AI가 명령어 실행까지 도와줍니다</p>
-      </section>
-
-      <!-- ==================== 슬라이드 12: 차이점 3 — 터미널 명령 실행 ==================== -->
+      <!-- ==================== 슬라이드 11: 차이점 3 — 자동 실행 & 멀티스텝 ==================== -->
       <section>
-        <h2>⌨️ 차이점 3: 터미널(명령어) 직접 실행</h2>
-        <p style="font-size:0.6em; color:#64748b;">스크립트 작성·실행, 파일 변환, 데이터 처리를 AI가 직접</p>
+        <h2>🔄 차이점 3: 자동 실행 & 여러 단계 자율 처리</h2>
+        <p style="font-size:0.6em; color:#64748b;">AI가 직접 실행하고, 여러 단계를 스스로 계획하여 처리합니다</p>
         <div class="compare-grid">
           <div class="card card-before">
             <h3>❌ 웹 AI</h3>
             <ul>
-              <li>"이 명령어를 입력하세요" → <strong>안내만</strong></li>
-              <li>복사해서 터미널에 <strong>내가 직접 입력</strong></li>
-              <li>에러나면? → <strong>다시 물어보기</strong></li>
-              <li>스크립트 만들어줘도 → <strong>내가 실행</strong></li>
-            </ul>
-          </div>
-          <div class="card card-after">
-            <h3>✅ 에이전틱 AI</h3>
-            <ul>
-              <li>스크립트를 <strong>작성하고 바로 실행</strong></li>
-              <li>에러 발생 시 <strong>자동으로 수정 후 재시도</strong></li>
-              <li>결과를 확인하고 <strong>다음 단계로 진행</strong></li>
-              <li>파일 변환, 일괄 처리, 자동화 <strong>즉시 실행</strong></li>
-            </ul>
-          </div>
-        </div>
-        <div class="code-box" style="margin-top:14px;">
-          <span class="prompt">💬 프롬프트:</span> "다운로드 폴더의 PDF 50개를 각각 텍스트 추출해서,<br>
-          &nbsp;&nbsp;&nbsp;핵심 내용 요약한 표를 엑셀로 만들어줘"<br>
-          <span class="result">✅ 결과:</span> PDF 파서 실행 → 50개 파일 순회 → 텍스트 추출 → AI 요약 → 엑셀 저장
-        </div>
-      </section>
-
-      <!-- ==================== 슬라이드 13: 차이점 4 — 멀티스텝 자율 실행 ==================== -->
-      <section>
-        <h2>🔄 차이점 4: 멀티스텝 자율 실행</h2>
-        <p style="font-size:0.6em; color:#64748b;">10단계 업무를 한번에 지시 → AI가 스스로 계획하고 실행</p>
-        <div class="compare-grid">
-          <div class="card card-before">
-            <h3>❌ 웹 AI</h3>
-            <ul>
-              <li>1단계 질문 → 답변 → 복사</li>
-              <li>2단계 질문 → 답변 → 복사</li>
+              <li>"이렇게 하세요" → <strong>안내만</strong> 해줌</li>
+              <li>결과를 <strong>내가 복사해서 직접 실행</strong></li>
+              <li>에러나면 → <strong>다시 물어보기</strong></li>
               <li>매 단계마다 <strong>수동 개입</strong> 필요</li>
-              <li>이전 맥락 놓치면 <strong>처음부터 다시</strong></li>
               <li>10단계 = <strong>10번의 복사-붙여넣기</strong></li>
             </ul>
           </div>
@@ -858,14 +826,19 @@
             <h3>✅ 에이전틱 AI</h3>
             <ul>
               <li>전체 업무를 <strong>한번에 지시</strong></li>
-              <li>AI가 단계를 <strong>스스로 계획</strong></li>
-              <li>각 단계 결과를 <strong>자동으로 다음 단계에 전달</strong></li>
-              <li>중간에 문제 생기면 <strong>스스로 우회</strong></li>
+              <li>AI가 단계를 <strong>스스로 계획하고 실행</strong></li>
+              <li>에러 시 <strong>자동으로 수정 후 재시도</strong></li>
+              <li>각 결과를 <strong>다음 단계에 자동 전달</strong></li>
               <li>최종 결과만 <strong>사람에게 보고</strong></li>
             </ul>
           </div>
         </div>
-        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+        <div class="code-box" style="margin-top:14px;">
+          <span class="prompt">💬 프롬프트:</span> "다운로드 폴더의 PDF 50개를 각각 텍스트 추출해서,<br>
+          &nbsp;&nbsp;&nbsp;핵심 내용 요약한 표를 엑셀로 만들어줘"<br>
+          <span class="result">✅ 결과:</span> PDF 50개 순회 → 텍스트 추출 → AI 요약 → 엑셀 저장 (사람 개입 없이 완료)
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
           웹 AI: <strong>"한 턴에 한 동작"</strong> &nbsp;→&nbsp; 에이전틱 AI: <strong>"한 번 지시에 전체 워크플로우"</strong>
         </div>
       </section>
@@ -919,35 +892,35 @@
 
       <!-- ==================== 우리 팀 업무 자동화 예시 (신규) ==================== -->
       <section>
-        <h2>🚗 우리 팀에서 자동화할 수 있는 업무</h2>
-        <p style="font-size:0.6em; color:#64748b;">차량개발기획팀의 실제 반복 업무 → 에이전틱 AI로 자동화 가능한 영역</p>
+        <h2>🚗 경쟁차 업무에서 자동화할 수 있는 것들</h2>
+        <p style="font-size:0.6em; color:#64748b;">우리 팀의 실제 반복 업무 → 에이전틱 AI로 자동화 가능한 영역</p>
         <div class="feature-grid" style="grid-template-columns: 1fr 1fr; gap:10px;">
           <div class="feature-card" style="text-align:left; padding:12px 16px;">
             <div class="feature-title" style="color:#2563eb;">📋 차량 구매요청서 자동 정리</div>
-            <div class="feature-desc">각 부서에서 들어오는 구매요청서를 자동 수집 → 항목별 분류·정리 → 취합표 자동 생성</div>
+            <div class="feature-desc">각 부서에서 들어오는 구매요청서를 자동 수집 → 항목별 분류·정리 → <strong>취합표 자동 생성</strong></div>
           </div>
           <div class="feature-card" style="text-align:left; padding:12px 16px;">
             <div class="feature-title" style="color:#2563eb;">📨 견적→확인→발주 프로세스 자동화</div>
-            <div class="feature-desc">업체 견적서 수신 → 구매요청팀에 자동 확인 요청 → OK 회신 시 발주 프로세스 자동 진행</div>
+            <div class="feature-desc">업체 견적서 수신 → 구매요청팀에 자동 확인 요청 → OK 회신 시 <strong>발주 자동 진행</strong></div>
           </div>
           <div class="feature-card" style="text-align:left; padding:12px 16px;">
             <div class="feature-title" style="color:#2563eb;">🚙 경쟁차 입고 예상시점 자동 회신</div>
-            <div class="feature-desc">"경쟁차 언제 들어와요?" 문의 → DB 실시간 조회 → 예상 입고 시점 자동 회신. 반복 문의 제거</div>
+            <div class="feature-desc">"경쟁차 언제 들어와요?" 문의 → DB 실시간 조회 → <strong>예상 입고 시점 자동 회신</strong></div>
           </div>
           <div class="feature-card" style="text-align:left; padding:12px 16px;">
             <div class="feature-title" style="color:#2563eb;">💰 잔여예산 자동 점검</div>
-            <div class="feature-desc">SAP 예산 데이터 주기적 조회 → 항목별 잔여 예산 현황표 자동 생성 → 초과 위험 항목 알림</div>
+            <div class="feature-desc">SAP 예산 데이터 주기적 조회 → 항목별 잔여 현황표 생성 → <strong>초과 위험 항목 자동 알림</strong></div>
           </div>
           <div class="feature-card" style="text-align:left; padding:12px 16px;">
             <div class="feature-title" style="color:#2563eb;">🧾 SAP 전표 미처리 점검</div>
-            <div class="feature-desc">미처리 전표 자동 스캔 → 처리 기한 임박 항목 알림 → 카드 연체 등 리스크 사전 방지</div>
+            <div class="feature-desc">미처리 전표 자동 스캔 → 처리 기한 임박 항목 알림 → <strong>카드 연체 리스크 사전 방지</strong></div>
           </div>
           <div class="feature-card" style="text-align:left; padding:12px 16px;">
             <div class="feature-title" style="color:#2563eb;">📝 완료보고 자동 작성</div>
-            <div class="feature-desc">업무 진행 이력·데이터 취합 → 보고 양식에 맞춰 완료보고서 초안 자동 생성 → 검토만 하면 끝</div>
+            <div class="feature-desc">업무 진행 이력·데이터 취합 → 보고 양식에 맞춰 초안 생성 → <strong>검토만 하면 끝</strong></div>
           </div>
         </div>
-        <div class="highlight-box" style="text-align:center; max-width:780px; margin:10px auto 0;">
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
           이 업무들의 공통점: <strong>매번 같은 패턴으로 반복</strong>되지만 <strong>사람이 직접 처리</strong>하고 있음<br>
           <span style="font-size:0.85em; color:#64748b;">→ 에이전틱 AI가 가장 잘 도와줄 수 있는 영역입니다</span>
         </div>
@@ -963,19 +936,19 @@
             <div class="feature-desc">내가 보냈던 메일들을 학습시키면, <strong>나와 같은 어투·형식으로 메일을 자동 작성</strong>. 팀장님 스타일, 임원 보고 스타일도 학습 가능</div>
           </div>
           <div class="feature-card" style="text-align:left; padding:14px 18px; background:rgba(37,99,235,0.04); border-color:rgba(37,99,235,0.15);">
-            <div class="feature-title" style="color:#2563eb;">📊 나만의 데이터 분석가</div>
-            <div class="feature-desc">엑셀 데이터를 주고 "이상한 점 찾아줘", "추세 분석해줘" → <strong>차트까지 그려서 보고서로 완성</strong></div>
+            <div class="feature-title" style="color:#2563eb;">📅 일정 관리 & 아침 알림</div>
+            <div class="feature-desc">매일 아침 오늘의 회의·마감·할일을 정리해서 알림. <strong>"오늘 뭐부터 해야 하지?"를 AI가 정리해줌</strong></div>
           </div>
           <div class="feature-card" style="text-align:left; padding:14px 18px; background:rgba(37,99,235,0.04); border-color:rgba(37,99,235,0.15);">
-            <div class="feature-title" style="color:#2563eb;">🌐 외국어 자료 실시간 처리</div>
-            <div class="feature-desc">영문 기술문서 100페이지 → <strong>핵심만 요약 + 한글 번역 + 우리 업무 관점 시사점 정리</strong>까지 한번에</div>
+            <div class="feature-title" style="color:#2563eb;">📁 내 PC 파일 자동 정리</div>
+            <div class="feature-desc">중복 파일 찾아서 삭제 + 각 파일의 내용을 분석해서 <strong>적절한 폴더로 자동 분류·정리</strong></div>
           </div>
           <div class="feature-card" style="text-align:left; padding:14px 18px; background:rgba(37,99,235,0.04); border-color:rgba(37,99,235,0.15);">
-            <div class="feature-title" style="color:#2563eb;">🛠️ 업무용 미니 도구 제작</div>
-            <div class="feature-desc">"우리 팀만 쓰는 간단한 계산기 만들어줘" → <strong>웹 앱으로 30분 만에 완성</strong>. 코딩 몰라도 됨</div>
+            <div class="feature-title" style="color:#2563eb;">🚗 퇴근 전 교통 상황 알림</div>
+            <div class="feature-desc">퇴근 30분 전, 집까지의 도로 상황을 자동 확인 → <strong>"오늘은 ○○ 경유가 빠릅니다" 알림</strong></div>
           </div>
         </div>
-        <div class="highlight-box" style="text-align:center; max-width:780px; margin:10px auto 0;">
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
           핵심: <strong>누군가의 스타일, 판단 기준, 업무 패턴도 AI에게 학습시킬 수 있습니다</strong><br>
           <span style="font-size:0.85em; color:#64748b;">md 파일로 정리해두면 → AI가 그 사람처럼 일할 수 있음</span>
         </div>
@@ -985,31 +958,25 @@
       <section>
         <h2>🧠 AI에게 "내 스타일"을 가르칠 수 있다</h2>
         <p style="font-size:0.6em; color:#64748b;">에이전틱 AI는 반복 패턴을 학습하여, 나 대신 "나처럼" 일할 수 있습니다</p>
-        <div style="max-width:820px; margin:14px auto 0;">
-          <div style="display:grid; grid-template-columns:auto 1fr auto 1fr; gap:8px 12px; font-size:0.55em; align-items:center;">
-            <div style="font-size:1.6em;">📧</div>
-            <div>
-              <strong>이메일 스타일</strong><br>
-              <span style="color:#64748b;">내가 보낸 메일 50통 학습 → 인사말, 어투, 마무리 패턴 파악 → 나와 똑같은 스타일로 자동 작성</span>
-            </div>
-            <div style="font-size:1.6em;">📊</div>
-            <div>
-              <strong>보고서 양식</strong><br>
-              <span style="color:#64748b;">기존 보고서 5개 학습 → 목차 구조, 표현 방식, 강조 패턴 파악 → 새 데이터로 같은 형식 자동 생성</span>
-            </div>
-            <div style="font-size:1.6em;">✅</div>
-            <div>
-              <strong>검토 기준</strong><br>
-              <span style="color:#64748b;">"팀장님이 항상 확인하는 포인트 3가지"를 md로 정리 → AI가 사전 점검 후 리포트</span>
-            </div>
-            <div style="font-size:1.6em;">🔄</div>
-            <div>
-              <strong>업무 루틴</strong><br>
-              <span style="color:#64748b;">"매주 월요일 하는 일" 패턴을 기록 → AI가 월요일마다 자동 실행 + 결과 보고</span>
-            </div>
+        <div class="feature-grid" style="grid-template-columns: 1fr 1fr; gap:10px; max-width:750px; margin:14px auto 0;">
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#7c3aed;">📧 이메일 스타일</div>
+            <div class="feature-desc">내가 보낸 메일 50통 학습 → 인사말, 어투, 마무리 패턴 파악 → <strong>나와 똑같은 스타일로 자동 작성</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#7c3aed;">📊 보고서 양식</div>
+            <div class="feature-desc">기존 보고서 5개 학습 → 목차·표현·강조 패턴 파악 → <strong>새 데이터로 같은 형식 자동 생성</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#7c3aed;">✅ 검토 기준</div>
+            <div class="feature-desc">"팀장님이 항상 확인하는 포인트 3가지"를 md로 정리 → <strong>AI가 사전 점검 후 리포트</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#7c3aed;">🔄 업무 루틴</div>
+            <div class="feature-desc">"매주 월요일 하는 일" 패턴을 기록 → <strong>AI가 월요일마다 자동 실행 + 결과 보고</strong></div>
           </div>
         </div>
-        <div style="background:rgba(124,58,237,0.06); border:2px solid rgba(124,58,237,0.2); border-radius:12px; padding:14px 20px; max-width:820px; margin:16px auto 0; text-align:center;">
+        <div style="background:rgba(124,58,237,0.06); border:2px solid rgba(124,58,237,0.2); border-radius:12px; padding:14px 20px; max-width:750px; margin:16px auto 0; text-align:center;">
           <div style="font-size:0.6em; font-weight:800; color:#7c3aed; margin-bottom:6px;">학습시키는 방법은 간단합니다</div>
           <div style="font-size:0.55em; color:#64748b; line-height:1.7;">
             <strong>① 패턴을 .md 파일로 정리</strong> (예: "나의-메일-스타일.md", "주간보고-양식.md")<br>
@@ -1142,7 +1109,7 @@
           <tbody>
             <tr><td>2025.11.24</td><td>Claude Opus 4.5 출시</td><td>에이전틱 AI 성능이 실무 수준 돌파</td></tr>
             <tr><td>2025.12.19</td><td>OpenAI GPT-5.2-Codex 출시</td><td>코딩 특화 에이전틱 AI, 본격 경쟁 시작</td></tr>
-            <tr><td>2026.01.12</td><td>Claude Cowork 공개</td><td>비개발자도 에이전틱 AI 사용 가능</td></tr>
+            <tr><td>2026.01.12</td><td>Anthropic Claude Cowork 공개</td><td>비개발자도 웹에서 에이전틱 AI 사용 가능</td></tr>
             <tr><td>2026.01~02</td><td>SaaS 시장 재편 가속화</td><td>소프트웨어 시장 구조 변화 시작</td></tr>
             <tr><td><strong>지금</strong></td><td>에이전틱 AI 활용</td><td>본격 확산 초기 단계</td></tr>
           </tbody>
@@ -1175,17 +1142,27 @@
             <div class="stat-label">Atlassian / Adobe<br>시장 구조 변화 반영</div>
           </div>
         </div>
-        <div class="highlight-box" style="text-align:left; max-width:860px; margin:14px auto 0; padding:16px 24px;">
-          <div style="text-align:center; font-size:0.75em; font-weight:800; margin-bottom:12px;">핵심: 이제 <strong>필요한 소프트웨어를 직접 만들어 쓸 수 있는 시대</strong></div>
-          <div style="font-size:0.65em; display:grid; grid-template-columns:1fr 1fr; gap:10px 20px; line-height:1.6;">
-            <div>📊 "보고서 자동 취합 도구가 필요하다"<br>→ <strong style="color:#2563eb;">에이전틱 AI에게 시키면 30분 만에 완성</strong></div>
-            <div>🎬 "간단한 동영상 편집기가 필요하다"<br>→ <strong style="color:#2563eb;">자막·컷편집 도구를 직접 만들어 쓰면 됨</strong></div>
-            <div>🏢 "회의실 예약 프로그램이 필요하다"<br>→ <strong style="color:#2563eb;">우리 팀 맞춤 예약 시스템을 직접 만들면 됨</strong></div>
-            <div>🚗 "렉카·탁송차량 배차 시스템이 필요하다"<br>→ <strong style="color:#2563eb;">외주 안 맡기고 직접 만들어 바로 운영 가능</strong></div>
+        <div style="text-align:center; font-size:0.75em; font-weight:800; margin:14px 0 10px;">핵심: 이제 <strong>필요한 소프트웨어를 직접 만들어 쓸 수 있는 시대</strong></div>
+        <div class="feature-grid" style="grid-template-columns: 1fr 1fr; gap:10px; max-width:750px; margin:0 auto;">
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">📊 보고서 자동 취합 도구가 필요하다</div>
+            <div class="feature-desc">→ <strong>에이전틱 AI에게 시키면 30분 만에 완성</strong></div>
           </div>
-          <div style="text-align:center; font-size:0.58em; color:#64748b; margin-top:10px;">
-            💡 비싼 SaaS 구독 대신, <strong>우리 업무에 딱 맞는 도구를 AI로 직접 만드는 시대</strong>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">🎬 간단한 동영상 편집기가 필요하다</div>
+            <div class="feature-desc">→ <strong>자막·컷편집 도구를 직접 만들어 쓰면 됨</strong></div>
           </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">🏢 회의실 예약 프로그램이 필요하다</div>
+            <div class="feature-desc">→ <strong>우리 팀 맞춤 예약 시스템을 직접 만들면 됨</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">🚗 렉카·탁송차량 배차 시스템이 필요하다</div>
+            <div class="feature-desc">→ <strong>외주 안 맡기고 직접 만들어 바로 운영 가능</strong></div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
+          💡 비싼 SaaS 구독 대신, <strong>우리 업무에 딱 맞는 도구를 AI로 직접 만드는 시대</strong>
         </div>
         <div class="source-note">Source: Bloomberg, Yahoo Finance (2026.01~02)</div>
       </section>
@@ -1223,7 +1200,7 @@
         <h2>🛠️ 지금 사용할 수 있는 AI 도구들</h2>
         <p style="font-size:0.6em; color:#64748b;">용도와 접근성에 따라 선택할 수 있습니다</p>
         <p style="font-size:0.55em; color:#dc2626; font-weight:600; margin-bottom:4px;">🏢 사내 사용 가능</p>
-        <div class="tool-grid" style="margin-bottom:10px;">
+        <div class="tool-grid" style="grid-template-columns:1fr 1fr; margin-bottom:10px;">
           <div class="tool-card" style="border-color:rgba(220,38,38,0.3);">
             <div class="tool-name">Claude Code</div>
             <div class="tool-desc">터미널 기반 에이전트. 코드 작성, 시스템 자동화, 복잡한 워크플로우 처리</div>
@@ -1235,23 +1212,26 @@
             <span class="tool-tag tool-tag-company">사내 사용 가능</span>
           </div>
         </div>
-        <p style="font-size:0.55em; color:#94a3b8; font-weight:600; margin-bottom:4px;">📌 참고 — 외부 도구</p>
-        <div class="tool-grid">
+        <p style="font-size:0.55em; color:#94a3b8; font-weight:600; margin-bottom:4px;">📌 참고 — 외부 도구 (개인 구독)</p>
+        <div class="tool-grid" style="grid-template-columns:1fr 1fr;">
           <div class="tool-card" style="opacity:0.6;">
             <div class="tool-name">Google Antigravity</div>
-            <div class="tool-desc">Gemini 기반 IDE형 에이전트. 터미널 없이 GUI로 사용 가능. Pro Plan 시 토큰 넉넉</div>
+            <div class="tool-desc">Gemini 기반 IDE형 에이전트. 터미널 없이 GUI로 사용. Pro Plan 시 토큰 넉넉</div>
             <span class="tool-tag tool-tag-external">개인 추천</span>
           </div>
           <div class="tool-card" style="opacity:0.6;">
             <div class="tool-name">ChatGPT Operator</div>
-            <div class="tool-desc">웹 브라우저를 직접 조작하는 에이전트. 웹 업무 자동화</div>
+            <div class="tool-desc">웹 브라우저를 직접 조작하는 에이전트. 웹 업무 자동화에 특화</div>
             <span class="tool-tag tool-tag-external">개인 구독 필요</span>
           </div>
         </div>
-        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
+        <div class="highlight-box" style="text-align:left; max-width:750px; margin:10px auto 0; padding:12px 20px;">
+          <div style="text-align:center; font-size:0.6em; font-weight:800; color:#7c3aed; margin-bottom:8px;">한장희 추천</div>
           🏢 회사: <strong>Claude Code</strong> + <strong>OpenAI Codex</strong> 바로 사용 가능<br>
-          🏠 집: <strong>Google Antigravity</strong> — IDE 형식, 터미널 없이 편함, Pro Plan($20/월)이면 토큰 충분<br>
-          🏠 집: <strong>Claude Code</strong> — Max 20x 플랜($200/월, 부가세 포함 ~$220)으로 제한 없이 사용 가능
+          🏠 집: <strong>Google Antigravity</strong><br>
+          <span style="padding-left:28px;">— IDE 형식, 터미널 없이 편함, Pro Plan($20/월)이면 토큰 충분</span><br>
+          🏠 집: <strong>Claude Code</strong><br>
+          <span style="padding-left:28px;">— Max 20x 플랜($200/월, 부가세 포함 ~$220)으로 제한 없이 사용 가능</span>
         </div>
       </section>
 
@@ -1283,6 +1263,10 @@
           핵심: <strong>사람도 읽을 수 있고, AI도 바로 처리할 수 있는 텍스트 기반 형식</strong><br>
           같은 내용이라도 형식만 바꾸면 AI의 이해도와 처리 속도가 크게 달라집니다.
         </div>
+        <p style="font-size:0.45em; color:#94a3b8; margin-top:12px; max-width:750px; margin-left:auto; margin-right:auto; font-style:italic;">
+          "Markdown is durable, interoperable, and future-proof — the ideal text format for AI workflows"<br>
+          <span style="color:#64748b;">— Bismart, "Markdown: The Best Text Format for Training AI Models"</span>
+        </p>
       </section>
 
       <!-- ==================== 에이전틱 AI가 아직 잘 못하는 것 (신규) ==================== -->
@@ -1300,11 +1284,6 @@
             <div class="dept-name">대면 소통·협상</div>
             <div class="dept-use" style="color:#dc2626;">회의 참석, 고객 대면, 미묘한 조직 내 역학 판단은 사람의 영역</div>
           </div>
-          <div class="dept-card" style="border-color:rgba(217,119,6,0.2); background:rgba(217,119,6,0.03);">
-            <div class="dept-icon">🏢</div>
-            <div class="dept-name">사내 암묵지 활용</div>
-            <div class="dept-use" style="color:#b45309;">단, "○○팀장님 스타일" 같은 암묵지도 <strong>.md 파일로 정리해두면</strong> AI가 바로 반영 가능 → <strong>문서화가 곧 AI 활용의 열쇠</strong></div>
-          </div>
           <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
             <div class="dept-icon">📊</div>
             <div class="dept-name">복잡한 서식의 엑셀</div>
@@ -1314,11 +1293,6 @@
             <div class="dept-icon">⚖️</div>
             <div class="dept-name">주관적 판단·취향</div>
             <div class="dept-use" style="color:#dc2626;">"이게 더 낫다"는 감각적 판단, 브랜드 톤앤매너 같은 미세 조정</div>
-          </div>
-          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
-            <div class="dept-icon">🔄</div>
-            <div class="dept-name">실시간 시스템 연동</div>
-            <div class="dept-use" style="color:#dc2626;">사내 폐쇄망, 레거시 시스템, 실시간 데이터 스트림 접근은 제한적</div>
           </div>
         </div>
         <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
@@ -1375,51 +1349,10 @@
         </ul>
       </section>
 
-      <!-- ==================== 슬라이드 25: 30/60/90일 실행 로드맵 ==================== -->
-      <section>
-        <h2>🗓️ 30/60/90일 실행 로드맵</h2>
-        <p style="font-size:0.6em; color:#64748b;">단계별로 천천히 시작하면 됩니다. 작은 시작이 큰 변화로 이어집니다.</p>
-        <div class="roadmap-grid">
-          <div class="roadmap-phase phase-30">
-            <div class="phase-label">30일</div>
-            <div class="phase-title">체험하기</div>
-            <div class="phase-items">
-              • 내 업무 중 반복 작업 2~3개 목록화<br>
-              • 가장 간단한 업무 1개에 AI 도우미 적용<br>
-              • 결과 비교: 직접 처리 vs AI 보조 처리
-            </div>
-            <div class="phase-outcome">기대 효과: 주당 ~2시간 절감</div>
-          </div>
-          <div class="roadmap-phase phase-60">
-            <div class="phase-label">60일</div>
-            <div class="phase-title">익숙해지기</div>
-            <div class="phase-items">
-              • 주간 업무 루틴에 AI 도우미 통합<br>
-              • 2~3개 업무를 정기적으로 AI 활용<br>
-              • 효과적인 프롬프트 패턴 축적
-            </div>
-            <div class="phase-outcome">기대 효과: 주당 ~5시간 절감</div>
-          </div>
-          <div class="roadmap-phase phase-90">
-            <div class="phase-label">90일</div>
-            <div class="phase-title">팀과 나누기</div>
-            <div class="phase-items">
-              • 활용 노하우를 팀에 공유<br>
-              • 팀 단위 공통 업무에 AI 도우미 적용<br>
-              • 팀 내 활용 사례 축적·확산
-            </div>
-            <div class="phase-outcome">기대 효과: 팀 전체 효율 향상</div>
-          </div>
-        </div>
-        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
-          핵심 원칙: <strong>"작게 시작하고, 점진적으로 확장하고, 함께 나누기"</strong>
-        </div>
-      </section>
-
-      <!-- ==================== 슬라이드 26: CTA ==================== -->
+      <!-- ==================== 슬라이드 25: CTA ==================== -->
       <section data-background-gradient="linear-gradient(135deg, #f0fdf4, #dcfce7)">
         <h2>🎯 내일부터 시작할 수 있는 것</h2>
-        <div style="max-width:700px; margin:16px auto 0;">
+        <div style="max-width:750px; margin:16px auto 0;">
           <div class="cta-step">
             <div class="num">1</div>
             <div><strong style="color:#1e293b;">관찰하기</strong> <span class="text-dim">—</span> 이번 주 내 업무 중 <strong class="text-blue">"복사-붙여넣기 반복"</strong>, <strong class="text-blue">"여러 시스템 왔다갔다"</strong> 작업 3개 적기</div>
@@ -1432,6 +1365,14 @@
             <div class="num">3</div>
             <div><strong style="color:#1e293b;">공유하기</strong> <span class="text-dim">—</span> 결과를 팀에 공유하고, 함께 확장할 업무 찾기. <strong class="text-purple">작은 성공이 큰 변화의 시작</strong></div>
           </div>
+        </div>
+        <div class="highlight-box" style="text-align:left; max-width:750px; margin:14px auto 0; padding:14px 20px;">
+          <div style="text-align:center; font-size:0.6em; font-weight:800; color:#16a34a; margin-bottom:8px;">💡 집에서 먼저 해보는 방법</div>
+          <span style="font-size:0.58em;">
+            ① <strong>VS Code 설치</strong> → <a href="https://code.visualstudio.com/download" target="_blank" style="color:#2563eb;">code.visualstudio.com/download</a><br>
+            ② <strong>Google Antigravity 설치</strong> → <a href="https://twofootdog.tistory.com/450" target="_blank" style="color:#2563eb;">설치 가이드 (twofootdog.tistory.com)</a><br>
+            ③ <strong>Antigravity에게 말 걸기</strong> — "내 업무 중 자동화할 수 있는 거 알려줘" 라고 대화를 시작해 보세요
+          </span>
         </div>
         <div class="quote">
           "AI를 잘 활용한다"는 것은 ChatGPT, Gemini, Claude에 질문을 잘 하는 게 아닙니다.<br>
