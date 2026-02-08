@@ -8,13 +8,13 @@ Korean-language presentation about Agentic AI ("AI, 이제 대화만 하는 게 
 
 ## Presentation Formats
 
-| Format | Path | How to Use |
-|--------|------|------------|
-| **Marp** (Markdown) | `agentic-ai-presentation.md` | Source of truth. Render with `npx @marp-team/marp-cli agentic-ai-presentation.md` |
-| **Reveal.js** (HTML) | `revealjs/index.html` | Self-contained single HTML file. Uses Reveal.js 5.1.0 via CDN. Open directly in browser. |
-| **Slidev** (Markdown) | `slidev/slides.md` | Run dev server: `cd slidev && npx slidev` (default port 3030) |
-| **PDF** | `agentic-ai-presentation.pdf` | Exported static version |
-| **PPTX** | `agentic-ai-presentation.pptx` | PowerPoint export |
+| Format | Path | Status | How to Use |
+|--------|------|--------|------------|
+| **Reveal.js** (HTML) | `revealjs/index.html` | **Primary / most up-to-date** | Self-contained single HTML file. Uses Reveal.js 5.1.0 via CDN. Open directly in browser. |
+| **Marp** (Markdown) | `agentic-ai-presentation.md` | Not synced (18 slides) | Render with `npx @marp-team/marp-cli agentic-ai-presentation.md` |
+| **Slidev** (Markdown) | `slidev/slides.md` | Not synced (18 slides) | Run dev server: `cd slidev && npx slidev` (default port 3030) |
+| **PDF** | `agentic-ai-presentation.pdf` | Static export | Exported version |
+| **PPTX** | `agentic-ai-presentation.pptx` | Static export | PowerPoint export |
 
 ## Architecture
 
@@ -45,32 +45,41 @@ Korean-language presentation about Agentic AI ("AI, 이제 대화만 하는 게 
 ## Styling Notes
 
 - **Font**: Pretendard (Korean web font via CDN: `orioncactus/pretendard`)
-- **Reveal.js**: Dark theme (`#0f172a` background), custom CSS classes for grids, cards, stat boxes
+- **Reveal.js**: Light/white theme (`#ffffff` background, `white.css` base theme). Section dividers use purple gradient (`#4f46e5 → #7c3aed → #a855f7`). Per-slide backgrounds set via `data-background-gradient` attributes, not CSS classes. Code blocks use dark background (`#1e293b`) for contrast.
 - **Marp**: Light theme (Gaia), custom CSS for `.compare`, `.before/.after`, `.highlight`, `.section-divider`
 - **Slidev**: Tailwind/UnoCSS utility classes (built into Slidev)
 
 ## Key CSS Classes (Reveal.js)
 
-### Original
-- `.compare-grid` + `.card-before` / `.card-after` — Before/After layouts
-- `.highlight-box` — Blue callout boxes
-- `.code-box` + `.prompt` / `.result` — Terminal-style prompt examples
-- `.stat-grid` / `.stat-card` — Statistics display (red, market data)
-- `.feature-grid` / `.feature-card` — Feature highlights
-- `.section-slide` — Purple gradient section dividers
-- `.cta-step` — Numbered action steps
+### Utilities
+- `.text-blue/green/red/yellow/purple/white/dim/glow` — Color helpers
+- `.badge` + `.badge-blue/green/red/purple` — Pill-shaped labels
+- `.gradient-line` — Decorative gradient separator
+- `.emoji-hero` — Large emoji display (3em)
 
-### Consulting Redesign (new)
-- `.agenda-num` / `.agenda-item` — Agenda section numbering
-- `.exec-grid` / `.exec-card` — Executive Summary 3-column layout
+### Layout Components
+- `.compare-grid` + `.card-before` / `.card-after` — Before/After 2-column comparison
+- `.highlight-box` — Blue left-border callout
+- `.code-box` + `.prompt` / `.result` — Dark terminal-style prompt examples
+- `.stat-grid` / `.stat-card` — Red stat cards (market/warning data)
 - `.stat-card-blue` — Blue stat cards (growth/positive metrics)
-- `.maturity-container` / `.maturity-bar` — 5-level maturity model (active/inactive/future states)
-- `.dept-grid` / `.dept-card` — Department benefit cards (3x2 grid)
-- `.roi-table` — ROI time-saving comparison table
-- `.roadmap-grid` / `.roadmap-phase` — 30/60/90 day phased roadmap (phase-30/60/90 color variants)
-- `.tool-grid` / `.tool-card` — Tool landscape cards with access tags
-- `.source-note` — Data source attribution
-- `.ref-list` — References list styling
+- `.feature-grid` / `.feature-card` — 2-column feature highlights
+- `.example-grid` / `.example-card` — 3-column example cards with `.ex-tag` + `.tag-file/api/terminal/multi`
+- `.section-slide` — White text styling for purple gradient section dividers
+- `.cta-step` + `.num` — Numbered action steps
+- `.warn-list` — Warning items without bullet markers
+- `.vs-table` / `.timeline-table` — Specialized table color schemes
+
+### Consulting Components
+- `.agenda-num` / `.agenda-item` — Numbered agenda items with gradient circles
+- `.exec-grid` / `.exec-card` — Executive Summary 3-column layout
+- `.maturity-container` / `.maturity-bar` + `.lv1`–`.lv5` — 5-level horizontal maturity model (lv1-3 solid active, lv4-5 dashed/faded future)
+- `.dept-grid` / `.dept-card` — Department benefit cards (3-column)
+- `.roi-table` + `.saved` — ROI comparison table with green highlight for savings
+- `.roadmap-grid` / `.roadmap-phase` + `.phase-30/60/90` — 30/60/90 day phased roadmap (green/blue/purple)
+- `.tool-grid` / `.tool-card` + `.tool-tag-all/dev/biz/company/external` — Tool landscape with access level tags
+- `.source-note` — Italic right-aligned data attribution
+- `.ref-list` — References list (no bullets, muted color)
 
 ## Tone Guidelines
 

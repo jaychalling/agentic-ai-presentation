@@ -559,6 +559,138 @@
     }
     .ref-list li::before { display: none; }
     .ref-list li strong { color: #64748b; }
+
+    /* ==================== 모바일 반응형 ==================== */
+    @media (max-width: 768px) {
+      :root {
+        --r-main-font-size: 28px;
+      }
+
+      /* 그리드 → 1열 스택 */
+      .compare-grid,
+      .stat-grid,
+      .feature-grid,
+      .exec-grid,
+      .dept-grid,
+      .roadmap-grid,
+      .tool-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .example-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Maturity 5단 바 → 세로 스택 */
+      .maturity-container {
+        flex-direction: column;
+      }
+      .maturity-bar {
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .maturity-bar .maturity-level {
+        display: inline;
+        margin-right: 8px;
+      }
+      .maturity-bar .maturity-title {
+        display: inline;
+      }
+
+      /* 카드/박스 패딩 축소 */
+      .card,
+      .exec-card,
+      .dept-card,
+      .tool-card,
+      .example-card,
+      .roadmap-phase,
+      .feature-card {
+        padding: 14px 16px;
+      }
+
+      /* 코드 블록 폭 제한 해제 */
+      .code-box {
+        max-width: 100%;
+        padding: 14px 16px;
+        font-size: 0.58em;
+      }
+
+      /* 테이블 스크롤 */
+      .reveal table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: 0.55em;
+      }
+
+      .roi-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* CTA 스텝 */
+      .cta-step {
+        gap: 12px;
+        padding: 12px 14px;
+      }
+      .cta-step .num {
+        width: 34px;
+        height: 34px;
+        font-size: 0.95em;
+      }
+
+      /* 어젠다 */
+      .agenda-item {
+        padding: 10px 14px;
+      }
+
+      /* 경고 리스트 */
+      .warn-list li {
+        font-size: 0.63em;
+      }
+
+      /* stat 카드 숫자 */
+      .stat-card .stat-num,
+      .stat-card-blue .stat-num {
+        font-size: 1.5em;
+      }
+
+      /* 레퍼런스 */
+      .ref-list {
+        max-width: 100%;
+      }
+      .ref-list li {
+        font-size: 0.5em;
+      }
+
+      /* 이모지 히어로 */
+      .emoji-hero {
+        font-size: 2.4em;
+      }
+    }
+
+    /* 더 작은 화면 (폰 세로 모드) */
+    @media (max-width: 480px) {
+      :root {
+        --r-main-font-size: 24px;
+      }
+
+      .reveal h1 { font-size: 1.6em; }
+      .reveal h2 { font-size: 1.2em; }
+      .reveal h3 { font-size: 0.9em; }
+
+      .badge { font-size: 0.5em; padding: 4px 12px; }
+
+      .highlight-box {
+        padding: 10px 14px;
+        font-size: 0.62em;
+      }
+
+      .source-note {
+        font-size: 0.4em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1406,18 +1538,22 @@
 
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
   <script>
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
     Reveal.initialize({
       hash: true,
       slideNumber: true,
-      transition: 'slide',
+      transition: isMobile ? 'none' : 'slide',
       transitionSpeed: 'default',
-      backgroundTransition: 'zoom',
+      backgroundTransition: isMobile ? 'none' : 'zoom',
       autoAnimateEasing: 'ease-in-out',
       autoAnimateDuration: 0.7,
       width: 1280,
       height: 720,
-      margin: 0.06,
+      margin: isMobile ? 0.04 : 0.06,
       center: true,
+      view: isMobile ? 'scroll' : undefined,
+      scrollProgress: isMobile,
     });
   </script>
 </body>
