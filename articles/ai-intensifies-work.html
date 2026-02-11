@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI는 업무를 줄이지 않는다 — 오히려 강화한다 | UC Berkeley 연구</title>
+  <meta name="description" content="UC Berkeley 연구진이 8개월간 200명 직원을 관찰한 결과, AI 도입이 업무량을 줄이지 않고 오히려 강화시킨다는 것을 발견했습니다.">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.8;
+      color: #1e293b;
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      min-height: 100vh;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+      color: white;
+      padding: 60px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .badge {
+      display: inline-block;
+      background: rgba(251, 191, 36, 0.2);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      color: #fbbf24;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.85em;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      font-size: 2.4em;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    
+    .hero p {
+      font-size: 1.1em;
+      color: rgba(255,255,255,0.8);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .meta-bar {
+      background: white;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      padding: 20px;
+      margin: -40px auto 40px;
+      max-width: 800px;
+      border-radius: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9em;
+      color: #64748b;
+    }
+    
+    .meta-item strong {
+      color: #1e293b;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+    
+    h2 {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 50px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    h2::before {
+      content: '';
+      width: 4px;
+      height: 28px;
+      background: linear-gradient(180deg, #2563eb, #7c3aed);
+      border-radius: 2px;
+    }
+    
+    p {
+      margin-bottom: 20px;
+      color: #334155;
+      font-size: 1.05em;
+    }
+    
+    .key-finding {
+      background: linear-gradient(135deg, #fef3c7 0%, #fef9c3 100%);
+      border: 2px solid #fcd34d;
+      border-radius: 16px;
+      padding: 28px;
+      margin: 30px 0;
+      position: relative;
+    }
+    
+    .key-finding::before {
+      content: '💡';
+      position: absolute;
+      top: -15px;
+      left: 24px;
+      font-size: 1.8em;
+      background: white;
+      padding: 0 8px;
+      border-radius: 50%;
+    }
+    
+    .key-finding strong {
+      color: #92400e;
+      font-size: 0.95em;
+    }
+    
+    .key-finding p {
+      margin: 0;
+      color: #78350f;
+      font-weight: 500;
+    }
+    
+    .quote {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border-left: 5px solid #2563eb;
+      padding: 28px 32px;
+      border-radius: 0 16px 16px 0;
+      margin: 35px 0;
+      position: relative;
+    }
+    
+    .quote::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 4em;
+      color: #2563eb;
+      opacity: 0.2;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    
+    .quote p {
+      font-style: italic;
+      color: #1e40af;
+      margin-bottom: 12px;
+      font-size: 1.1em;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .quote .author {
+      font-style: normal;
+      font-size: 0.9em;
+      color: #3b82f6;
+      font-weight: 600;
+    }
+    
+    .cycle-box {
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      border: 2px solid #fca5a5;
+      border-radius: 16px;
+      padding: 28px;
+      margin: 35px 0;
+      text-align: center;
+    }
+    
+    .cycle-box h3 {
+      color: #991b1b;
+      font-size: 1.1em;
+      margin-bottom: 15px;
+    }
+    
+    .cycle-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.95em;
+      color: #7f1d1d;
+      font-weight: 500;
+    }
+    
+    .cycle-flow span {
+      background: white;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid #fca5a5;
+    }
+    
+    .cycle-flow .arrow {
+      background: none;
+      border: none;
+      padding: 0;
+      color: #dc2626;
+    }
+    
+    ul {
+      padding-left: 0;
+      list-style: none;
+    }
+    
+    li {
+      margin-bottom: 16px;
+      padding-left: 32px;
+      position: relative;
+      color: #334155;
+      font-size: 1.02em;
+    }
+    
+    li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      border-radius: 50%;
+    }
+    
+    li strong {
+      color: #1e293b;
+    }
+    
+    .recommendations {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 2px solid #86efac;
+      border-radius: 16px;
+      padding: 28px;
+      margin: 35px 0;
+    }
+    
+    .recommendations h3 {
+      color: #166534;
+      font-size: 1.15em;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .recommendations li::before {
+      background: #22c55e;
+    }
+    
+    .implications {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 28px;
+      margin: 35px 0;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .source-section {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 2px solid #e2e8f0;
+    }
+    
+    .source-section h3 {
+      font-size: 1em;
+      color: #64748b;
+      margin-bottom: 15px;
+    }
+    
+    .source-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .source-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      color: #475569;
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: all 0.2s ease;
+    }
+    
+    .source-links a:hover {
+      border-color: #2563eb;
+      color: #2563eb;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.15);
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #94a3b8;
+      font-size: 0.9em;
+    }
+    
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 1.8em;
+      }
+      
+      .hero {
+        padding: 40px 20px 60px;
+      }
+      
+      .meta-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: -30px 15px 30px;
+      }
+      
+      h2 {
+        font-size: 1.3em;
+      }
+      
+      .cycle-flow {
+        flex-direction: column;
+      }
+      
+      .cycle-flow .arrow {
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <span class="badge">🔬 UC Berkeley 연구 | Harvard Business Review</span>
+    <h1>AI는 업무를 줄이지 않는다<br>— 오히려 강화한다</h1>
+    <p>8개월간 200명 직원을 밀착 관찰한 결과, AI 도입이 가져온 예상치 못한 부작용</p>
+  </div>
+</div>
+
+<div class="meta-bar">
+  <div class="meta-item">
+    <span>👩‍🔬</span>
+    <span><strong>저자:</strong> Aruna Ranganathan, Xinqi Maggie Ye</span>
+  </div>
+  <div class="meta-item">
+    <span>🏛️</span>
+    <span><strong>기관:</strong> UC Berkeley Haas</span>
+  </div>
+  <div class="meta-item">
+    <span>📅</span>
+    <span><strong>발행:</strong> 2026년 2월 9일</span>
+  </div>
+</div>
+
+<div class="container">
+  
+  <h2>연구 개요</h2>
+  <p>UC Berkeley Haas 경영대학원 연구진이 미국의 한 기술 기업(직원 200명)을 <strong>8개월간 밀착 관찰</strong>했습니다. 엔지니어링, 제품, 디자인, 리서치, 운영 부서 직원 40명을 심층 인터뷰하며 AI 도입이 실제 업무에 미치는 영향을 분석했습니다.</p>
+
+  <div class="key-finding">
+    <strong>핵심 발견</strong>
+    <p>AI 도입은 업무량을 줄이지 않고, <strong>오히려 업무를 강화(intensify)</strong>시켰습니다. 직원들은 더 빠른 속도로, 더 넓은 범위의 업무를 처리하게 되었습니다.</p>
+  </div>
+
+  <h2>"업무량 크리프" 현상</h2>
+  <p>이 회사는 AI 도구를 제공했지만 사용을 강제하지 않았습니다. 도입은 자발적이었습니다. 그런데 많은 직원들이 스스로 AI를 적극 실험하기 시작했습니다. AI가 <strong>"더 많은 일을 하는 것"을 가능하고, 접근 가능하며, 본질적으로 보람 있게</strong> 만들었기 때문입니다.</p>
+  <p>그 결과, 일부 직원들은 원래 외주로 맡기거나 추가 인력을 고용했을 업무까지 스스로 흡수하기 시작했습니다.</p>
+
+  <div class="quote">
+    <p>AI를 쓰면 더 생산적이 되니까 시간을 아끼고, 덜 일할 수 있을 거라고 생각했어요. 하지만 실제로는 덜 일하지 않았어요. 똑같이 일하거나, 오히려 더 많이 일하게 됐습니다.</p>
+    <span class="author">— 연구 참여 직원</span>
+  </div>
+
+  <h2>발견된 부작용들</h2>
+  <ul>
+    <li><strong>암묵적 압박:</strong> 모든 직원이 AI로 더 많은 일을 하게 되자, 이것이 정신적 압박으로 작용했습니다.</li>
+    <li><strong>멀티태스킹 증가:</strong> 일부는 수동으로 코드를 작성하면서 동시에 AI 에이전트가 백그라운드에서 작업하게 했습니다. 지속적인 주의 분산으로 "항상 저글링하는" 느낌이 들었습니다.</li>
+    <li><strong>휴식 시간 침해:</strong> 점심시간, 회의 중, PC를 떠나기 직전에도 AI에게 프롬프트를 입력하게 되었습니다. 업무와 비업무의 경계가 흐려졌습니다.</li>
+    <li><strong>코드 품질 문제:</strong> 엔지니어들은 동료들이 넘긴 AI 생성 코드를 수정하는 데 더 많은 시간을 쓰게 되었습니다.</li>
+    <li><strong>번아웃 위험:</strong> 하루 종일 업무로 채우고 휴식을 포기하면, 장기적으로 생산성이 오히려 떨어질 수 있습니다.</li>
+  </ul>
+
+  <div class="cycle-box">
+    <h3>🌀 악순환 구조</h3>
+    <div class="cycle-flow">
+      <span>AI가 업무 가속화</span>
+      <span class="arrow">→</span>
+      <span>속도 기대치 상승</span>
+      <span class="arrow">→</span>
+      <span>AI 의존도 증가</span>
+      <span class="arrow">→</span>
+      <span>업무 범위 확대</span>
+      <span class="arrow">→</span>
+      <span>업무량·밀도 증가</span>
+    </div>
+  </div>
+
+  <div class="recommendations">
+    <h3>✅ 연구진의 권고사항</h3>
+    <ul>
+      <li>업무에 <strong>의도적인 멈춤(pause)</strong>을 도입해 결정을 평가하고 가정을 재검토할 시간을 확보</li>
+      <li>집중할 수 있는 <strong>방해 없는 시간대</strong>를 보호</li>
+      <li><strong>인간적 연결과 사회적 교류</strong>를 우선시</li>
+      <li>AI 활용을 장려하되, <strong>업무 품질이 희생되지 않도록</strong> 주의</li>
+      <li>직원들이 AI 전략 결정에 참여하도록 장려</li>
+      <li>변화에 대한 <strong>두려움과 불안을 줄여주는</strong> 안심 메시지 제공</li>
+    </ul>
+  </div>
+
+  <div class="quote">
+    <p>이 모든 것에는 인간적 요소가 있다는 것을 기억해야 합니다.</p>
+    <span class="author">— Josh Cardoz, Sponge 최고창의학습책임자</span>
+  </div>
+
+  <div class="implications">
+    <h2>시사점</h2>
+    <p>이 연구는 AI 산업의 "생산성 기적" 약속에 대한 회의적 시각을 뒷받침합니다. MIT 연구에 따르면 AI를 도입한 대다수 기업이 의미 있는 매출 성장을 보지 못했으며, 설문조사에서는 비관리직 화이트칼라 직원의 40%가 AI가 업무 시간을 전혀 절약해주지 않는다고 답했습니다.</p>
+    <p style="margin-bottom:0;">AI는 분명 강력한 도구이지만, 관리하기 어려운 부정적 연쇄효과를 쉽게 만들어낼 수 있습니다. 우리는 아직 그 영향을 완전히 파악하지 못하고 있습니다.</p>
+  </div>
+
+  <div class="source-section">
+    <h3>📚 원문 출처</h3>
+    <div class="source-links">
+      <a href="https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it" target="_blank">
+        📄 Harvard Business Review
+      </a>
+      <a href="https://fortune.com/2026/02/10/ai-future-of-work-white-collar-employees-technology-productivity-burnout-research-uc-berkeley/" target="_blank">
+        📰 Fortune
+      </a>
+      <a href="https://futurism.com/artificial-intelligence/what-happens-workplaces-embrace-ai" target="_blank">
+        🔮 Futurism
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  번역 및 정리 by Teabagbot 💸 | 2026.02.11
+</div>
+
+</body>
+</html>
