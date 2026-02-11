@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 아티클 모음 | Teabagbot</title>
+  <meta name="description" content="AI와 미래 업무에 관한 주요 아티클들을 한국어로 번역하고 정리했습니다.">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+      color: #1e293b;
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      min-height: 100vh;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-size: 2.5em;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+    
+    .header p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.1em;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+    
+    .articles {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    
+    .article-card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid #e2e8f0;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: all 0.3s ease;
+    }
+    
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+      border-color: #cbd5e1;
+    }
+    
+    .article-card .badge {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-size: 0.8em;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .badge.research {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+    
+    .badge.case-study {
+      background: #f3e8ff;
+      color: #7c3aed;
+    }
+    
+    .badge.tutorial {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+    
+    .article-card h2 {
+      font-size: 1.4em;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+    
+    .article-card .desc {
+      color: #64748b;
+      font-size: 1em;
+      margin-bottom: 15px;
+    }
+    
+    .article-card .meta {
+      display: flex;
+      gap: 20px;
+      font-size: 0.85em;
+      color: #94a3b8;
+    }
+    
+    .article-card .meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 40px;
+      padding: 12px 24px;
+      background: #f1f5f9;
+      color: #475569;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .back-link:hover {
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #94a3b8;
+      font-size: 0.9em;
+    }
+    
+    @media (max-width: 640px) {
+      .header h1 {
+        font-size: 1.8em;
+      }
+      
+      .article-card {
+        padding: 22px;
+      }
+      
+      .article-card h2 {
+        font-size: 1.2em;
+      }
+      
+      .article-card .meta {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📚 AI 아티클 모음</h1>
+  <p>AI와 미래 업무에 관한 주요 아티클들을 한국어로 번역하고 정리했습니다</p>
+</div>
+
+<div class="container">
+  <div class="articles">
+    
+    <a href="software-factory.html" class="article-card">
+      <span class="badge case-study">🏭 사례 연구</span>
+      <h2>소프트웨어 공장: 코드를 보지도 않는 AI 개발팀</h2>
+      <p class="desc">StrongDM AI 팀이 코드를 직접 작성하지도, 리뷰하지도 않으면서 소프트웨어를 만드는 '다크 팩토리' 방식을 공개했습니다.</p>
+      <div class="meta">
+        <span>✍️ Simon Willison</span>
+        <span>📅 2026.02.07</span>
+        <span>🏢 StrongDM</span>
+      </div>
+    </a>
+    
+    <a href="ai-intensifies-work.html" class="article-card">
+      <span class="badge research">🔬 연구</span>
+      <h2>AI는 업무를 줄이지 않는다 — 오히려 강화한다</h2>
+      <p class="desc">UC Berkeley 연구진이 8개월간 200명 직원을 관찰한 결과, AI 도입이 업무량을 줄이지 않고 오히려 강화시킨다는 것을 발견했습니다.</p>
+      <div class="meta">
+        <span>✍️ Aruna Ranganathan, Xinqi Maggie Ye</span>
+        <span>📅 2026.02.09</span>
+        <span>🏛️ UC Berkeley / HBR</span>
+      </div>
+    </a>
+    
+  </div>
+  
+  <a href="../" class="back-link">
+    ← 발표 자료로 돌아가기
+  </a>
+</div>
+
+<div class="footer">
+  정리 by Teabagbot 💸
+</div>
+
+</body>
+</html>

@@ -4,7 +4,20 @@
       "mcp__plugin_claude-mem_mcp-search__get_observations",
       "Bash(gh auth status:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git rm:*)",
+      "Bash(gh repo create:*)",
+      "Bash(vercel:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:openai.com)",
+      "WebSearch",
+      "WebFetch(domain:blog.box.com)",
+      "WebFetch(domain:homepage.hackmd.io)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:www.anildash.com)",
+      "WebFetch(domain:blog.proagent.kr)",
+      "Bash(findstr:*)",
+      "Bash(start:*)"
     ]
   }
 }

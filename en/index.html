@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Does More Than Just Chat Now</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <style>
+    :root {
+      --r-background-color: #ffffff;
+      --r-main-font: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      --r-heading-font: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      --r-main-font-size: 32px;
+      --r-heading-color: #1e293b;
+      --r-main-color: #475569;
+      --r-link-color: #2563eb;
+      --r-selection-background-color: #3b82f6;
+    }
+
+    .reveal { font-weight: 400; }
+    .reveal h1 { font-size: 2.2em; font-weight: 800; line-height: 1.3; color: #1e293b; }
+    .reveal h2 { font-size: 1.5em; font-weight: 700; color: #1e293b; margin-bottom: 10px; }
+    .reveal h3 { font-size: 1.0em; font-weight: 600; }
+    .reveal p, .reveal li { line-height: 1.6; color: #475569; }
+    .reveal ul { list-style: none; padding-left: 0; }
+    .reveal ul li::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 10px; vertical-align: middle; background: #94a3b8; }
+
+    /* Slide type backgrounds */
+    .slide-title { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #eff6ff 100%); }
+    .slide-section { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%); }
+    .slide-content { background: #ffffff; }
+    .slide-warning { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); }
+    .slide-cta { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); }
+
+    /* Text emphasis */
+    .text-blue { color: #2563eb; }
+    .text-green { color: #16a34a; }
+    .text-red { color: #dc2626; }
+    .text-yellow { color: #d97706; }
+    .text-purple { color: #7c3aed; }
+    .text-white { color: #ffffff; }
+    .text-dim { color: #94a3b8; }
+    .text-glow { color: #2563eb; text-shadow: 0 0 20px rgba(37,99,235,0.3); }
+
+    /* Tags/Badges */
+    .badge {
+      display: inline-block;
+      padding: 5px 16px;
+      border-radius: 50px;
+      font-size: 0.6em;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .badge-blue { background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.3); color: #2563eb; }
+    .badge-green { background: rgba(22,163,74,0.1); border: 1px solid rgba(22,163,74,0.3); color: #16a34a; }
+    .badge-red { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.3); color: #dc2626; }
+    .badge-purple { background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.3); color: #7c3aed; }
+
+    /* Before/After grid */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 14px;
+      text-align: left;
+    }
+
+    .card {
+      padding: 22px 26px;
+      border-radius: 14px;
+    }
+
+    .card-before {
+      background: rgba(220,38,38,0.04);
+      border: 1px solid rgba(220,38,38,0.15);
+    }
+    .card-before h3 { color: #dc2626; margin-bottom: 12px; }
+    .card-before ul li::before { background: #dc2626; }
+    .card-before ul li { font-size: 0.65em; color: #64748b; margin: 6px 0; }
+
+    .card-after {
+      background: rgba(22,163,74,0.04);
+      border: 1px solid rgba(22,163,74,0.15);
+    }
+    .card-after h3 { color: #16a34a; margin-bottom: 12px; }
+    .card-after ul li::before { background: #16a34a; }
+    .card-after ul li { font-size: 0.65em; color: #334155; margin: 6px 0; }
+
+    .card-before ul li strong, .card-after ul li strong {
+      color: #1e293b;
+    }
+
+    /* Highlight box */
+    .highlight-box {
+      background: rgba(37,99,235,0.05);
+      border-left: 4px solid #2563eb;
+      padding: 14px 20px;
+      border-radius: 0 12px 12px 0;
+      margin-top: 16px;
+      font-size: 0.68em;
+      text-align: left;
+      color: #64748b;
+    }
+    .highlight-box strong { color: #2563eb; }
+
+    /* Code block style (dark for readability) */
+    .code-box {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 16px 28px;
+      font-family: 'Pretendard', 'Consolas', 'Monaco', monospace;
+      font-size: 0.62em;
+      color: #e2e8f0;
+      text-align: left;
+      margin-top: 10px;
+      line-height: 1.85;
+      letter-spacing: 0.01em;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .code-box .comment { color: #64748b; }
+    .code-box .prompt { color: #fbbf24; }
+    .code-box .result { color: #4ade80; }
+
+    /* Table */
+    .reveal table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.6em;
+      margin-top: 12px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+    .reveal table th {
+      background: rgba(37,99,235,0.08);
+      color: #2563eb;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .reveal table td {
+      padding: 10px 16px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #475569;
+    }
+    .reveal table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+    .reveal table td strong { color: #1e293b; }
+
+    /* Large emoji */
+    .emoji-hero { font-size: 3em; margin-bottom: 16px; }
+
+    /* Section slide style */
+    .section-slide h1 { color: #ffffff; text-shadow: 0 0 30px rgba(168,85,247,0.5); }
+    .section-slide p { color: rgba(255,255,255,0.8); font-size: 0.75em; }
+
+    /* CTA step */
+    .cta-step {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 16px 22px;
+      background: rgba(0,0,0,0.02);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 14px;
+      margin: 10px 0;
+      text-align: left;
+      font-size: 0.68em;
+    }
+    .cta-step .num {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1em;
+      flex-shrink: 0;
+    }
+
+    /* Quote */
+    .quote {
+      font-style: italic;
+      color: #64748b;
+      font-size: 0.65em;
+      margin-top: 20px;
+      line-height: 1.8;
+    }
+
+    /* VS table special */
+    .vs-table td:first-child { font-weight: 700; color: #64748b; width: 90px; }
+    .vs-table td:nth-child(2) { color: #dc2626; }
+    .vs-table td:nth-child(3) { color: #16a34a; }
+
+    /* Timeline emphasis */
+    .timeline-table td:first-child { color: #2563eb; font-weight: 700; white-space: nowrap; }
+    .timeline-table tr:last-child td { color: #d97706; }
+
+    /* Gradient line deco */
+    .gradient-line {
+      height: 3px;
+      background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899);
+      border-radius: 2px;
+      margin: 14px auto;
+      width: 200px;
+    }
+
+    /* Warning slide list */
+    .warn-list { text-align: left; }
+    .warn-list li {
+      font-size: 0.68em;
+      margin: 14px 0;
+      color: #475569;
+      line-height: 1.5;
+    }
+    .warn-list li::before { display: none; }
+    .warn-list li strong { color: #b45309; }
+
+    /* Stat card */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    .stat-card {
+      padding: 16px 20px;
+      background: rgba(220,38,38,0.04);
+      border: 1px solid rgba(220,38,38,0.15);
+      border-radius: 12px;
+      font-size: 0.6em;
+    }
+    .stat-card .stat-num { font-size: 1.8em; font-weight: 800; color: #dc2626; }
+    .stat-card .stat-label { color: #64748b; margin-top: 4px; }
+
+    /* Feature card grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    .feature-card {
+      padding: 16px 20px;
+      background: rgba(37,99,235,0.04);
+      border: 1px solid rgba(37,99,235,0.12);
+      border-radius: 12px;
+      font-size: 0.6em;
+    }
+    .feature-card .feature-icon { font-size: 1.6em; margin-bottom: 6px; }
+    .feature-card .feature-title { font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .feature-card .feature-desc { color: #64748b; line-height: 1.5; }
+
+    /* Example card */
+    .example-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    .example-card {
+      padding: 14px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 0.55em;
+    }
+    .example-card .ex-title { font-weight: 700; color: #1e293b; margin-bottom: 6px; }
+    .example-card .ex-desc { color: #64748b; line-height: 1.5; }
+    .example-card .ex-tag { display: inline-block; margin-top: 6px; padding: 2px 10px; border-radius: 20px; font-size: 0.85em; }
+    .tag-file { background: rgba(37,99,235,0.1); color: #2563eb; }
+    .tag-api { background: rgba(124,58,237,0.1); color: #7c3aed; }
+    .tag-terminal { background: rgba(217,119,6,0.1); color: #d97706; }
+    .tag-multi { background: rgba(22,163,74,0.1); color: #16a34a; }
+
+    /* Slide number */
+    .reveal .slide-number { font-family: 'Pretendard'; font-size: 14px; color: #94a3b8; }
+
+    /* ==================== Consulting style components ==================== */
+
+    /* Agenda number */
+    .agenda-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: #ffffff;
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: 0.9em;
+      flex-shrink: 0;
+    }
+
+    .agenda-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 18px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      margin: 8px 0;
+      font-size: 0.65em;
+      text-align: left;
+    }
+    .agenda-item .agenda-title { font-weight: 700; color: #1e293b; }
+    .agenda-item .agenda-desc { color: #94a3b8; font-size: 0.9em; margin-top: 2px; }
+
+    /* Executive Summary 3-col */
+    .exec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+      text-align: left;
+    }
+    .exec-card {
+      padding: 18px 20px;
+      background: rgba(37,99,235,0.04);
+      border: 1px solid rgba(37,99,235,0.12);
+      border-radius: 12px;
+      font-size: 0.6em;
+    }
+    .exec-card .exec-num {
+      font-size: 1.6em;
+      font-weight: 800;
+      color: #2563eb;
+      margin-bottom: 6px;
+    }
+    .exec-card .exec-title { font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .exec-card .exec-desc { color: #64748b; line-height: 1.5; }
+
+    /* Blue stat card */
+    .stat-card-blue {
+      padding: 16px 20px;
+      background: rgba(37,99,235,0.04);
+      border: 1px solid rgba(37,99,235,0.15);
+      border-radius: 12px;
+      font-size: 0.6em;
+    }
+    .stat-card-blue .stat-num { font-size: 1.8em; font-weight: 800; color: #2563eb; }
+    .stat-card-blue .stat-label { color: #64748b; margin-top: 4px; }
+
+    /* 5-level maturity bar */
+    .maturity-container {
+      display: flex;
+      gap: 6px;
+      margin-top: 16px;
+    }
+    .maturity-bar {
+      flex: 1;
+      padding: 14px 10px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 0.52em;
+      transition: all 0.3s ease;
+    }
+    .maturity-bar .maturity-level {
+      font-weight: 800;
+      font-size: 1.4em;
+      margin-bottom: 4px;
+    }
+    .maturity-bar .maturity-title { font-weight: 700; color: #1e293b; margin-bottom: 3px; }
+    .maturity-bar .maturity-desc { color: #64748b; line-height: 1.4; }
+    /* Level colors */
+    .maturity-bar.lv1 {
+      background: rgba(22,163,74,0.08);
+      border: 2px solid rgba(22,163,74,0.4);
+      box-shadow: 0 0 16px rgba(22,163,74,0.1);
+    }
+    .maturity-bar.lv1 .maturity-title { color: #15803d; }
+    .maturity-bar.lv2 {
+      background: rgba(37,99,235,0.08);
+      border: 2px solid rgba(37,99,235,0.4);
+      box-shadow: 0 0 16px rgba(37,99,235,0.1);
+    }
+    .maturity-bar.lv2 .maturity-title { color: #1d4ed8; }
+    .maturity-bar.lv3 {
+      background: rgba(124,58,237,0.08);
+      border: 2px solid rgba(124,58,237,0.4);
+      box-shadow: 0 0 16px rgba(124,58,237,0.1);
+    }
+    .maturity-bar.lv3 .maturity-title { color: #6d28d9; }
+    .maturity-bar.lv4 {
+      background: rgba(217,119,6,0.06);
+      border: 1px dashed rgba(217,119,6,0.4);
+      opacity: 0.7;
+    }
+    .maturity-bar.lv4 .maturity-title { color: #b45309; }
+    .maturity-bar.lv5 {
+      background: rgba(220,38,38,0.05);
+      border: 1px dashed rgba(220,38,38,0.35);
+      opacity: 0.55;
+    }
+    .maturity-bar.lv5 .maturity-title { color: #b91c1c; }
+
+    /* Department card grid */
+    .dept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    .dept-card {
+      padding: 14px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 0.52em;
+    }
+    .dept-card .dept-icon { font-size: 1.6em; margin-bottom: 4px; }
+    .dept-card .dept-name { font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .dept-card .dept-use { color: #2563eb; margin-bottom: 3px; }
+    .dept-card .dept-focus { color: #16a34a; font-size: 0.9em; }
+
+    /* ROI table */
+    .roi-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.55em;
+      margin-top: 12px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+    .roi-table th {
+      background: rgba(37,99,235,0.08);
+      color: #2563eb;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .roi-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #475569;
+    }
+    .roi-table tr:nth-child(even) td { background: #f8fafc; }
+    .roi-table .saved { color: #16a34a; font-weight: 700; }
+
+    /* Roadmap grid */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+      text-align: left;
+    }
+    .roadmap-phase {
+      padding: 18px 20px;
+      border-radius: 12px;
+      font-size: 0.58em;
+    }
+    .roadmap-phase .phase-label {
+      font-weight: 800;
+      font-size: 1.2em;
+      margin-bottom: 8px;
+    }
+    .roadmap-phase .phase-title {
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .roadmap-phase .phase-items { color: #64748b; line-height: 1.6; }
+    .roadmap-phase .phase-outcome {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      font-weight: 600;
+    }
+    .phase-30 {
+      background: rgba(22,163,74,0.04);
+      border: 1px solid rgba(22,163,74,0.15);
+    }
+    .phase-30 .phase-label { color: #16a34a; }
+    .phase-30 .phase-outcome { color: #16a34a; }
+    .phase-60 {
+      background: rgba(37,99,235,0.04);
+      border: 1px solid rgba(37,99,235,0.15);
+    }
+    .phase-60 .phase-label { color: #2563eb; }
+    .phase-60 .phase-outcome { color: #2563eb; }
+    .phase-90 {
+      background: rgba(124,58,237,0.04);
+      border: 1px solid rgba(124,58,237,0.15);
+    }
+    .phase-90 .phase-label { color: #7c3aed; }
+    .phase-90 .phase-outcome { color: #7c3aed; }
+
+    /* Source note */
+    .source-note {
+      font-size: 0.45em;
+      color: #94a3b8;
+      text-align: right;
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    /* Tool card grid */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    .tool-card {
+      padding: 14px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 0.52em;
+    }
+    .tool-card .tool-name { font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .tool-card .tool-desc { color: #64748b; line-height: 1.4; margin-bottom: 6px; }
+    .tool-card .tool-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 0.85em;
+    }
+    .tool-tag-all { background: rgba(22,163,74,0.1); color: #16a34a; }
+    .tool-tag-dev { background: rgba(217,119,6,0.1); color: #d97706; }
+    .tool-tag-biz { background: rgba(37,99,235,0.1); color: #2563eb; }
+    .tool-tag-company { background: rgba(220,38,38,0.08); color: #dc2626; border: 1.5px solid rgba(220,38,38,0.3); font-weight: 700; }
+    .tool-tag-external { background: rgba(148,163,184,0.1); color: #94a3b8; }
+
+    /* Reference list */
+    .ref-list {
+      text-align: left;
+      max-width: 750px;
+      margin: 14px auto 0;
+    }
+    .ref-list li {
+      font-size: 0.55em;
+      color: #94a3b8;
+      margin: 8px 0;
+      line-height: 1.5;
+    }
+    .ref-list li::before { display: none; }
+    .ref-list li strong { color: #64748b; }
+
+    /* ==================== Mobile responsive ==================== */
+    @media (max-width: 768px) {
+      :root {
+        --r-main-font-size: 28px;
+      }
+
+      .compare-grid,
+      .stat-grid,
+      .feature-grid,
+      .exec-grid,
+      .dept-grid,
+      .roadmap-grid,
+      .tool-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .example-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .maturity-container {
+        flex-direction: column;
+      }
+      .maturity-bar {
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .maturity-bar .maturity-level {
+        display: inline;
+        margin-right: 8px;
+      }
+      .maturity-bar .maturity-title {
+        display: inline;
+      }
+
+      .card,
+      .exec-card,
+      .dept-card,
+      .tool-card,
+      .example-card,
+      .roadmap-phase,
+      .feature-card {
+        padding: 14px 16px;
+      }
+
+      .code-box {
+        max-width: 100%;
+        padding: 14px 16px;
+        font-size: 0.58em;
+      }
+
+      .reveal table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: 0.55em;
+      }
+
+      .roi-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .cta-step {
+        gap: 12px;
+        padding: 12px 14px;
+      }
+      .cta-step .num {
+        width: 34px;
+        height: 34px;
+        font-size: 0.95em;
+      }
+
+      .agenda-item {
+        padding: 10px 14px;
+      }
+
+      .warn-list li {
+        font-size: 0.63em;
+      }
+
+      .stat-card .stat-num,
+      .stat-card-blue .stat-num {
+        font-size: 1.5em;
+      }
+
+      .ref-list {
+        max-width: 100%;
+      }
+      .ref-list li {
+        font-size: 0.5em;
+      }
+
+      .emoji-hero {
+        font-size: 2.4em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root {
+        --r-main-font-size: 24px;
+      }
+
+      .reveal h1 { font-size: 1.6em; }
+      .reveal h2 { font-size: 1.2em; }
+      .reveal h3 { font-size: 0.9em; }
+
+      .badge { font-size: 0.5em; padding: 4px 12px; }
+
+      .highlight-box {
+        padding: 10px 14px;
+        font-size: 0.62em;
+      }
+
+      .source-note {
+        font-size: 0.4em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ==================== Slide 1: Title ==================== -->
+      <section data-background-gradient="linear-gradient(135deg, #eff6ff, #dbeafe, #eff6ff)" data-transition="zoom">
+        <div class="emoji-hero">🤖</div>
+        <h1>AI Does More Than<br><span class="text-glow">Just Chat Now</span></h1>
+        <div class="gradient-line"></div>
+        <p style="color:#64748b; font-size:0.7em;">From Conversation to Execution — Easier Work with Agentic AI</p>
+        <br>
+        <span class="badge badge-blue">February 2026 | Vehicle Development Planning Team Info Session</span>
+      </section>
+
+      <!-- ==================== Slide 2: Current Web AI Role & Limitations ==================== -->
+      <section>
+        <h2>💬 Current Web AI: Role & Limitations</h2>
+        <p style="font-size:0.68em; color:#64748b;">ChatGPT, Gemini, Claude — <strong class="text-blue">Conversations inside the browser</strong></p>
+        <div class="compare-grid">
+          <div class="card" style="background:rgba(37,99,235,0.04); border:1px solid rgba(37,99,235,0.12);">
+            <h3 style="color:#2563eb;">What We Do</h3>
+            <ul>
+              <li style="font-size:0.65em; color:#334155;">💬 <strong>Type questions as text</strong></li>
+              <li style="font-size:0.65em; color:#334155;">📋 <strong>Copy-paste the answers</strong></li>
+              <li style="font-size:0.65em; color:#334155;">🔄 Format, save, share <strong>manually</strong></li>
+              <li style="font-size:0.65em; color:#334155;">📎 Upload files → <strong>get text responses</strong></li>
+            </ul>
+          </div>
+          <div class="card" style="background:rgba(220,38,38,0.04); border:1px solid rgba(220,38,38,0.12);">
+            <h3 style="color:#dc2626;">What AI Can't Do</h3>
+            <ul>
+              <li style="font-size:0.65em; color:#64748b;">🚫 <strong>Open or edit files</strong> on your PC</li>
+              <li style="font-size:0.65em; color:#64748b;">🚫 <strong>Send emails</strong>, manage calendar</li>
+              <li style="font-size:0.65em; color:#64748b;">🚫 <strong>Log into</strong> internal systems</li>
+              <li style="font-size:0.65em; color:#64748b;">🚫 <strong>Execute multi-step</strong> workflows</li>
+            </ul>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          💡 Think of it as a <strong>"phone consultant"</strong> — answers questions, but you do the actual work
+        </div>
+      </section>
+
+      <!-- ==================== Slide 3: AI Limitations in Current Workflow ==================== -->
+      <section>
+        <h2>Current AI Limitations in the Workplace</h2>
+        <table>
+          <thead><tr><th>Scenario</th><th>Web AI (ChatGPT, Gemini, Claude)</th><th>What I Still Have to Do</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>📁 "Analyze this Excel data"</td>
+              <td class="text-red">Cannot open files directly</td>
+              <td>Copy data → Paste → Copy result back</td>
+            </tr>
+            <tr>
+              <td>📧 "Send this email"</td>
+              <td class="text-red">No email system access</td>
+              <td>Copy text → Open Outlook → Send manually</td>
+            </tr>
+            <tr>
+              <td>📊 "Format this as a report"</td>
+              <td class="text-red">Cannot create/save files</td>
+              <td>Copy answer → Paste into PPT/Word</td>
+            </tr>
+            <tr>
+              <td>🔄 "Repeat this 100 times"</td>
+              <td class="text-red">No automation capability</td>
+              <td>Enter same prompt 100 times manually</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:16px auto 0;">
+          <strong>Core Problem:</strong> Gap between AI's information capability and actual task execution<br>
+          "Using AI well" doesn't mean <strong>using web AI (ChatGPT, Gemini, Claude) at this level.</strong>
+        </div>
+      </section>
+
+      <!-- ==================== Slide 4: Agentic AI = Your Work Assistant ==================== -->
+      <section>
+        <h2>💡 Agentic AI = <span class="text-glow">Your Work Assistant</span></h2>
+        <div class="compare-grid">
+          <div class="card card-before">
+            <h3>❌ Web AI</h3>
+            <ul>
+              <li><strong>Confined to the browser</strong></li>
+              <li>Text input → Text output</li>
+              <li>One question at a time</li>
+              <li>No external tool/system access</li>
+              <li>You copy and execute results</li>
+            </ul>
+          </div>
+          <div class="card card-after">
+            <h3>✅ Agentic AI</h3>
+            <ul>
+              <li><strong>Executes directly on your PC/systems</strong></li>
+              <li>Read/write files, operate programs</li>
+              <li>Plans and executes multi-step workflows</li>
+              <li>Connects to external services via API</li>
+              <li>Delivers completed outputs directly</li>
+            </ul>
+          </div>
+        </div>
+        <div class="feature-grid" style="margin-top:18px;">
+          <div class="feature-card" style="background:rgba(217,119,6,0.04); border-color:rgba(217,119,6,0.12);">
+            <div class="feature-title" style="color:#d97706;">🔧 Tool Use</div>
+            <div class="feature-desc">AI directly calls files, terminal, APIs, web browsers</div>
+          </div>
+          <div class="feature-card" style="background:rgba(22,163,74,0.04); border-color:rgba(22,163,74,0.12);">
+            <div class="feature-title" style="color:#16a34a;">🧠 Autonomy</div>
+            <div class="feature-desc">Makes decisions within user-defined boundaries to reduce workload</div>
+          </div>
+        </div>
+        <div style="margin-top:16px; background:rgba(220,38,38,0.05); border:2px solid rgba(220,38,38,0.2); border-radius:12px; padding:14px 20px;">
+          <div style="font-size:0.6em; font-weight:800; color:#dc2626; margin-bottom:8px;">🔥 Key Difference — Token Usage</div>
+          <div class="compare-grid" style="margin:0; gap:12px;">
+            <div style="text-align:center; padding:10px; background:rgba(220,38,38,0.04); border-radius:8px;">
+              <div style="font-size:0.5em; color:#94a3b8; margin-bottom:2px;">Web AI (ChatGPT, Gemini, Claude web)</div>
+              <div style="font-size:0.85em; font-weight:800; color:#dc2626;">Hundreds ~ Thousands of tokens/question</div>
+              <div style="font-size:0.45em; color:#64748b;">Text I/O only → Light but no execution</div>
+            </div>
+            <div style="text-align:center; padding:10px; background:rgba(37,99,235,0.04); border-radius:8px;">
+              <div style="font-size:0.5em; color:#94a3b8; margin-bottom:2px;">Agentic AI (Claude Code, Codex, etc.)</div>
+              <div style="font-size:0.85em; font-weight:800; color:#2563eb;">Tens of thousands ~ Hundreds of thousands of tokens/task</div>
+              <div style="font-size:0.45em; color:#64748b;">Tool calls + file processing + execution → Higher cost but complete deliverables</div>
+            </div>
+          </div>
+          <div style="text-align:center; font-size:0.48em; color:#64748b; margin-top:8px;">
+            💡 More tokens = <strong>AI is actually working</strong>. The cost structure is fundamentally different.
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== Slide 5: Section — Web AI vs Agentic AI ==================== -->
+      <section data-background-gradient="linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7)" class="section-slide" data-transition="convex">
+        <div class="emoji-hero">⚡</div>
+        <h1>Web AI vs Agentic AI</h1>
+        <p>"Using AI well" = Using Agentic AI. Let's compare 4 key differences.</p>
+      </section>
+
+      <!-- ==================== Slide 6: Difference 1 — Direct File System Access ==================== -->
+      <section>
+        <h2>📁 Difference 1: Direct File System Access</h2>
+        <p style="font-size:0.6em; color:#64748b;">Directly read, modify, and create files on your computer</p>
+        <div class="compare-grid">
+          <div class="card card-before">
+            <h3>❌ Web AI</h3>
+            <ul>
+              <li><strong>Copy-paste file contents</strong></li>
+              <li>Results come as <strong>text only</strong></li>
+              <li><strong>Manually transfer</strong> to Excel/PPT</li>
+              <li>100 files? → <strong>100 repetitions</strong></li>
+            </ul>
+          </div>
+          <div class="card card-after">
+            <h3>✅ Agentic AI</h3>
+            <ul>
+              <li><strong>Auto-read all Excel files</strong> in folder</li>
+              <li>Analyze and <strong>save as new Excel file</strong></li>
+              <li><strong>Generate PPT report</strong> directly</li>
+              <li>100 files <strong>batch processed at once</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="code-box" style="margin-top:14px;">
+          <span class="prompt">💬 Prompt:</span> "Combine the 5 department Excel files in my Downloads folder,<br>
+          &nbsp;&nbsp;&nbsp;create a summary table by department, and save as report.xlsx"<br>
+          <span class="result">✅ Result:</span> Read 5 files → Merge data → Pivot analysis → Create chart → Save file complete
+        </div>
+      </section>
+
+      <!-- ==================== Slide 7: Difference 2 — API & External System Integration ==================== -->
+      <section>
+        <h2>🔌 Difference 2: API & External System Integration</h2>
+        <p style="font-size:0.6em; color:#64748b;">Connect directly to email, calendar, internal systems, external services</p>
+        <div class="compare-grid">
+          <div class="card card-before">
+            <h3>❌ Web AI</h3>
+            <ul>
+              <li>"Write email like this" → <strong>I copy and send</strong></li>
+              <li>"Schedule meeting like this" → <strong>I enter in calendar</strong></li>
+              <li>Data query? → <strong>No system access</strong></li>
+              <li>Share results? → <strong>Manual delivery</strong></li>
+            </ul>
+          </div>
+          <div class="card card-after">
+            <h3>✅ Agentic AI</h3>
+            <ul>
+              <li><strong>Write and send email</strong> via Outlook API</li>
+              <li><strong>Auto-register events</strong> via Calendar API</li>
+              <li><strong>Direct query/input</strong> to internal DB/ERP</li>
+              <li><strong>Auto-send results</strong> via Slack/Teams</li>
+            </ul>
+          </div>
+        </div>
+        <div class="code-box" style="margin-top:14px;">
+          <span class="prompt">💬 Prompt:</span> "Send agenda emails to this week's meeting attendees,<br>
+          &nbsp;&nbsp;&nbsp;book the meeting room, and post an announcement in Teams channel"<br>
+          <span class="result">✅ Result:</span> Query attendees → Send emails → Book room via API → Auto-post Teams message
+        </div>
+      </section>
+
+      <!-- ==================== API Access Status at Our Company (New) ==================== -->
+      <section>
+        <h2>🔑 What is an API? — The Key for AI to Access Systems</h2>
+        <p style="font-size:0.6em; color:#64748b;">API = Official gateway for programs to communicate. AI needs this gateway to use systems.</p>
+        <div style="text-align:center; font-size:0.55em; background:#f8fafc; border-radius:12px; padding:14px 20px; margin:10px auto;">
+          <span style="color:#64748b;">Analogy:</span> <strong>API exists</strong> = Building has a <strong style="color:#16a34a;">front door (key card)</strong> → AI enters officially<br>
+          <strong>No API</strong> = Only <strong style="color:#dc2626;">walls</strong> → AI cannot enter
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;">
+          <div style="background:rgba(22,163,74,0.05); border:2px solid rgba(22,163,74,0.25); border-radius:12px; padding:14px;">
+            <div style="font-size:0.6em; font-weight:800; color:#16a34a; margin-bottom:8px;">✅ API Available → AI Can Access</div>
+            <div style="font-size:0.55em; line-height:1.8;">
+              <strong>Microsoft Office</strong> — Outlook, Excel, PPT, Teams<br>
+              <strong>SAP</strong> — Procurement, Finance, Materials, etc.<br>
+              <strong>Google Workspace</strong> — Gmail, Drive, Calendar<br>
+              <strong>Slack, Jira, GitHub</strong> and most commercial SW
+            </div>
+            <div style="font-size:0.48em; color:#64748b; margin-top:6px;">→ Agentic AI can <strong>directly read, write, and execute</strong></div>
+          </div>
+          <div style="background:rgba(220,38,38,0.05); border:2px solid rgba(220,38,38,0.25); border-radius:12px; padding:14px;">
+            <div style="font-size:0.6em; font-weight:800; color:#dc2626; margin-bottom:8px;">❌ No API → AI Cannot Access</div>
+            <div style="font-size:0.55em; line-height:1.8;">
+              <strong>AutoWay (Internal Intranet)</strong> — No API<br>
+              <strong>Vaatz (Procurement System)</strong> — Currently no API<br>
+              <strong>RWS (R&D Workspace)</strong> — Currently no API<br>
+              <span style="color:#94a3b8;">Most internally developed systems</span>
+            </div>
+            <div style="font-size:0.48em; color:#64748b; margin-top:6px;">→ Currently <strong>cannot automate</strong> with Agentic AI</div>
+          </div>
+        </div>
+
+        <div class="highlight-box" style="text-align:center; margin:12px auto 0;">
+          <strong>Future Direction:</strong> When AutoWay, Vaatz, RWS provide APIs<br>
+          → <strong style="color:#2563eb;">AI can access all internal systems</strong> = True work automation complete<br>
+          <span style="font-size:0.85em; color:#64748b;">For now, start with Office, SAP and other API-enabled areas</span>
+        </div>
+      </section>
+
+      <!-- ==================== Slide 8: Difference 3 — Auto Execution & Multi-step ==================== -->
+      <section>
+        <h2>🔄 Difference 3: Auto Execution & Multi-step Processing</h2>
+        <p style="font-size:0.6em; color:#64748b;">AI executes directly and autonomously plans multi-step workflows</p>
+        <div class="compare-grid">
+          <div class="card card-before">
+            <h3>❌ Web AI</h3>
+            <ul>
+              <li>"Do it like this" → <strong>Just provides guidance</strong></li>
+              <li><strong>I copy and execute</strong> the result</li>
+              <li>Error? → <strong>Ask again</strong></li>
+              <li><strong>Manual intervention</strong> at every step</li>
+              <li>10 steps = <strong>10 copy-pastes</strong></li>
+            </ul>
+          </div>
+          <div class="card card-after">
+            <h3>✅ Agentic AI</h3>
+            <ul>
+              <li><strong>Give entire task at once</strong></li>
+              <li>AI <strong>plans and executes steps</strong> autonomously</li>
+              <li>On error, <strong>auto-corrects and retries</strong></li>
+              <li><strong>Auto-passes results</strong> to next step</li>
+              <li>Only <strong>reports final result</strong> to human</li>
+            </ul>
+          </div>
+        </div>
+        <div class="code-box" style="margin-top:14px;">
+          <span class="prompt">💬 Prompt:</span> "Extract text from 50 PDFs in Downloads folder,<br>
+          &nbsp;&nbsp;&nbsp;summarize key points and create an Excel table"<br>
+          <span class="result">✅ Result:</span> Loop 50 PDFs → Extract text → AI summary → Save to Excel (no human intervention)
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
+          Web AI: <strong>"One action per turn"</strong> &nbsp;→&nbsp; Agentic AI: <strong>"Entire workflow from one instruction"</strong>
+        </div>
+      </section>
+
+      <!-- ==================== Slide 9: Section — Real Work Applications ==================== -->
+      <section data-background-gradient="linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7)" class="section-slide" data-transition="convex">
+        <div class="emoji-hero">💼</div>
+        <h1>Real Work Applications</h1>
+        <p>Agentic AI examples ready for immediate use across departments</p>
+      </section>
+
+      <!-- ==================== Slide 10: Use Case Examples ==================== -->
+      <section>
+        <h2>🎯 Ready to Use for These Tasks</h2>
+        <div class="example-grid">
+          <div class="example-card">
+            <div class="ex-title">📊 Auto Report Compilation</div>
+            <div class="ex-desc">Collect Excel from departments → Merge → Create charts → Complete PPT with template</div>
+            <span class="ex-tag tag-file">File Processing</span> <span class="ex-tag tag-multi">Multi-step</span>
+          </div>
+          <div class="example-card">
+            <div class="ex-title">📧 Regular Email Sending</div>
+            <div class="ex-desc">Read recipient list → Generate personalized content → Send → Log results</div>
+            <span class="ex-tag tag-api">API Integration</span> <span class="ex-tag tag-multi">Multi-step</span>
+          </div>
+          <div class="example-card">
+            <div class="ex-title">📋 Meeting Notes → Action Items</div>
+            <div class="ex-desc">Analyze transcript → Extract decisions → Create to-dos by assignee → Send to Teams</div>
+            <span class="ex-tag tag-file">File Processing</span> <span class="ex-tag tag-api">API Integration</span>
+          </div>
+          <div class="example-card">
+            <div class="ex-title">🔍 Competitor/Market Research</div>
+            <div class="ex-desc">Web search → Collect info → Create comparison table → Save analysis report</div>
+            <span class="ex-tag tag-terminal">Auto-execute</span> <span class="ex-tag tag-multi">Multi-step</span>
+          </div>
+          <div class="example-card">
+            <div class="ex-title">📄 Bulk Document Conversion</div>
+            <div class="ex-desc">100 PDFs → Extract text → Summarize key points → Create Excel summary</div>
+            <span class="ex-tag tag-terminal">Auto-execute</span> <span class="ex-tag tag-file">File Processing</span>
+          </div>
+          <div class="example-card">
+            <div class="ex-title">📅 Schedule & Reminders</div>
+            <div class="ex-desc">Scan inbox → Extract events → Register to calendar → Prepare briefing materials</div>
+            <span class="ex-tag tag-api">API Integration</span> <span class="ex-tag tag-multi">Multi-step</span>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
+          Common thread: All are <strong>"repetitive tasks across multiple systems"</strong> → The area where Agentic AI helps most
+        </div>
+      </section>
+
+      <!-- ==================== Team Work Automation Examples (New) ==================== -->
+      <section>
+        <h2>🚗 Automatable Tasks in Competitive Vehicle Operations</h2>
+        <p style="font-size:0.6em; color:#64748b;">Our team's actual repetitive work → Areas that can be automated with Agentic AI</p>
+        <div class="feature-grid" style="grid-template-columns: 1fr 1fr; gap:10px;">
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">📋 Auto-organize Vehicle Purchase Requests</div>
+            <div class="feature-desc">Auto-collect purchase requests from departments → Categorize by item<br>→ <strong>Auto-generate consolidated table</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">📨 Quote → Confirm → Order Process Automation</div>
+            <div class="feature-desc">Receive vendor quote → Auto-request confirmation from purchasing team<br>→ On OK reply, <strong>proceed with order automatically</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">🚙 Auto-reply Competitive Vehicle Arrival Time</div>
+            <div class="feature-desc">"When is the competitive vehicle arriving?" query → Real-time DB check<br>→ <strong>Auto-reply with expected arrival date</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">💰 Auto Budget Check</div>
+            <div class="feature-desc">Periodic SAP budget data query → Create remaining budget table by item<br>→ <strong>Auto-alert on overspend risk items</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">🧾 SAP Unprocessed Voucher Check</div>
+            <div class="feature-desc">Auto-scan unprocessed vouchers → Alert on approaching deadlines<br>→ <strong>Prevent card delinquency risk in advance</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">📝 Auto-generate Completion Reports</div>
+            <div class="feature-desc">Compile work history/data → Generate draft in report format<br>→ <strong>Just review and you're done</strong></div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
+          Common thread: These are <strong>repetitive patterns</strong> but <strong>humans do them manually</strong><br>
+          <span style="font-size:0.85em; color:#64748b;">→ The area where Agentic AI can help most</span>
+        </div>
+      </section>
+
+      <!-- ==================== What Else is Possible (New) ==================== -->
+      <section>
+        <h2>💡 This is Also Possible</h2>
+        <p style="font-size:0.6em; color:#64748b;">Agentic AI's capabilities are broader than you might think</p>
+        <div class="feature-grid" style="grid-template-columns: 1fr 1fr; gap:10px;">
+          <div class="feature-card" style="text-align:left; padding:14px 18px; background:rgba(37,99,235,0.04); border-color:rgba(37,99,235,0.15);">
+            <div class="feature-title" style="color:#2563eb;">✉️ Learn My Email Style</div>
+            <div class="feature-desc">Train on my sent emails → <strong>Auto-write emails in my exact tone and format</strong>. Can also learn manager style, executive report style</div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:14px 18px; background:rgba(37,99,235,0.04); border-color:rgba(37,99,235,0.15);">
+            <div class="feature-title" style="color:#2563eb;">📅 Schedule Management & Morning Alerts</div>
+            <div class="feature-desc">Every morning, organize today's meetings, deadlines, to-dos and alert. <strong>"What should I do first today?" — AI figures it out</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:14px 18px; background:rgba(37,99,235,0.04); border-color:rgba(37,99,235,0.15);">
+            <div class="feature-title" style="color:#2563eb;">📁 Auto-organize My PC Files</div>
+            <div class="feature-desc">Find duplicates and delete + Analyze each file's content → <strong>Auto-sort into appropriate folders</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:14px 18px; background:rgba(37,99,235,0.04); border-color:rgba(37,99,235,0.15);">
+            <div class="feature-title" style="color:#2563eb;">🚗 Traffic Update Before Leaving</div>
+            <div class="feature-desc">30 min before leaving work, auto-check road conditions home → <strong>"Today ○○ route is faster" alert</strong></div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
+          Key insight: <strong>AI can learn someone's style, judgment criteria, and work patterns</strong><br>
+          <span style="font-size:0.85em; color:#64748b;">Organize it in an md file → AI can work like that person</span>
+        </div>
+      </section>
+
+      <!-- ==================== AI Pattern Learning (New) ==================== -->
+      <section>
+        <h2>🧠 You Can Teach AI "Your Style"</h2>
+        <p style="font-size:0.6em; color:#64748b;">Agentic AI learns repetitive patterns to work "like you" on your behalf</p>
+        <div class="feature-grid" style="grid-template-columns: 1fr 1fr; gap:10px; margin:14px auto 0;">
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#7c3aed;">📧 Email Style</div>
+            <div class="feature-desc">Learn from 50 sent emails → Identify greeting, tone, closing patterns → <strong>Auto-write in your exact style</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#7c3aed;">📊 Report Format</div>
+            <div class="feature-desc">Learn from 5 existing reports → Identify structure, expressions, emphasis → <strong>Auto-generate same format with new data</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px; background:rgba(124,58,237,0.08); border:2px solid rgba(124,58,237,0.35);">
+            <div class="feature-title" style="color:#7c3aed;">✅ Review Criteria</div>
+            <div class="feature-desc">"3 things the manager always checks" documented in md<br>→ <strong style="color:#7c3aed;">AI pre-checks and reports</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#7c3aed;">🔄 Work Routines</div>
+            <div class="feature-desc">Record "what I do every Monday" pattern → <strong>AI auto-executes every Monday + reports results</strong></div>
+          </div>
+        </div>
+        <div style="background:rgba(124,58,237,0.06); border:2px solid rgba(124,58,237,0.2); border-radius:12px; padding:14px 20px; margin:16px auto 0; text-align:center;">
+          <div style="font-size:0.6em; font-weight:800; color:#7c3aed; margin-bottom:6px;">Training is Simple</div>
+          <div style="font-size:0.55em; color:#64748b; line-height:1.7;">
+            <strong>① Document patterns in .md files</strong> (e.g., "my-email-style.md", "weekly-report-format.md")<br>
+            <strong>② Have AI read it</strong> → "Write using this file as reference"<br>
+            <strong>③ Iterate with feedback</strong> → Gets more like you with each correction
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== Slide 11: ROI — Expected Time Savings ==================== -->
+      <section>
+        <h2>⏱️ Expected Time Savings</h2>
+        <p style="font-size:0.6em; color:#64748b;">AI assistant can reduce time spent on repetitive tasks</p>
+        <table class="roi-table">
+          <thead>
+            <tr>
+              <th>Task Type</th>
+              <th>Current Time (Weekly)</th>
+              <th>With AI Assistant</th>
+              <th>Expected Savings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>📊 Data compilation/organization</td>
+              <td>3~4 hours</td>
+              <td>30min~1hr</td>
+              <td class="saved">~3 hours saved</td>
+            </tr>
+            <tr>
+              <td>📧 Regular emails/reports</td>
+              <td>2~3 hours</td>
+              <td>20~40min</td>
+              <td class="saved">~2 hours saved</td>
+            </tr>
+            <tr>
+              <td>📋 Document writing/formatting</td>
+              <td>3~5 hours</td>
+              <td>1~2 hours</td>
+              <td class="saved">~3 hours saved</td>
+            </tr>
+            <tr>
+              <td>🔍 Research/data gathering</td>
+              <td>2~4 hours</td>
+              <td>30min~1hr</td>
+              <td class="saved">~2 hours saved</td>
+            </tr>
+            <tr>
+              <td>🔄 Repetitive tasks/data entry</td>
+              <td>2~3 hours</td>
+              <td>10~20min</td>
+              <td class="saved">~2.5 hours saved</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:12px auto 0;">
+          Estimated <strong>~5-10 hours saved per week</strong> → Saved time = <strong>Invest in more important work, strategic thinking</strong>
+        </div>
+        <div class="source-note">Figures may vary by task type and organization. Reference: McKinsey Digital (2025).</div>
+      </section>
+
+      <!-- ==================== Slide 12: Web AI vs Agentic AI Summary ==================== -->
+      <section>
+        <h2>📋 Web AI vs Agentic AI — Summary</h2>
+        <table class="vs-table">
+          <thead><tr><th>Aspect</th><th>💬 Web AI</th><th>🤖 Agentic AI</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Analogy</strong></td><td>Phone consultant</td><td>Professional assistant (handles it)</td></tr>
+            <tr><td><strong>Files</strong></td><td>Cannot open, text only</td><td>Direct read/write/create</td></tr>
+            <tr><td><strong>Systems</strong></td><td>Confined to browser</td><td>API connects external services</td></tr>
+            <tr><td><strong>Execution</strong></td><td>Just explains how</td><td>Executes in terminal directly</td></tr>
+            <tr><td><strong>Workflow</strong></td><td>One question at a time</td><td>Multi-step autonomous processing</td></tr>
+            <tr><td><strong>Output</strong></td><td>Text response</td><td>Completed files/execution results</td></tr>
+          </tbody>
+        </table>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          "AI skills" isn't about asking ChatGPT, Gemini, Claude good questions.<br>
+          <strong>Getting Agentic AI to handle tasks directly</strong> — that's real AI usage.
+        </div>
+      </section>
+
+      <!-- ==================== Slide 13: 5-Level Work Efficiency Model ==================== -->
+      <section>
+        <h2>📈 5-Level Work Efficiency Model</h2>
+        <p style="font-size:0.6em; color:#64748b;">Where is our organization now, and what convenience can we expect at the next level?</p>
+        <div class="maturity-container">
+          <div class="maturity-bar lv1">
+            <div class="maturity-level" style="color:#16a34a;">Lv.1</div>
+            <div class="maturity-title">Info Search</div>
+            <div class="maturity-desc">Ask and get answers<br>Web AI usage</div>
+          </div>
+          <div class="maturity-bar lv2">
+            <div class="maturity-level" style="color:#2563eb;">Lv.2</div>
+            <div class="maturity-title">Writing Assistance</div>
+            <div class="maturity-desc">Draft writing, translation,<br>summarization support</div>
+          </div>
+          <div class="maturity-bar lv3">
+            <div class="maturity-level" style="color:#7c3aed;">Lv.3</div>
+            <div class="maturity-title">Task Automation</div>
+            <div class="maturity-desc">File processing, data compilation<br>Agentic AI begins</div>
+          </div>
+          <div class="maturity-bar lv4">
+            <div class="maturity-level" style="color:#d97706;">Lv.4</div>
+            <div class="maturity-title">Dept. Efficiency</div>
+            <div class="maturity-desc">Workflow automation<br>System integration</div>
+          </div>
+          <div class="maturity-bar lv5">
+            <div class="maturity-level" style="color:#dc2626;">Lv.5</div>
+            <div class="maturity-title">Enterprise Optimization</div>
+            <div class="maturity-desc">Cross-dept auto-collaboration<br>Decision support</div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          Most organizations are currently at <strong>Lv.1~2</strong>. <strong>Transition to Lv.3</strong> with Agentic AI is starting now.
+        </div>
+      </section>
+
+      <!-- ==================== Slide 14: Section — Agentic AI Emergence & Spread ==================== -->
+      <section data-background-gradient="linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7)" class="section-slide" data-transition="convex">
+        <div class="emoji-hero">⏰</div>
+        <h1>The Rise of Agentic AI</h1>
+        <p>Let's look at changes that happened in just 3 months</p>
+      </section>
+
+      <!-- ==================== Slide 15: Timeline — 3 Months of Change ==================== -->
+      <section>
+        <h2>📅 Changes That Started Just <span class="text-glow">3 Months Ago</span></h2>
+        <table class="timeline-table">
+          <thead><tr><th>Date</th><th>Event</th><th>Significance</th></tr></thead>
+          <tbody>
+            <tr><td>2025.11.24</td><td>Claude Opus 4.5 Released</td><td>Agentic AI performance reaches practical level</td></tr>
+            <tr><td>2025.12.19</td><td>OpenAI GPT-5.2-Codex Released</td><td>Coding-focused Agentic AI, competition begins</td></tr>
+            <tr><td>2026.01.12</td><td>Anthropic Claude Cowork Announced</td><td>Non-developers can use Agentic AI on web</td></tr>
+            <tr><td>2026.01~02</td><td>SaaS Market Restructuring Accelerates</td><td>Software market structure shift begins</td></tr>
+            <tr><td><strong>Now</strong></td><td>Agentic AI Adoption</td><td>Early stage of full-scale adoption</td></tr>
+          </tbody>
+        </table>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          🔑 <strong>In just 3 months:</strong> Technology → Product → Market application rapidly progressing<br>
+          Starting now isn't late — <strong>you're actually early</strong>
+        </div>
+      </section>
+
+      <!-- ==================== Slide 16: Industry Changes ==================== -->
+      <section>
+        <h2>📉 Industry-Shaking Changes</h2>
+        <p style="font-size:0.6em; color:#64748b;">Build it yourself with Agentic AI → No need for SaaS subscriptions → Market reacts</p>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-num">-$1T</div>
+            <div class="stat-label">NASDAQ 100 Market Cap<br>2-week correction</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">-14%</div>
+            <div class="stat-label">Salesforce (CRM)<br>Market restructuring adjustment</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">-40%</div>
+            <div class="stat-label">Figma / HubSpot<br>YTD price adjustment</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">-35%</div>
+            <div class="stat-label">Atlassian / Adobe<br>Market structure change reflected</div>
+          </div>
+        </div>
+        <div style="text-align:center; font-size:0.75em; font-weight:800; margin:14px 0 10px;">Key: Now you can <strong>build the software you need yourself</strong></div>
+        <div class="feature-grid" style="grid-template-columns: 1fr 1fr; gap:10px; max-width:750px; margin:0 auto;">
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">📊 Need an auto-report compilation tool</div>
+            <div class="feature-desc">→ <strong>Ask Agentic AI, done in 30 minutes</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">🎬 Need a simple video editor</div>
+            <div class="feature-desc">→ <strong>Build your own subtitle/cut editing tool</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">🏢 Need a meeting room booking system</div>
+            <div class="feature-desc">→ <strong>Build a custom reservation system for our team</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">🚗 Need a tow/transport dispatch system</div>
+            <div class="feature-desc">→ <strong>Build and operate it directly without outsourcing</strong></div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
+          💡 Instead of expensive SaaS subscriptions, <strong>build tools tailored to our work with AI</strong>
+        </div>
+        <div class="source-note">Source: Bloomberg, Yahoo Finance (2026.01~02)</div>
+      </section>
+
+      <!-- ==================== Tools Being Replaced (New) ==================== -->
+      <section>
+        <h2>⏳ Legacy Tools Being Replaced by Agentic AI</h2>
+        <p style="font-size:0.6em; color:#64748b;">Are the tools you're learning worth continued investment?</p>
+        <div class="feature-grid" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ Excel VBA Macros</div>
+            <div class="feature-desc">Automate data compilation/organization/reporting with code → Tell Agentic AI in natural language, done instantly. No complex coding needed</div>
+          </div>
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ RPA (UiPath, etc.)</div>
+            <div class="feature-desc">Works perfectly by rules, but can't handle exceptions. Agentic AI judges situations and handles flexibly</div>
+          </div>
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ Complex Excel Formulas</div>
+            <div class="feature-desc">VLOOKUP, INDEX-MATCH, nested pivots → "Summarize this data by ○○ criteria" — solved with one sentence</div>
+          </div>
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ Manual Email Compilation</div>
+            <div class="feature-desc">Download attachments → Organize folders → Merge — all manual each time. Agentic AI handles from reading emails to final report</div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:12px auto 0;">
+          💡 Common thread: Things you <strong>coded to automate</strong> → <strong>Just tell it in words</strong><br>
+          <span style="font-size:0.85em; color:#64748b;">Time spent learning VBA is better invested in learning Agentic AI</span>
+        </div>
+      </section>
+
+      <!-- ==================== Slide 17: Tool Guide ==================== -->
+      <section>
+        <h2>🛠️ AI Tools Available Now</h2>
+        <p style="font-size:0.6em; color:#64748b;">Choose based on purpose and accessibility</p>
+        <p style="font-size:0.55em; color:#dc2626; font-weight:600; margin-bottom:4px;">🏢 Available at Work</p>
+        <div class="tool-grid" style="grid-template-columns:1fr 1fr; margin-bottom:10px;">
+          <div class="tool-card" style="border-color:rgba(220,38,38,0.3);">
+            <div class="tool-name">Claude Code</div>
+            <div class="tool-desc">Terminal-based agent. Code writing, system automation, complex workflow processing</div>
+            <span class="tool-tag tool-tag-company">Available at Work</span>
+          </div>
+          <div class="tool-card" style="border-color:rgba(220,38,38,0.3);">
+            <div class="tool-name">OpenAI Codex</div>
+            <div class="tool-desc">GPT-based coding agent. Code generation, review, automation. CLI/IDE/Web all supported</div>
+            <span class="tool-tag tool-tag-company">Available at Work</span>
+          </div>
+        </div>
+        <p style="font-size:0.55em; color:#94a3b8; font-weight:600; margin-bottom:4px;">📌 Reference — External Tools (Personal Subscription)</p>
+        <div class="tool-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="tool-card" style="opacity:0.6;">
+            <div class="tool-name">Google Antigravity</div>
+            <div class="tool-desc">Gemini-based IDE agent. GUI without terminal. Pro Plan has generous tokens</div>
+            <span class="tool-tag tool-tag-external">Personal Recommendation</span>
+          </div>
+          <div class="tool-card" style="opacity:0.6;">
+            <div class="tool-name">ChatGPT Operator</div>
+            <div class="tool-desc">Agent that directly operates web browsers. Specialized for web task automation</div>
+            <span class="tool-tag tool-tag-external">Personal Subscription Required</span>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:left; max-width:750px; margin:10px auto 0; padding:12px 20px;">
+          <div style="text-align:center; font-size:0.6em; font-weight:800; color:#7c3aed; margin-bottom:8px;">Presenter's Recommendations</div>
+          🏢 Work: <strong>Claude Code</strong> + <strong>OpenAI Codex</strong> ready to use now<br>
+          🏠 Home: <strong>Google Antigravity</strong><br>
+          <span style="padding-left:28px;">— IDE format, easy without terminal, Pro Plan ($20/mo) has enough tokens</span><br>
+          🏠 Home: <strong>Claude Code</strong><br>
+          <span style="padding-left:28px;">— Max 20x plan ($200/mo, ~$220 with tax) for unlimited use</span>
+        </div>
+      </section>
+
+      <!-- ==================== AI-Friendly Document Formats (New) ==================== -->
+      <section>
+        <h2>📝 Document Formats That Work Best with AI</h2>
+        <p style="font-size:0.55em; color:#64748b;">To use AI well, manage materials in formats AI recognizes best</p>
+        <div style="max-width:900px; margin:10px auto 14px; display:flex; flex-direction:column; gap:6px;">
+          <div style="background:rgba(37,99,235,0.06); border:2px solid rgba(37,99,235,0.2); border-radius:10px; padding:10px 18px; text-align:center;">
+            <div style="font-size:0.55em; color:#1e293b; line-height:1.6;">
+              <strong style="color:#2563eb;">"The core control system of the trillion-dollar AI industry<br>is a text format one person created for blogging (Markdown)"</strong>
+            </div>
+            <div style="font-size:0.4em; color:#94a3b8; margin-top:4px;">— Anil Dash, "How Markdown Took Over the World" (2026.01)</div>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <div style="flex:1; background:rgba(124,58,237,0.05); border:2px solid rgba(124,58,237,0.2); border-radius:10px; padding:10px 14px; text-align:center;">
+              <div style="font-size:0.5em; color:#1e293b; line-height:1.5;">
+                <strong style="color:#7c3aed;">"All cutting-edge AI operations<br>are instructed in Markdown"</strong>
+              </div>
+              <div style="font-size:0.38em; color:#94a3b8; margin-top:4px;">— Anil Dash, same article</div>
+            </div>
+            <div style="flex:1; background:rgba(22,163,74,0.05); border:2px solid rgba(22,163,74,0.2); border-radius:10px; padding:10px 14px; text-align:center;">
+              <div style="font-size:0.5em; color:#1e293b; line-height:1.5;">
+                <strong style="color:#16a34a;">"Markdown has become<br>the lingua franca of LLMs"</strong>
+              </div>
+              <div style="font-size:0.38em; color:#94a3b8; margin-top:4px;">— HackMD, "How Markdown Heats Up AI" (2025)</div>
+            </div>
+            <div style="flex:1; background:rgba(217,119,6,0.05); border:2px solid rgba(217,119,6,0.2); border-radius:10px; padding:10px 14px; text-align:center;">
+              <div style="font-size:0.5em; color:#1e293b; line-height:1.5;">
+                <strong style="color:#d97706;">Software 3.0 = Natural language<br>AI can read. That format is Markdown</strong>
+              </div>
+              <div style="font-size:0.38em; color:#94a3b8; margin-top:4px;">— Andrej Karpathy, Software 3.0 Theory</div>
+            </div>
+          </div>
+        </div>
+        <div class="compare-grid">
+          <div class="card card-before">
+            <h3>❌ Formats AI Struggles With</h3>
+            <ul>
+              <li>Word (.docx) — <strong>Content buried in complex formatting</strong></li>
+              <li>PPT (.pptx) — <strong>Tokens wasted on layout parsing</strong></li>
+              <li>Excel (.xlsx) — <strong>Merged cells, formatting, macros mixed</strong></li>
+              <li>Verbal notes, scattered memos — <strong>No structure</strong></li>
+            </ul>
+          </div>
+          <div class="card card-after">
+            <h3>✅ Formats AI Processes Instantly</h3>
+            <ul>
+              <li>Markdown (.md) — <strong>Documents, plans, instructions</strong></li>
+              <li>CSV (.csv) — <strong>Data, tables, lists</strong></li>
+              <li>Plain Text (.txt) — <strong>Meeting notes, memos, logs</strong></li>
+              <li>Folder structure — <strong>Easier context understanding</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:900px; margin:10px auto 0;">
+          Key insight: <strong>Manage materials in AI-processable formats (.md, .csv, .txt)</strong><br>
+          Same AI gives <strong style="color:#2563eb;">completely different understanding and processing speed</strong>
+        </div>
+      </section>
+
+      <!-- ==================== What Agentic AI Still Can't Do Well (New) ==================== -->
+      <section>
+        <h2>🚧 What Agentic AI Still Can't Do Well</h2>
+        <p style="font-size:0.6em; color:#64748b;">It's not omnipotent — knowing current limitations helps proper usage</p>
+        <div class="dept-grid" style="grid-template-columns: 1fr 1fr;">
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">🎨</div>
+            <div class="dept-name">Beautiful PPT Design</div>
+            <div class="dept-use" style="color:#dc2626;">Content generation is possible, but human-level visual design and layout sense still lacking</div>
+          </div>
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">🤝</div>
+            <div class="dept-name">Face-to-face Communication/Negotiation</div>
+            <div class="dept-use" style="color:#dc2626;">Meeting attendance, customer interactions, subtle organizational dynamics judgment remain human territory</div>
+          </div>
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">📊</div>
+            <div class="dept-name">Complex Formatted Excel</div>
+            <div class="dept-use" style="color:#dc2626;">Excel with merged cells, conditional formatting, pivot charts tends to break</div>
+          </div>
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">⚖️</div>
+            <div class="dept-name">Subjective Judgment/Taste</div>
+            <div class="dept-use" style="color:#dc2626;">Sensory judgments like "this is better," fine-tuning brand tone and manner</div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          <strong>Delegate what it does well, humans do the rest.</strong><br>
+          AI organizes data, humans polish it beautifully — this combination is most effective.
+        </div>
+      </section>
+
+      <!-- ==================== Our Changing Role in the Agentic AI Era (New) ==================== -->
+      <section>
+        <h2>🧑‍💼 Our Role in the Agentic AI Era?</h2>
+        <p style="font-size:0.6em; color:#64748b;">As repetitive work decreases, we can focus on more valuable tasks</p>
+        <div class="compare-grid">
+          <div class="card card-before">
+            <h3>📉 Decreasing Tasks</h3>
+            <ul>
+              <li>Manual data compilation/organization</li>
+              <li>Manual competitor info search/comparison</li>
+              <li>Filling regular report templates</li>
+              <li>Excel formula/macro maintenance</li>
+              <li>Simple document conversion/formatting</li>
+            </ul>
+          </div>
+          <div class="card card-after">
+            <h3>📈 Increasing Focus Areas</h3>
+            <ul>
+              <li><strong>Strategic judgment</strong> — Data-driven decision making</li>
+              <li><strong>Planning quality</strong> — More time for analysis</li>
+              <li><strong>AI result verification</strong> — Output quality management</li>
+              <li><strong>Cross-team coordination</strong> — F2F communication, negotiation, consensus</li>
+              <li><strong>AI utilization design</strong> — Deciding what to delegate to AI</li>
+            </ul>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          Core shift: From <strong>"person who does it"</strong> → <strong>"person who delegates to AI well and judges results"</strong><br>
+          <span style="font-size:0.85em; color:#64748b;">Planner's value isn't decreasing — it's moving higher up</span>
+        </div>
+      </section>
+
+      <!-- ==================== Slide 18: Practical Considerations ==================== -->
+      <section data-background-gradient="linear-gradient(135deg, #fffbeb, #fef3c7)" data-transition="fade">
+        <h2>⚠️ Practical Considerations</h2>
+        <p style="font-size:0.6em; color:#b45309;">Cautions as important as expectations</p>
+        <ul class="warn-list" style="max-width:750px; margin:10px auto 0;">
+          <li>👁️ <strong>Human oversight is essential</strong><br>
+            <span style="color:#64748b; font-size:0.85em; padding-left:28px;">Always review and approve AI outputs. Check results like delegating to a "capable assistant"</span></li>
+          <li>⚖️ <strong>Not 100% perfect</strong><br>
+            <span style="color:#64748b; font-size:0.85em; padding-left:28px;">Always verify numbers, dates, proper nouns. Be aware of hallucination potential</span></li>
+          <li>🔒 <strong>Security and access management</strong><br>
+            <span style="color:#64748b; font-size:0.85em; padding-left:28px;">Clearly define scope for sensitive data access. Must align with company security policies</span></li>
+          <li>📊 <strong>Early starters see bigger benefits</strong><br>
+            <span style="color:#64748b; font-size:0.85em; padding-left:28px;">Teams actively using it are improving efficiency faster. Start with something small.</span></li>
+        </ul>
+      </section>
+
+      <!-- ==================== Final Slide: Thank You + References ==================== -->
+      <section data-transition="zoom">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; margin:0 auto; align-items:center;">
+          <div style="display:flex; flex-direction:column; justify-content:center; align-items:center;">
+            <div style="font-size:2.2em; font-weight:800; color:#1e293b; margin-bottom:20px;">Thank You</div>
+            <div class="gradient-line" style="width:140px; margin-bottom:20px;"></div>
+            <p style="font-size:0.55em; color:#64748b; line-height:1.7; text-align:center; margin-bottom:16px;">
+              Vehicle Development Planning Team Info Session<br>February 2026
+            </p>
+            <div style="font-size:0.48em; color:#64748b; margin-top:12px; line-height:2.0;">
+              💡 Try installing Google Antigravity at home<br>
+              <a href="https://blog.naver.com/ryurime88/224148217133" target="_blank" style="color:#2563eb; font-weight:700;">👉 Installation Guide (Korean)</a><br>
+              📝 Learn more about why Markdown matters<br>
+              <a href="https://blog.proagent.kr/ai-%EC%8B%9C%EB%8C%80-%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4-%ED%8F%AC%EB%A7%B7%EC%9D%98-%EC%A4%91%EC%9A%94%EC%84%B1%EA%B3%BC-%ED%99%9C%EC%9A%A9%EA%B0%80%EC%9D%B4%EB%93%9C--60967" target="_blank" style="color:#2563eb; font-weight:700;">👉 AI Era Markdown Usage Guide (Korean)</a>
+            </div>
+          </div>
+          <div style="text-align:left; background:rgba(100,116,139,0.04); border-radius:12px; padding:20px 24px;">
+            <div style="font-size:0.55em; font-weight:800; color:#94a3b8; margin-bottom:12px;">📚 References</div>
+            <ul style="font-size:0.48em; color:#64748b; line-height:2.0; list-style:none; padding:0; margin:0;">
+              <li><strong>MarketsandMarkets</strong> — AI Agents Market Forecast (2024–2030)</li>
+              <li><strong>Gartner</strong> — 2025 AI Agent Enterprise Survey</li>
+              <li><strong>McKinsey Digital</strong> — The State of AI in 2025</li>
+              <li><strong>Bloomberg</strong> — SaaS market valuation (Jan~Feb 2026)</li>
+              <li><strong>Yahoo Finance</strong> — SaaS individual stock price data</li>
+              <li><strong>Anthropic</strong> — Claude Opus 4.5, Claude Cowork</li>
+              <li><strong>Microsoft</strong> — Copilot Studio</li>
+              <li><strong>Google</strong> — Gemini for Workspace</li>
+              <li><strong>Anil Dash</strong> — "How Markdown Took Over the World"</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      transition: isMobile ? 'none' : 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: isMobile ? 'none' : 'zoom',
+      autoAnimateEasing: 'ease-in-out',
+      autoAnimateDuration: 0.7,
+      width: 1280,
+      height: 720,
+      margin: isMobile ? 0.04 : 0.06,
+      center: true,
+      view: isMobile ? 'scroll' : undefined,
+      scrollProgress: isMobile,
+    });
+  </script>
+</body>
+</html>

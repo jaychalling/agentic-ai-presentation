@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>소프트웨어 공장: 코드를 보지도 않는 AI 개발팀 | StrongDM 사례</title>
+  <meta name="description" content="StrongDM AI 팀이 코드를 직접 작성하지도, 리뷰하지도 않으면서 소프트웨어를 만드는 '다크 팩토리' 방식을 공개했습니다.">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.8;
+      color: #1e293b;
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      min-height: 100vh;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+      color: white;
+      padding: 60px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .badge {
+      display: inline-block;
+      background: rgba(251, 191, 36, 0.2);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      color: #fbbf24;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.85em;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      font-size: 2.4em;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    
+    .hero p {
+      font-size: 1.1em;
+      color: rgba(255,255,255,0.8);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .meta-bar {
+      background: white;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      padding: 20px;
+      margin: -40px auto 40px;
+      max-width: 800px;
+      border-radius: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9em;
+      color: #64748b;
+    }
+    
+    .meta-item strong {
+      color: #1e293b;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+    
+    h2 {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 50px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    h2::before {
+      content: '';
+      width: 4px;
+      height: 28px;
+      background: linear-gradient(180deg, #7c3aed, #a855f7);
+      border-radius: 2px;
+    }
+    
+    p {
+      margin-bottom: 20px;
+      color: #334155;
+      font-size: 1.05em;
+    }
+    
+    .key-finding {
+      background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%);
+      border: 2px solid #c4b5fd;
+      border-radius: 16px;
+      padding: 28px;
+      margin: 30px 0;
+      position: relative;
+    }
+    
+    .key-finding::before {
+      content: '🏭';
+      position: absolute;
+      top: -15px;
+      left: 24px;
+      font-size: 1.8em;
+      background: white;
+      padding: 0 8px;
+      border-radius: 50%;
+    }
+    
+    .key-finding strong {
+      color: #5b21b6;
+      font-size: 0.95em;
+    }
+    
+    .key-finding p {
+      margin: 0;
+      color: #4c1d95;
+      font-weight: 500;
+    }
+    
+    .quote {
+      background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+      border-left: 5px solid #7c3aed;
+      padding: 28px 32px;
+      border-radius: 0 16px 16px 0;
+      margin: 35px 0;
+      position: relative;
+    }
+    
+    .quote::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 4em;
+      color: #7c3aed;
+      opacity: 0.2;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    
+    .quote p {
+      font-style: italic;
+      color: #5b21b6;
+      margin-bottom: 12px;
+      font-size: 1.1em;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .quote .author {
+      font-style: normal;
+      font-size: 0.9em;
+      color: #7c3aed;
+      font-weight: 600;
+    }
+    
+    .rule-box {
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      border: 2px solid #fca5a5;
+      border-radius: 16px;
+      padding: 28px;
+      margin: 35px 0;
+    }
+    
+    .rule-box h3 {
+      color: #991b1b;
+      font-size: 1.1em;
+      margin-bottom: 15px;
+    }
+    
+    .rules {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .rules .rule {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      color: #7f1d1d;
+      border: 1px solid #fecaca;
+    }
+    
+    .rules .rule .icon {
+      font-size: 1.3em;
+    }
+    
+    .cost-box {
+      background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+      border: 2px solid #fde047;
+      border-radius: 16px;
+      padding: 28px;
+      margin: 35px 0;
+      text-align: center;
+    }
+    
+    .cost-box h3 {
+      color: #854d0e;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+    
+    .cost-box .amount {
+      font-size: 2.5em;
+      font-weight: 800;
+      color: #ca8a04;
+      margin: 10px 0;
+    }
+    
+    .cost-box .desc {
+      color: #a16207;
+      font-size: 0.95em;
+    }
+    
+    ul {
+      padding-left: 0;
+      list-style: none;
+    }
+    
+    li {
+      margin-bottom: 16px;
+      padding-left: 32px;
+      position: relative;
+      color: #334155;
+      font-size: 1.02em;
+    }
+    
+    li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      border-radius: 50%;
+    }
+    
+    li strong {
+      color: #1e293b;
+    }
+    
+    .tech-box {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 2px solid #86efac;
+      border-radius: 16px;
+      padding: 28px;
+      margin: 35px 0;
+    }
+    
+    .tech-box h3 {
+      color: #166534;
+      font-size: 1.15em;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .tech-box li::before {
+      background: #22c55e;
+    }
+    
+    .timeline {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 28px;
+      margin: 35px 0;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .timeline h3 {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+      color: #0f172a;
+    }
+    
+    .timeline-item {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 18px;
+      padding-left: 0;
+    }
+    
+    .timeline-item::before {
+      display: none;
+    }
+    
+    .timeline-date {
+      min-width: 100px;
+      font-weight: 700;
+      color: #7c3aed;
+      font-size: 0.9em;
+    }
+    
+    .timeline-content {
+      color: #334155;
+    }
+    
+    .source-section {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 2px solid #e2e8f0;
+    }
+    
+    .source-section h3 {
+      font-size: 1em;
+      color: #64748b;
+      margin-bottom: 15px;
+    }
+    
+    .source-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .source-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      color: #475569;
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: all 0.2s ease;
+    }
+    
+    .source-links a:hover {
+      border-color: #7c3aed;
+      color: #7c3aed;
+      box-shadow: 0 4px 12px rgba(124,58,237,0.15);
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #94a3b8;
+      font-size: 0.9em;
+    }
+    
+    .footer a {
+      color: #7c3aed;
+      text-decoration: none;
+    }
+    
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 1.8em;
+      }
+      
+      .hero {
+        padding: 40px 20px 60px;
+      }
+      
+      .meta-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: -30px 15px 30px;
+      }
+      
+      h2 {
+        font-size: 1.3em;
+      }
+      
+      .cost-box .amount {
+        font-size: 2em;
+      }
+      
+      .timeline-item {
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <span class="badge">🏭 StrongDM AI | Software Factory</span>
+    <h1>소프트웨어 공장:<br>코드를 보지도 않는 AI 개발팀</h1>
+    <p>3명이 3개월 만에 구축한, 사람이 코드를 쓰지도 리뷰하지도 않는 "다크 팩토리" 시스템</p>
+  </div>
+</div>
+
+<div class="meta-bar">
+  <div class="meta-item">
+    <span>✍️</span>
+    <span><strong>저자:</strong> Simon Willison</span>
+  </div>
+  <div class="meta-item">
+    <span>🏢</span>
+    <span><strong>사례:</strong> StrongDM AI</span>
+  </div>
+  <div class="meta-item">
+    <span>📅</span>
+    <span><strong>원문:</strong> 2026년 2월 7일</span>
+  </div>
+</div>
+
+<div class="container">
+  
+  <h2>개요: 다크 팩토리란?</h2>
+  <p>Dan Shapiro가 제안한 <strong>AI 도입 5단계</strong> 중 최상위 단계가 "다크 팩토리(Dark Factory)"입니다. 공장에서 조명을 끌 수 있을 정도로 자동화가 완성되어 <strong>사람이 코드를 보지 않아도 되는</strong> 수준을 말합니다.</p>
+  <p>StrongDM의 AI 팀이 이 다크 팩토리를 실제로 구현하고, 그 방법론을 <a href="https://factory.strongdm.ai" target="_blank" style="color:#7c3aed;">factory.strongdm.ai</a>에 공개했습니다.</p>
+
+  <div class="rule-box">
+    <h3>🚫 StrongDM AI의 핵심 규칙</h3>
+    <div class="rules">
+      <div class="rule">
+        <span class="icon">🖊️</span>
+        <span>코드는 사람이 작성하지 않는다</span>
+      </div>
+      <div class="rule">
+        <span class="icon">👁️</span>
+        <span>코드는 사람이 리뷰하지 않는다</span>
+      </div>
+      <div class="rule">
+        <span class="icon">🤔</span>
+        <span>"왜 내가 이걸 하고 있지?" (모델이 해야 할 일 아닌가?)</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>어떻게 품질을 보장하나?</h2>
+  <p>LLM이 실수를 잘 한다는 건 모두가 아는 사실입니다. 그런데 사람이 코드를 리뷰하지 않고도 어떻게 품질을 보장할 수 있을까요? StrongDM의 해답은 <strong>시나리오 테스팅</strong>입니다.</p>
+
+  <div class="key-finding">
+    <strong>시나리오 = 홀드아웃 셋</strong>
+    <p>테스트 시나리오를 코드베이스 바깥에 저장합니다. 마치 머신러닝의 홀드아웃 데이터처럼, 코딩 에이전트가 볼 수 없는 곳에 두어 "컨닝"을 방지합니다.</p>
+  </div>
+
+  <div class="quote">
+    <p>우리는 "시나리오"라는 단어를 재정의했습니다. 코드베이스 외부에 저장되는 엔드-투-엔드 사용자 스토리로, LLM이 직관적으로 이해하고 유연하게 검증할 수 있습니다.</p>
+    <span class="author">— StrongDM AI 팀</span>
+  </div>
+
+  <h2>디지털 트윈 유니버스 (DTU)</h2>
+  <p>StrongDM AI 팀의 가장 인상적인 기술은 <strong>Digital Twin Universe</strong>입니다. Okta, Jira, Slack, Google Docs 등 외부 서비스의 <strong>행동 복제본</strong>을 만드는 것입니다.</p>
+
+  <ul>
+    <li><strong>API 문서를 에이전트에게 주입</strong>하여 해당 서비스의 모방체를 Go 바이너리로 생성</li>
+    <li>간단한 UI까지 자동으로 구축하여 시뮬레이션 완성</li>
+    <li>레이트 리밋, 악용 탐지, API 비용 없이 <strong>시간당 수천 개의 시나리오 테스트</strong> 가능</li>
+    <li>실제 서비스에서는 위험하거나 불가능한 장애 모드도 테스트</li>
+  </ul>
+
+  <div class="quote">
+    <p>주요 SaaS 앱의 고충실도 복제본을 만드는 것은 언제나 가능했지만, 경제적으로 타당하지 않았습니다. 이제는 가능합니다.</p>
+    <span class="author">— StrongDM AI 팀</span>
+  </div>
+
+  <div class="tech-box">
+    <h3>🔧 주요 기법들</h3>
+    <ul>
+      <li><strong>Gene Transfusion:</strong> 기존 시스템에서 패턴을 추출해 다른 곳에 재사용</li>
+      <li><strong>Semport:</strong> 한 언어에서 다른 언어로 코드를 직접 포팅</li>
+      <li><strong>Pyramid Summaries:</strong> 에이전트가 빠르게 훑을 요약 + 필요시 상세 정보로 줌인</li>
+    </ul>
+  </div>
+
+  <h2>타임라인</h2>
+  <div class="timeline">
+    <h3>🗓️ StrongDM AI의 발전 과정</h3>
+    <div class="timeline-item">
+      <div class="timeline-date">2024년 10월</div>
+      <div class="timeline-content">Claude 3.5 두 번째 리비전 출시 — 장기 에이전틱 코딩이 오류를 누적하지 않고 정확도를 복리로 쌓기 시작</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2024년 12월</div>
+      <div class="timeline-content">Cursor YOLO 모드를 통해 장기 코딩 성능이 명확해짐</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2025년 7월</div>
+      <div class="timeline-content">StrongDM AI 팀 창설 — "손으로 코드 작성 금지" 규칙으로 시작</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2025년 10월</div>
+      <div class="timeline-content">Simon Willison 방문 시 이미 DTU, 시나리오 테스트, 에이전트 하네스 작동 중</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2025년 11월</div>
+      <div class="timeline-content">Claude Opus 4.5 + GPT 5.2 출시 — 에이전틱 코딩 신뢰도 대폭 향상</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2026년 2월</div>
+      <div class="timeline-content">방법론 및 오픈소스 도구 공개</div>
+    </div>
+  </div>
+
+  <div class="cost-box">
+    <h3>💰 비용 기준</h3>
+    <div class="amount">$1,000/일</div>
+    <div class="desc">엔지니어 1인당 하루 토큰 비용이 $1,000 미만이면,<br>소프트웨어 공장에 개선 여지가 있다는 의미</div>
+  </div>
+
+  <h2>공개된 도구들</h2>
+  <ul>
+    <li><strong><a href="https://github.com/strongdm/attractor" target="_blank" style="color:#7c3aed;">Attractor</a>:</strong> 비대화형 코딩 에이전트의 스펙. 코드 없이 마크다운 스펙 3개만 있음 — 이걸 당신의 코딩 에이전트에 입력하라는 것!</li>
+    <li><strong><a href="https://github.com/strongdm/cxdb" target="_blank" style="color:#7c3aed;">CXDB</a>:</strong> AI 컨텍스트 스토어. Rust 16,000줄, Go 9,500줄, TypeScript 6,700줄. 대화 이력과 도구 출력을 불변 DAG에 저장</li>
+  </ul>
+
+  <h2>시사점</h2>
+  <p>Simon Willison은 StrongDM AI 팀의 작업을 <strong>"소프트웨어 개발의 한 가지 가능한 미래"</strong>로 평가합니다. 엔지니어가 코드를 직접 만드는 대신, 코드를 만드는 시스템을 구축하고 모니터링하는 역할로 전환되는 것입니다.</p>
+
+  <div class="quote">
+    <p>하지만 엔지니어당 월 $20,000 오버헤드가 든다면, 이건 비즈니스 모델 연습에 가깝습니다. 이 방식으로 개발하는 데 들어가는 막대한 비용을 감당할 만큼 수익성 있는 제품을 만들 수 있는가?</p>
+    <span class="author">— Simon Willison</span>
+  </div>
+
+  <p>그럼에도 StrongDM에서 배울 점은 많습니다. 특히 <strong>"모든 코드를 직접 리뷰하지 않고도 에이전트가 만든 코드가 작동함을 증명하는 방법"</strong>은 현재 소프트웨어 개발에서 가장 중요한 질문 중 하나입니다.</p>
+
+  <div class="source-section">
+    <h3>📚 원문 출처</h3>
+    <div class="source-links">
+      <a href="https://simonwillison.net/2026/Feb/7/software-factory/" target="_blank">
+        📝 Simon Willison 블로그
+      </a>
+      <a href="https://factory.strongdm.ai" target="_blank">
+        🏭 StrongDM Software Factory
+      </a>
+      <a href="https://github.com/strongdm/attractor" target="_blank">
+        🔧 Attractor (GitHub)
+      </a>
+      <a href="https://github.com/strongdm/cxdb" target="_blank">
+        💾 CXDB (GitHub)
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  번역 및 정리 by Teabagbot 💸 | 2026.02.11<br>
+  <a href="index.html">← 글 목록으로</a>
+</div>
+
+</body>
+</html>
