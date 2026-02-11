@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI, 이제 대화만 하는 게 아닙니다</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <style>
+    :root {
+      --r-background-color: #ffffff;
+      --r-main-font: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      --r-heading-font: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      --r-main-font-size: 32px;
+      --r-heading-color: #1e293b;
+      --r-main-color: #475569;
+      --r-link-color: #2563eb;
+      --r-selection-background-color: #3b82f6;
+    }
+
+    .reveal { font-weight: 400; }
+    .reveal h1 { font-size: 2.2em; font-weight: 800; line-height: 1.3; color: #1e293b; }
+    .reveal h2 { font-size: 1.5em; font-weight: 700; color: #1e293b; margin-bottom: 10px; }
+    .reveal h3 { font-size: 1.0em; font-weight: 600; }
+    .reveal p, .reveal li { line-height: 1.6; color: #475569; }
+    .reveal ul { list-style: none; padding-left: 0; }
+    .reveal ul li::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 10px; vertical-align: middle; background: #94a3b8; }
+
+    /* 슬라이드 타입별 배경 */
+    .slide-title { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #eff6ff 100%); }
+    .slide-section { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%); }
+    .slide-content { background: #ffffff; }
+    .slide-warning { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); }
+    .slide-cta { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); }
+
+    /* 강조 텍스트 */
+    .text-blue { color: #2563eb; }
+    .text-green { color: #16a34a; }
+    .text-red { color: #dc2626; }
+    .text-yellow { color: #d97706; }
+    .text-purple { color: #7c3aed; }
+    .text-white { color: #ffffff; }
+    .text-dim { color: #94a3b8; }
+    .text-glow { color: #2563eb; text-shadow: 0 0 20px rgba(37,99,235,0.3); }
+
+    /* 태그/뱃지 */
+    .badge {
+      display: inline-block;
+      padding: 5px 16px;
+      border-radius: 50px;
+      font-size: 0.6em;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .badge-blue { background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.3); color: #2563eb; }
+    .badge-green { background: rgba(22,163,74,0.1); border: 1px solid rgba(22,163,74,0.3); color: #16a34a; }
+    .badge-red { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.3); color: #dc2626; }
+    .badge-purple { background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.3); color: #7c3aed; }
+
+    /* Before/After 그리드 */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 14px;
+      text-align: left;
+    }
+
+    .card {
+      padding: 22px 26px;
+      border-radius: 14px;
+    }
+
+    .card-before {
+      background: rgba(220,38,38,0.04);
+      border: 1px solid rgba(220,38,38,0.15);
+    }
+    .card-before h3 { color: #dc2626; margin-bottom: 12px; }
+    .card-before ul li::before { background: #dc2626; }
+    .card-before ul li { font-size: 0.65em; color: #64748b; margin: 6px 0; }
+
+    .card-after {
+      background: rgba(22,163,74,0.04);
+      border: 1px solid rgba(22,163,74,0.15);
+    }
+    .card-after h3 { color: #16a34a; margin-bottom: 12px; }
+    .card-after ul li::before { background: #16a34a; }
+    .card-after ul li { font-size: 0.65em; color: #334155; margin: 6px 0; }
+
+    .card-before ul li strong, .card-after ul li strong {
+      color: #1e293b;
+    }
+
+    /* 하이라이트 박스 */
+    .highlight-box {
+      background: rgba(37,99,235,0.05);
+      border-left: 4px solid #2563eb;
+      padding: 14px 20px;
+      border-radius: 0 12px 12px 0;
+      margin-top: 16px;
+      font-size: 0.68em;
+      text-align: left;
+      color: #64748b;
+    }
+    .highlight-box strong { color: #2563eb; }
+
+    /* 코드 블록 스타일 (dark 유지 — 코드는 다크가 가독성 좋음) */
+    .code-box {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 16px 28px;
+      font-family: 'Pretendard', 'Consolas', 'Monaco', monospace;
+      font-size: 0.62em;
+      color: #e2e8f0;
+      text-align: left;
+      margin-top: 10px;
+      line-height: 1.85;
+      letter-spacing: 0.01em;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .code-box .comment { color: #64748b; }
+    .code-box .prompt { color: #fbbf24; }
+    .code-box .result { color: #4ade80; }
+
+    /* 테이블 */
+    .reveal table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.6em;
+      margin-top: 12px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+    .reveal table th {
+      background: rgba(37,99,235,0.08);
+      color: #2563eb;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .reveal table td {
+      padding: 10px 16px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #475569;
+    }
+    .reveal table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+    .reveal table td strong { color: #1e293b; }
+
+    /* 이모지 크게 */
+    .emoji-hero { font-size: 3em; margin-bottom: 16px; }
+
+    /* 섹션 슬라이드 스타일 (보라 그라디언트 유지) */
+    .section-slide h1 { color: #ffffff; text-shadow: 0 0 30px rgba(168,85,247,0.5); }
+    .section-slide p { color: rgba(255,255,255,0.8); font-size: 0.75em; }
+
+    /* CTA 스텝 */
+    .cta-step {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 16px 22px;
+      background: rgba(0,0,0,0.02);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 14px;
+      margin: 10px 0;
+      text-align: left;
+      font-size: 0.68em;
+    }
+    .cta-step .num {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1em;
+      flex-shrink: 0;
+    }
+
+    /* 인용문 */
+    .quote {
+      font-style: italic;
+      color: #64748b;
+      font-size: 0.65em;
+      margin-top: 20px;
+      line-height: 1.8;
+    }
+
+    /* 비교표 특수 */
+    .vs-table td:first-child { font-weight: 700; color: #64748b; width: 90px; }
+    .vs-table td:nth-child(2) { color: #dc2626; }
+    .vs-table td:nth-child(3) { color: #16a34a; }
+
+    /* 타임라인 강조 */
+    .timeline-table td:first-child { color: #2563eb; font-weight: 700; white-space: nowrap; }
+    .timeline-table tr:last-child td { color: #d97706; }
+
+    /* 데코: 그라데이션 라인 */
+    .gradient-line {
+      height: 3px;
+      background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899);
+      border-radius: 2px;
+      margin: 14px auto;
+      width: 200px;
+    }
+
+    /* 경고 슬라이드 아이콘 리스트 */
+    .warn-list { text-align: left; }
+    .warn-list li {
+      font-size: 0.68em;
+      margin: 14px 0;
+      color: #475569;
+      line-height: 1.5;
+    }
+    .warn-list li::before { display: none; }
+    .warn-list li strong { color: #b45309; }
+
+    /* 통계 카드 */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    .stat-card {
+      padding: 16px 20px;
+      background: rgba(220,38,38,0.04);
+      border: 1px solid rgba(220,38,38,0.15);
+      border-radius: 12px;
+      font-size: 0.6em;
+    }
+    .stat-card .stat-num { font-size: 1.8em; font-weight: 800; color: #dc2626; }
+    .stat-card .stat-label { color: #64748b; margin-top: 4px; }
+
+    /* 기능 카드 그리드 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    .feature-card {
+      padding: 16px 20px;
+      background: rgba(37,99,235,0.04);
+      border: 1px solid rgba(37,99,235,0.12);
+      border-radius: 12px;
+      font-size: 0.6em;
+    }
+    .feature-card .feature-icon { font-size: 1.6em; margin-bottom: 6px; }
+    .feature-card .feature-title { font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .feature-card .feature-desc { color: #64748b; line-height: 1.5; }
+
+    /* 예시 카드 */
+    .example-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    .example-card {
+      padding: 14px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 0.55em;
+    }
+    .example-card .ex-title { font-weight: 700; color: #1e293b; margin-bottom: 6px; }
+    .example-card .ex-desc { color: #64748b; line-height: 1.5; }
+    .example-card .ex-tag { display: inline-block; margin-top: 6px; padding: 2px 10px; border-radius: 20px; font-size: 0.85em; }
+    .tag-file { background: rgba(37,99,235,0.1); color: #2563eb; }
+    .tag-api { background: rgba(124,58,237,0.1); color: #7c3aed; }
+    .tag-terminal { background: rgba(217,119,6,0.1); color: #d97706; }
+    .tag-multi { background: rgba(22,163,74,0.1); color: #16a34a; }
+
+    /* 슬라이드 번호 */
+    .reveal .slide-number { font-family: 'Pretendard'; font-size: 14px; color: #94a3b8; }
+
+    /* ==================== 컨설팅 스타일 컴포넌트 ==================== */
+
+    /* 어젠다 번호 */
+    .agenda-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: #ffffff;
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: 0.9em;
+      flex-shrink: 0;
+    }
+
+    .agenda-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 18px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      margin: 8px 0;
+      font-size: 0.65em;
+      text-align: left;
+    }
+    .agenda-item .agenda-title { font-weight: 700; color: #1e293b; }
+    .agenda-item .agenda-desc { color: #94a3b8; font-size: 0.9em; margin-top: 2px; }
+
+    /* Executive Summary 3컬럼 */
+    .exec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+      text-align: left;
+    }
+    .exec-card {
+      padding: 18px 20px;
+      background: rgba(37,99,235,0.04);
+      border: 1px solid rgba(37,99,235,0.12);
+      border-radius: 12px;
+      font-size: 0.6em;
+    }
+    .exec-card .exec-num {
+      font-size: 1.6em;
+      font-weight: 800;
+      color: #2563eb;
+      margin-bottom: 6px;
+    }
+    .exec-card .exec-title { font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .exec-card .exec-desc { color: #64748b; line-height: 1.5; }
+
+    /* 파란 stat 카드 (성장/긍정 지표) */
+    .stat-card-blue {
+      padding: 16px 20px;
+      background: rgba(37,99,235,0.04);
+      border: 1px solid rgba(37,99,235,0.15);
+      border-radius: 12px;
+      font-size: 0.6em;
+    }
+    .stat-card-blue .stat-num { font-size: 1.8em; font-weight: 800; color: #2563eb; }
+    .stat-card-blue .stat-label { color: #64748b; margin-top: 4px; }
+
+    /* 5단계 수평 바 (Maturity Model) */
+    .maturity-container {
+      display: flex;
+      gap: 6px;
+      margin-top: 16px;
+    }
+    .maturity-bar {
+      flex: 1;
+      padding: 14px 10px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 0.52em;
+      transition: all 0.3s ease;
+    }
+    .maturity-bar .maturity-level {
+      font-weight: 800;
+      font-size: 1.4em;
+      margin-bottom: 4px;
+    }
+    .maturity-bar .maturity-title { font-weight: 700; color: #1e293b; margin-bottom: 3px; }
+    .maturity-bar .maturity-desc { color: #64748b; line-height: 1.4; }
+    /* 레벨별 고유 색상 */
+    .maturity-bar.lv1 {
+      background: rgba(22,163,74,0.08);
+      border: 2px solid rgba(22,163,74,0.4);
+      box-shadow: 0 0 16px rgba(22,163,74,0.1);
+    }
+    .maturity-bar.lv1 .maturity-title { color: #15803d; }
+    .maturity-bar.lv2 {
+      background: rgba(37,99,235,0.08);
+      border: 2px solid rgba(37,99,235,0.4);
+      box-shadow: 0 0 16px rgba(37,99,235,0.1);
+    }
+    .maturity-bar.lv2 .maturity-title { color: #1d4ed8; }
+    .maturity-bar.lv3 {
+      background: rgba(124,58,237,0.08);
+      border: 2px solid rgba(124,58,237,0.4);
+      box-shadow: 0 0 16px rgba(124,58,237,0.1);
+    }
+    .maturity-bar.lv3 .maturity-title { color: #6d28d9; }
+    .maturity-bar.lv4 {
+      background: rgba(217,119,6,0.06);
+      border: 1px dashed rgba(217,119,6,0.4);
+      opacity: 0.7;
+    }
+    .maturity-bar.lv4 .maturity-title { color: #b45309; }
+    .maturity-bar.lv5 {
+      background: rgba(220,38,38,0.05);
+      border: 1px dashed rgba(220,38,38,0.35);
+      opacity: 0.55;
+    }
+    .maturity-bar.lv5 .maturity-title { color: #b91c1c; }
+
+    /* 부서별 카드 그리드 */
+    .dept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    .dept-card {
+      padding: 14px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 0.52em;
+    }
+    .dept-card .dept-icon { font-size: 1.6em; margin-bottom: 4px; }
+    .dept-card .dept-name { font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .dept-card .dept-use { color: #2563eb; margin-bottom: 3px; }
+    .dept-card .dept-focus { color: #16a34a; font-size: 0.9em; }
+
+    /* ROI 테이블 */
+    .roi-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.55em;
+      margin-top: 12px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+    .roi-table th {
+      background: rgba(37,99,235,0.08);
+      color: #2563eb;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .roi-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #475569;
+    }
+    .roi-table tr:nth-child(even) td { background: #f8fafc; }
+    .roi-table .saved { color: #16a34a; font-weight: 700; }
+
+    /* 로드맵 그리드 */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+      text-align: left;
+    }
+    .roadmap-phase {
+      padding: 18px 20px;
+      border-radius: 12px;
+      font-size: 0.58em;
+    }
+    .roadmap-phase .phase-label {
+      font-weight: 800;
+      font-size: 1.2em;
+      margin-bottom: 8px;
+    }
+    .roadmap-phase .phase-title {
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .roadmap-phase .phase-items { color: #64748b; line-height: 1.6; }
+    .roadmap-phase .phase-outcome {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      font-weight: 600;
+    }
+    .phase-30 {
+      background: rgba(22,163,74,0.04);
+      border: 1px solid rgba(22,163,74,0.15);
+    }
+    .phase-30 .phase-label { color: #16a34a; }
+    .phase-30 .phase-outcome { color: #16a34a; }
+    .phase-60 {
+      background: rgba(37,99,235,0.04);
+      border: 1px solid rgba(37,99,235,0.15);
+    }
+    .phase-60 .phase-label { color: #2563eb; }
+    .phase-60 .phase-outcome { color: #2563eb; }
+    .phase-90 {
+      background: rgba(124,58,237,0.04);
+      border: 1px solid rgba(124,58,237,0.15);
+    }
+    .phase-90 .phase-label { color: #7c3aed; }
+    .phase-90 .phase-outcome { color: #7c3aed; }
+
+    /* 출처 표기 */
+    .source-note {
+      font-size: 0.45em;
+      color: #94a3b8;
+      text-align: right;
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    /* 도구 카드 그리드 */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    .tool-card {
+      padding: 14px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 0.52em;
+    }
+    .tool-card .tool-name { font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .tool-card .tool-desc { color: #64748b; line-height: 1.4; margin-bottom: 6px; }
+    .tool-card .tool-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 0.85em;
+    }
+    .tool-tag-all { background: rgba(22,163,74,0.1); color: #16a34a; }
+    .tool-tag-dev { background: rgba(217,119,6,0.1); color: #d97706; }
+    .tool-tag-biz { background: rgba(37,99,235,0.1); color: #2563eb; }
+    .tool-tag-company { background: rgba(220,38,38,0.08); color: #dc2626; border: 1.5px solid rgba(220,38,38,0.3); font-weight: 700; }
+    .tool-tag-external { background: rgba(148,163,184,0.1); color: #94a3b8; }
+
+    /* 레퍼런스 리스트 */
+    .ref-list {
+      text-align: left;
+      max-width: 750px;
+      margin: 14px auto 0;
+    }
+    .ref-list li {
+      font-size: 0.55em;
+      color: #94a3b8;
+      margin: 8px 0;
+      line-height: 1.5;
+    }
+    .ref-list li::before { display: none; }
+    .ref-list li strong { color: #64748b; }
+
+    /* ==================== 모바일 반응형 ==================== */
+    @media (max-width: 768px) {
+      :root {
+        --r-main-font-size: 28px;
+      }
+
+      /* 그리드 → 1열 스택 */
+      .compare-grid,
+      .stat-grid,
+      .feature-grid,
+      .exec-grid,
+      .dept-grid,
+      .roadmap-grid,
+      .tool-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .example-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Maturity 5단 바 → 세로 스택 */
+      .maturity-container {
+        flex-direction: column;
+      }
+      .maturity-bar {
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .maturity-bar .maturity-level {
+        display: inline;
+        margin-right: 8px;
+      }
+      .maturity-bar .maturity-title {
+        display: inline;
+      }
+
+      /* 카드/박스 패딩 축소 */
+      .card,
+      .exec-card,
+      .dept-card,
+      .tool-card,
+      .example-card,
+      .roadmap-phase,
+      .feature-card {
+        padding: 14px 16px;
+      }
+
+      /* 코드 블록 폭 제한 해제 */
+      .code-box {
+        max-width: 100%;
+        padding: 14px 16px;
+        font-size: 0.58em;
+      }
+
+      /* 테이블 스크롤 */
+      .reveal table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: 0.55em;
+      }
+
+      .roi-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* CTA 스텝 */
+      .cta-step {
+        gap: 12px;
+        padding: 12px 14px;
+      }
+      .cta-step .num {
+        width: 34px;
+        height: 34px;
+        font-size: 0.95em;
+      }
+
+      /* 어젠다 */
+      .agenda-item {
+        padding: 10px 14px;
+      }
+
+      /* 경고 리스트 */
+      .warn-list li {
+        font-size: 0.63em;
+      }
+
+      /* stat 카드 숫자 */
+      .stat-card .stat-num,
+      .stat-card-blue .stat-num {
+        font-size: 1.5em;
+      }
+
+      /* 레퍼런스 */
+      .ref-list {
+        max-width: 100%;
+      }
+      .ref-list li {
+        font-size: 0.5em;
+      }
+
+      /* 이모지 히어로 */
+      .emoji-hero {
+        font-size: 2.4em;
+      }
+    }
+
+    /* 더 작은 화면 (폰 세로 모드) */
+    @media (max-width: 480px) {
+      :root {
+        --r-main-font-size: 24px;
+      }
+
+      .reveal h1 { font-size: 1.6em; }
+      .reveal h2 { font-size: 1.2em; }
+      .reveal h3 { font-size: 0.9em; }
+
+      .badge { font-size: 0.5em; padding: 4px 12px; }
+
+      .highlight-box {
+        padding: 10px 14px;
+        font-size: 0.62em;
+      }
+
+      .source-note {
+        font-size: 0.4em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ==================== 슬라이드 1: 타이틀 ==================== -->
+      <section data-background-gradient="linear-gradient(135deg, #eff6ff, #dbeafe, #eff6ff)" data-transition="zoom">
+        <div class="emoji-hero">🤖</div>
+        <h1>AI, 이제 대화만 하는 게<br><span class="text-glow">아닙니다</span></h1>
+        <div class="gradient-line"></div>
+        <p style="color:#64748b; font-size:0.7em;">채팅에서 실행으로 — 에이전틱 AI로 더 편해지는 업무 환경</p>
+        <br>
+        <span class="badge badge-blue">2026년 2월 | 차량개발기획팀 정보공유회</span>
+      </section>
+
+      <!-- ==================== 슬라이드 2: 현재 웹 AI의 역할과 한계 ==================== -->
+      <section>
+        <h2>💬 현재 웹 AI의 역할과 한계</h2>
+        <p style="font-size:0.68em; color:#64748b;">ChatGPT, Gemini, Claude — <strong class="text-blue">브라우저 안에서 대화</strong></p>
+        <div class="compare-grid">
+          <div class="card" style="background:rgba(37,99,235,0.04); border:1px solid rgba(37,99,235,0.12);">
+            <h3 style="color:#2563eb;">우리가 하는 것</h3>
+            <ul>
+              <li style="font-size:0.65em; color:#334155;">💬 질문을 <strong>텍스트로 입력</strong></li>
+              <li style="font-size:0.65em; color:#334155;">📋 답변을 <strong>복사해서 붙여넣기</strong></li>
+              <li style="font-size:0.65em; color:#334155;">🔄 서식 정리, 저장, 공유는 <strong>직접</strong></li>
+              <li style="font-size:0.65em; color:#334155;">📎 파일 업로드하면 <strong>텍스트로 답변</strong></li>
+            </ul>
+          </div>
+          <div class="card" style="background:rgba(220,38,38,0.04); border:1px solid rgba(220,38,38,0.12);">
+            <h3 style="color:#dc2626;">AI가 못하는 것</h3>
+            <ul>
+              <li style="font-size:0.65em; color:#64748b;">🚫 내 PC의 파일을 <strong>직접 열거나 수정</strong></li>
+              <li style="font-size:0.65em; color:#64748b;">🚫 이메일 보내기, 캘린더 <strong>직접 조작</strong></li>
+              <li style="font-size:0.65em; color:#64748b;">🚫 사내 시스템에 <strong>로그인·조회</strong></li>
+              <li style="font-size:0.65em; color:#64748b;">🚫 여러 단계를 <strong>알아서 순서대로</strong> 처리</li>
+            </ul>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          💡 비유하면 <strong>"전화 상담원"</strong> — 물어보면 알려주지만, 실행은 내가 직접 해야 한다
+        </div>
+      </section>
+
+      <!-- ==================== 슬라이드 5: 현재 업무에서의 AI 활용 한계 ==================== -->
+      <section>
+        <h2>현재 업무에서의 AI 활용 한계</h2>
+        <table>
+          <thead><tr><th>상황</th><th>웹 AI (ChatGPT, Gemini, Claude)</th><th>결국 내가 해야 하는 것</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>📁 "엑셀 데이터 분석해줘"</td>
+              <td class="text-red">파일을 직접 열 수 없음</td>
+              <td>데이터 복사 → 붙여넣기 → 결과 다시 복사</td>
+            </tr>
+            <tr>
+              <td>📧 "이 내용으로 메일 보내줘"</td>
+              <td class="text-red">이메일 시스템 접근 불가</td>
+              <td>텍스트 복사 → 아웃룩 열기 → 수동 발송</td>
+            </tr>
+            <tr>
+              <td>📊 "보고서 양식에 맞춰줘"</td>
+              <td class="text-red">파일 생성·저장 불가</td>
+              <td>답변 복사 → PPT/Word에 하나씩 붙여넣기</td>
+            </tr>
+            <tr>
+              <td>🔄 "이 작업 100개 반복해줘"</td>
+              <td class="text-red">반복 자동화 불가</td>
+              <td>같은 프롬프트 100번 수동 입력</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:16px auto 0;">
+          <strong>핵심 문제:</strong> AI의 정보 제공 능력과 실제 업무 실행 사이의 간극<br>
+          "AI를 잘 활용해야 한다"는 말은 <strong>이 수준의 웹 AI (ChatGPT, Gemini, Claude)를 말하는 게 아닙니다.</strong>
+        </div>
+      </section>
+
+      <!-- ==================== 슬라이드 4: 에이전틱 AI = 업무를 도와주는 AI 도우미 ==================== -->
+      <section>
+        <h2>💡 에이전틱 AI = <span class="text-glow">업무를 도와주는 AI 도우미</span></h2>
+        <div class="compare-grid">
+          <div class="card card-before">
+            <h3>❌ 웹 AI</h3>
+            <ul>
+              <li><strong>브라우저 안에 갇혀 있음</strong></li>
+              <li>텍스트 입력 → 텍스트 출력</li>
+              <li>한 번에 한 가지 질문-답변</li>
+              <li>외부 도구·시스템 접근 불가</li>
+              <li>결과를 내가 복사해서 실행</li>
+            </ul>
+          </div>
+          <div class="card card-after">
+            <h3>✅ 에이전틱 AI</h3>
+            <ul>
+              <li><strong>내 PC·시스템에서 직접 실행</strong></li>
+              <li>파일 읽기/쓰기, 프로그램 조작</li>
+              <li>여러 단계를 스스로 계획·실행</li>
+              <li>API로 외부 서비스 연동</li>
+              <li>완성된 산출물을 직접 전달</li>
+            </ul>
+          </div>
+        </div>
+        <div class="feature-grid" style="margin-top:18px;">
+          <div class="feature-card" style="background:rgba(217,119,6,0.04); border-color:rgba(217,119,6,0.12);">
+            <div class="feature-title" style="color:#d97706;">🔧 도구 사용 (Tool Use)</div>
+            <div class="feature-desc">파일, 터미널, API, 웹 브라우저 등을 AI가 직접 호출</div>
+          </div>
+          <div class="feature-card" style="background:rgba(22,163,74,0.04); border-color:rgba(22,163,74,0.12);">
+            <div class="feature-title" style="color:#16a34a;">🧠 자율 판단 (Autonomy)</div>
+            <div class="feature-desc">사용자가 설정한 범위 안에서 판단하여 업무 부담 경감</div>
+          </div>
+        </div>
+        <div style="margin-top:16px; background:rgba(220,38,38,0.05); border:2px solid rgba(220,38,38,0.2); border-radius:12px; padding:14px 20px;">
+          <div style="font-size:0.6em; font-weight:800; color:#dc2626; margin-bottom:8px;">🔥 핵심 차이 — 토큰 사용량</div>
+          <div class="compare-grid" style="margin:0; gap:12px;">
+            <div style="text-align:center; padding:10px; background:rgba(220,38,38,0.04); border-radius:8px;">
+              <div style="font-size:0.5em; color:#94a3b8; margin-bottom:2px;">웹 AI (ChatGPT, Gemini, Claude 웹)</div>
+              <div style="font-size:0.85em; font-weight:800; color:#dc2626;">질문당 수백 ~ 수천 토큰</div>
+              <div style="font-size:0.45em; color:#64748b;">텍스트 입출력만 → 가볍지만 실행 불가</div>
+            </div>
+            <div style="text-align:center; padding:10px; background:rgba(37,99,235,0.04); border-radius:8px;">
+              <div style="font-size:0.5em; color:#94a3b8; margin-bottom:2px;">에이전틱 AI (Claude Code, Codex 등)</div>
+              <div style="font-size:0.85em; font-weight:800; color:#2563eb;">작업당 수만 ~ 수십만 토큰</div>
+              <div style="font-size:0.45em; color:#64748b;">도구 호출·파일 처리·실행까지 → 비용↑ 하지만 결과물 완성</div>
+            </div>
+          </div>
+          <div style="text-align:center; font-size:0.48em; color:#64748b; margin-top:8px;">
+            💡 토큰을 많이 쓴다 = <strong>그만큼 AI가 실제로 일하고 있다</strong>는 뜻. 비용 구조가 근본적으로 다릅니다.
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 슬라이드 7: 섹션 — 웹 AI vs 에이전틱 AI ==================== -->
+      <section data-background-gradient="linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7)" class="section-slide" data-transition="convex">
+        <div class="emoji-hero">⚡</div>
+        <h1>웹 AI vs 에이전틱 AI</h1>
+        <p>"AI 잘 쓴다" = 에이전틱 AI를 쓴다는 뜻. 정확히 뭐가 다른지 4가지로 비교합니다</p>
+      </section>
+
+      <!-- ==================== 슬라이드 9: 차이점 1 — 파일 시스템 직접 접근 ==================== -->
+      <section>
+        <h2>📁 차이점 1: 파일 시스템 직접 접근</h2>
+        <p style="font-size:0.6em; color:#64748b;">내 컴퓨터의 파일을 직접 읽고, 수정하고, 새로 만든다</p>
+        <div class="compare-grid">
+          <div class="card card-before">
+            <h3>❌ 웹 AI</h3>
+            <ul>
+              <li>파일 내용을 <strong>복사해서 붙여넣기</strong></li>
+              <li>결과도 <strong>텍스트로만</strong> 받음</li>
+              <li>다시 엑셀/PPT에 <strong>수동으로 옮기기</strong></li>
+              <li>100개 파일? → <strong>100번 반복</strong></li>
+            </ul>
+          </div>
+          <div class="card card-after">
+            <h3>✅ 에이전틱 AI</h3>
+            <ul>
+              <li>폴더 내 엑셀 파일 <strong>전부 자동 읽기</strong></li>
+              <li>분석 후 <strong>새 엑셀 파일로 저장</strong></li>
+              <li>PPT 보고서까지 <strong>직접 생성</strong></li>
+              <li>100개 파일도 <strong>한 번에 일괄 처리</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="code-box" style="margin-top:14px;">
+          <span class="prompt">💬 프롬프트:</span> "다운로드 폴더에 있는 부서별 현황 엑셀 5개를<br>
+          &nbsp;&nbsp;&nbsp;하나로 합치고, 부서별 요약표 만들어서 보고서.xlsx로 저장해줘"<br>
+          <span class="result">✅ 결과:</span> 5개 파일 읽기 → 데이터 통합 → 피벗 분석 → 차트 생성 → 파일 저장 완료
+        </div>
+      </section>
+
+      <!-- ==================== 슬라이드 10: 차이점 2 — API & 외부 시스템 연동 ==================== -->
+      <section>
+        <h2>🔌 차이점 2: API & 외부 시스템 연동</h2>
+        <p style="font-size:0.6em; color:#64748b;">이메일, 캘린더, 사내 시스템, 외부 서비스에 직접 연결</p>
+        <div class="compare-grid">
+          <div class="card card-before">
+            <h3>❌ 웹 AI</h3>
+            <ul>
+              <li>"이렇게 메일 쓰세요" → <strong>복사해서 내가 발송</strong></li>
+              <li>"일정을 이렇게 잡으세요" → <strong>캘린더에 내가 입력</strong></li>
+              <li>데이터 조회? → <strong>시스템 접근 불가</strong></li>
+              <li>작업 결과 공유? → <strong>수동으로 전달</strong></li>
+            </ul>
+          </div>
+          <div class="card card-after">
+            <h3>✅ 에이전틱 AI</h3>
+            <ul>
+              <li>Outlook API로 <strong>이메일 직접 작성·발송</strong></li>
+              <li>Calendar API로 <strong>일정 자동 등록</strong></li>
+              <li>사내 DB/ERP에 <strong>직접 조회·입력</strong></li>
+              <li>Slack/Teams로 <strong>결과 자동 전송</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="code-box" style="margin-top:14px;">
+          <span class="prompt">💬 프롬프트:</span> "이번 주 회의 참석자들에게 안건 메일 보내고,<br>
+          &nbsp;&nbsp;&nbsp;회의실 예약하고, Teams 채널에 안내 메시지 올려줘"<br>
+          <span class="result">✅ 결과:</span> 참석자 조회 → 메일 발송 → 회의실 API 예약 → Teams 메시지 자동 게시
+        </div>
+      </section>
+
+      <!-- ==================== 우리 회사에서의 API 접근 현황 (신규) ==================== -->
+      <section>
+        <h2>🔑 API란? — AI가 시스템에 접근하는 열쇠</h2>
+        <p style="font-size:0.6em; color:#64748b;">API = 프로그램끼리 대화하는 공식 창구. AI가 시스템을 사용하려면 이 창구가 열려 있어야 합니다.</p>
+        <div style="text-align:center; font-size:0.55em; background:#f8fafc; border-radius:12px; padding:14px 20px; margin:10px auto;">
+          <span style="color:#64748b;">비유:</span> <strong>API가 있다</strong> = 건물에 <strong style="color:#16a34a;">정문(출입카드)</strong>이 있다 → AI가 정식으로 들어감<br>
+          <strong>API가 없다</strong> = <strong style="color:#dc2626;">담벼락만 있다</strong> → AI가 들어갈 수 없음
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;">
+          <div style="background:rgba(22,163,74,0.05); border:2px solid rgba(22,163,74,0.25); border-radius:12px; padding:14px;">
+            <div style="font-size:0.6em; font-weight:800; color:#16a34a; margin-bottom:8px;">✅ API 제공 → AI 접근 가능</div>
+            <div style="font-size:0.55em; line-height:1.8;">
+              <strong>Microsoft Office</strong> — Outlook, Excel, PPT, Teams<br>
+              <strong>SAP</strong> — 구매, 재무, 자재 관리 등<br>
+              <strong>Google Workspace</strong> — Gmail, Drive, Calendar<br>
+              <strong>Slack, Jira, GitHub</strong> 등 상용 SW 대부분
+            </div>
+            <div style="font-size:0.48em; color:#64748b; margin-top:6px;">→ 에이전틱 AI가 <strong>직접 데이터를 읽고, 작성하고, 실행</strong> 가능</div>
+          </div>
+          <div style="background:rgba(220,38,38,0.05); border:2px solid rgba(220,38,38,0.25); border-radius:12px; padding:14px;">
+            <div style="font-size:0.6em; font-weight:800; color:#dc2626; margin-bottom:8px;">❌ API 미제공 → AI 접근 불가</div>
+            <div style="font-size:0.55em; line-height:1.8;">
+              <strong>오토웨이 (사내 인트라넷)</strong> — API 미제공<br>
+              <strong>Vaatz (구매시스템)</strong> — 현재 API 미제공<br>
+              <strong>RWS (연구개발 워크스페이스)</strong> — 현재 API 미제공<br>
+              <span style="color:#94a3b8;">사내 자체 개발 시스템 대부분</span>
+            </div>
+            <div style="font-size:0.48em; color:#64748b; margin-top:6px;">→ 현재 에이전틱 AI로 <strong>자동화할 수 없는 영역</strong></div>
+          </div>
+        </div>
+
+        <div class="highlight-box" style="text-align:center; margin:12px auto 0;">
+          <strong>미래 방향:</strong> 오토웨이·Vaatz·RWS 등이 API를 제공하게 되면<br>
+          → <strong style="color:#2563eb;">AI가 사내 모든 시스템에 접근 가능</strong> = 진정한 업무 자동화 완성<br>
+          <span style="font-size:0.85em; color:#64748b;">지금은 Office·SAP 등 API가 열린 영역부터 시작하면 됩니다</span>
+        </div>
+      </section>
+
+      <!-- ==================== 슬라이드 11: 차이점 3 — 자동 실행 & 멀티스텝 ==================== -->
+      <section>
+        <h2>🔄 차이점 3: 자동 실행 & 여러 단계 자율 처리</h2>
+        <p style="font-size:0.6em; color:#64748b;">AI가 직접 실행하고, 여러 단계를 스스로 계획하여 처리합니다</p>
+        <div class="compare-grid">
+          <div class="card card-before">
+            <h3>❌ 웹 AI</h3>
+            <ul>
+              <li>"이렇게 하세요" → <strong>안내만</strong> 해줌</li>
+              <li>결과를 <strong>내가 복사해서 직접 실행</strong></li>
+              <li>에러나면 → <strong>다시 물어보기</strong></li>
+              <li>매 단계마다 <strong>수동 개입</strong> 필요</li>
+              <li>10단계 = <strong>10번의 복사-붙여넣기</strong></li>
+            </ul>
+          </div>
+          <div class="card card-after">
+            <h3>✅ 에이전틱 AI</h3>
+            <ul>
+              <li>전체 업무를 <strong>한번에 지시</strong></li>
+              <li>AI가 단계를 <strong>스스로 계획하고 실행</strong></li>
+              <li>에러 시 <strong>자동으로 수정 후 재시도</strong></li>
+              <li>각 결과를 <strong>다음 단계에 자동 전달</strong></li>
+              <li>최종 결과만 <strong>사람에게 보고</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="code-box" style="margin-top:14px;">
+          <span class="prompt">💬 프롬프트:</span> "다운로드 폴더의 PDF 50개를 각각 텍스트 추출해서,<br>
+          &nbsp;&nbsp;&nbsp;핵심 내용 요약한 표를 엑셀로 만들어줘"<br>
+          <span class="result">✅ 결과:</span> PDF 50개 순회 → 텍스트 추출 → AI 요약 → 엑셀 저장 (사람 개입 없이 완료)
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
+          웹 AI: <strong>"한 턴에 한 동작"</strong> &nbsp;→&nbsp; 에이전틱 AI: <strong>"한 번 지시에 전체 워크플로우"</strong>
+        </div>
+      </section>
+
+      <!-- ==================== 슬라이드 14: 섹션 — 실제 업무 적용 사례 ==================== -->
+      <section data-background-gradient="linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7)" class="section-slide" data-transition="convex">
+        <div class="emoji-hero">💼</div>
+        <h1>실제 업무 적용 사례</h1>
+        <p>다양한 부서에서 바로 활용 가능한 에이전틱 AI 적용 예시</p>
+      </section>
+
+      <!-- ==================== 슬라이드 15: 업무별 활용 예시 ==================== -->
+      <section>
+        <h2>🎯 이런 업무에 바로 활용할 수 있습니다</h2>
+        <div class="example-grid">
+          <div class="example-card">
+            <div class="ex-title">📊 보고서 자동 취합</div>
+            <div class="ex-desc">여러 부서 엑셀 수집 → 통합 → 도표 생성 → 양식에 맞춰 PPT 완성</div>
+            <span class="ex-tag tag-file">파일처리</span> <span class="ex-tag tag-multi">멀티스텝</span>
+          </div>
+          <div class="example-card">
+            <div class="ex-title">📧 정기 메일 발송</div>
+            <div class="ex-desc">수신자 목록 읽기 → 개인별 내용 생성 → 발송 → 결과 로그 저장</div>
+            <span class="ex-tag tag-api">API연동</span> <span class="ex-tag tag-multi">멀티스텝</span>
+          </div>
+          <div class="example-card">
+            <div class="ex-title">📋 회의록 → 할일 배포</div>
+            <div class="ex-desc">녹취 텍스트 분석 → 결정사항 추출 → 담당자별 할일 → Teams 전송</div>
+            <span class="ex-tag tag-file">파일처리</span> <span class="ex-tag tag-api">API연동</span>
+          </div>
+          <div class="example-card">
+            <div class="ex-title">🔍 경쟁사/시장 리서치</div>
+            <div class="ex-desc">웹 검색 → 정보 수집 → 비교표 작성 → 분석 보고서 파일로 저장</div>
+            <span class="ex-tag tag-terminal">자동실행</span> <span class="ex-tag tag-multi">멀티스텝</span>
+          </div>
+          <div class="example-card">
+            <div class="ex-title">📄 대량 문서 변환</div>
+            <div class="ex-desc">PDF 100개 → 텍스트 추출 → 핵심 요약 → 엑셀 정리표 생성</div>
+            <span class="ex-tag tag-terminal">자동실행</span> <span class="ex-tag tag-file">파일처리</span>
+          </div>
+          <div class="example-card">
+            <div class="ex-title">📅 일정 & 리마인더</div>
+            <div class="ex-desc">메일함 스캔 → 일정 추출 → 캘린더 등록 → 사전 브리핑 자료 준비</div>
+            <span class="ex-tag tag-api">API연동</span> <span class="ex-tag tag-multi">멀티스텝</span>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
+          공통점: 모두 <strong>"여러 시스템을 넘나들며 반복하는 작업"</strong> → 에이전틱 AI가 가장 잘 도와줄 수 있는 영역
+        </div>
+      </section>
+
+      <!-- ==================== 우리 팀 업무 자동화 예시 (신규) ==================== -->
+      <section>
+        <h2>🚗 경쟁차 업무에서 자동화할 수 있는 것들</h2>
+        <p style="font-size:0.6em; color:#64748b;">우리 팀의 실제 반복 업무 → 에이전틱 AI로 자동화 가능한 영역</p>
+        <div class="feature-grid" style="grid-template-columns: 1fr 1fr; gap:10px;">
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">📋 차량 구매요청서 자동 정리</div>
+            <div class="feature-desc">각 부서에서 들어오는 구매요청서를 자동 수집 → 항목별 분류·정리<br>→ <strong>취합표 자동 생성</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">📨 견적→확인→발주 프로세스 자동화</div>
+            <div class="feature-desc">업체 견적서 수신 → 구매요청팀에 자동 확인 요청<br>→ OK 회신 시 <strong>발주 자동 진행</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">🚙 경쟁차 입고 예상시점 자동 회신</div>
+            <div class="feature-desc">"경쟁차 언제 들어와요?" 문의 → DB 실시간 조회<br>→ <strong>예상 입고 시점 자동 회신</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">💰 잔여예산 자동 점검</div>
+            <div class="feature-desc">SAP 예산 데이터 주기적 조회 → 항목별 잔여 현황표 생성<br>→ <strong>초과 위험 항목 자동 알림</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">🧾 SAP 전표 미처리 점검</div>
+            <div class="feature-desc">미처리 전표 자동 스캔 → 처리 기한 임박 항목 알림<br>→ <strong>카드 연체 리스크 사전 방지</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">📝 완료보고 자동 작성</div>
+            <div class="feature-desc">업무 진행 이력·데이터 취합 → 보고 양식에 맞춰 초안 생성<br>→ <strong>검토만 하면 끝</strong></div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
+          이 업무들의 공통점: <strong>매번 같은 패턴으로 반복</strong>되지만 <strong>사람이 직접 처리</strong>하고 있음<br>
+          <span style="font-size:0.85em; color:#64748b;">→ 에이전틱 AI가 가장 잘 도와줄 수 있는 영역입니다</span>
+        </div>
+      </section>
+
+      <!-- ==================== 이런 것도 가능합니다 (신규) ==================== -->
+      <section>
+        <h2>💡 이런 것도 가능합니다</h2>
+        <p style="font-size:0.6em; color:#64748b;">에이전틱 AI의 활용 범위는 생각보다 넓습니다</p>
+        <div class="feature-grid" style="grid-template-columns: 1fr 1fr; gap:10px;">
+          <div class="feature-card" style="text-align:left; padding:14px 18px; background:rgba(37,99,235,0.04); border-color:rgba(37,99,235,0.15);">
+            <div class="feature-title" style="color:#2563eb;">✉️ 내 이메일 스타일 학습</div>
+            <div class="feature-desc">내가 보냈던 메일들을 학습시키면, <strong>나와 같은 어투·형식으로 메일을 자동 작성</strong>. 팀장님 스타일, 임원 보고 스타일도 학습 가능</div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:14px 18px; background:rgba(37,99,235,0.04); border-color:rgba(37,99,235,0.15);">
+            <div class="feature-title" style="color:#2563eb;">📅 일정 관리 & 아침 알림</div>
+            <div class="feature-desc">매일 아침 오늘의 회의·마감·할일을 정리해서 알림. <strong>"오늘 뭐부터 해야 하지?"를 AI가 정리해줌</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:14px 18px; background:rgba(37,99,235,0.04); border-color:rgba(37,99,235,0.15);">
+            <div class="feature-title" style="color:#2563eb;">📁 내 PC 파일 자동 정리</div>
+            <div class="feature-desc">중복 파일 찾아서 삭제 + 각 파일의 내용을 분석해서 <strong>적절한 폴더로 자동 분류·정리</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:14px 18px; background:rgba(37,99,235,0.04); border-color:rgba(37,99,235,0.15);">
+            <div class="feature-title" style="color:#2563eb;">🚗 퇴근 전 교통 상황 알림</div>
+            <div class="feature-desc">퇴근 30분 전, 집까지의 도로 상황을 자동 확인 → <strong>"오늘은 ○○ 경유가 빠릅니다" 알림</strong></div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
+          핵심: <strong>누군가의 스타일, 판단 기준, 업무 패턴도 AI에게 학습시킬 수 있습니다</strong><br>
+          <span style="font-size:0.85em; color:#64748b;">md 파일로 정리해두면 → AI가 그 사람처럼 일할 수 있음</span>
+        </div>
+      </section>
+
+      <!-- ==================== AI 패턴 학습 (신규) ==================== -->
+      <section>
+        <h2>🧠 AI에게 "내 스타일"을 가르칠 수 있다</h2>
+        <p style="font-size:0.6em; color:#64748b;">에이전틱 AI는 반복 패턴을 학습하여, 나 대신 "나처럼" 일할 수 있습니다</p>
+        <div class="feature-grid" style="grid-template-columns: 1fr 1fr; gap:10px; margin:14px auto 0;">
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#7c3aed;">📧 이메일 스타일</div>
+            <div class="feature-desc">내가 보낸 메일 50통 학습 → 인사말, 어투, 마무리 패턴 파악 → <strong>나와 똑같은 스타일로 자동 작성</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#7c3aed;">📊 보고서 양식</div>
+            <div class="feature-desc">기존 보고서 5개 학습 → 목차·표현·강조 패턴 파악 → <strong>새 데이터로 같은 형식 자동 생성</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px; background:rgba(124,58,237,0.08); border:2px solid rgba(124,58,237,0.35);">
+            <div class="feature-title" style="color:#7c3aed;">✅ 검토 기준</div>
+            <div class="feature-desc">"팀장님이 항상 확인하는 포인트 3가지"를 md로 정리<br>→ <strong style="color:#7c3aed;">AI가 사전 점검 후 리포트</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#7c3aed;">🔄 업무 루틴</div>
+            <div class="feature-desc">"매주 월요일 하는 일" 패턴을 기록 → <strong>AI가 월요일마다 자동 실행 + 결과 보고</strong></div>
+          </div>
+        </div>
+        <div style="background:rgba(124,58,237,0.06); border:2px solid rgba(124,58,237,0.2); border-radius:12px; padding:14px 20px; margin:16px auto 0; text-align:center;">
+          <div style="font-size:0.6em; font-weight:800; color:#7c3aed; margin-bottom:6px;">학습시키는 방법은 간단합니다</div>
+          <div style="font-size:0.55em; color:#64748b; line-height:1.7;">
+            <strong>① 패턴을 .md 파일로 정리</strong> (예: "나의-메일-스타일.md", "주간보고-양식.md")<br>
+            <strong>② AI에게 읽히기</strong> → "이 파일을 참고해서 작성해줘"<br>
+            <strong>③ 피드백 반복</strong> → 수정할수록 점점 더 나와 비슷해짐
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 슬라이드 16: ROI — 예상 시간 절감 효과 ==================== -->
+      <section>
+        <h2>⏱️ 예상 시간 절감 효과</h2>
+        <p style="font-size:0.6em; color:#64748b;">반복 업무에 소요되는 시간을 AI 도우미가 줄여줄 수 있습니다</p>
+        <table class="roi-table">
+          <thead>
+            <tr>
+              <th>업무 유형</th>
+              <th>현재 소요 시간 (주간)</th>
+              <th>AI 도우미 활용 시</th>
+              <th>예상 절감</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>📊 데이터 취합·정리</td>
+              <td>3~4시간</td>
+              <td>30분~1시간</td>
+              <td class="saved">~3시간 절감</td>
+            </tr>
+            <tr>
+              <td>📧 정기 메일·리포트</td>
+              <td>2~3시간</td>
+              <td>20~40분</td>
+              <td class="saved">~2시간 절감</td>
+            </tr>
+            <tr>
+              <td>📋 문서 작성·서식 정리</td>
+              <td>3~5시간</td>
+              <td>1~2시간</td>
+              <td class="saved">~3시간 절감</td>
+            </tr>
+            <tr>
+              <td>🔍 리서치·자료 조사</td>
+              <td>2~4시간</td>
+              <td>30분~1시간</td>
+              <td class="saved">~2시간 절감</td>
+            </tr>
+            <tr>
+              <td>🔄 반복 작업·데이터 입력</td>
+              <td>2~3시간</td>
+              <td>10~20분</td>
+              <td class="saved">~2.5시간 절감</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:12px auto 0;">
+          주당 <strong>약 5~10시간 절감</strong> 예상 → 절감된 시간 = <strong>더 중요한 업무, 전략적 사고에 투자</strong>
+        </div>
+        <div class="source-note">수치는 업무 유형 및 조직 환경에 따라 달라질 수 있습니다. McKinsey Digital (2025) 참고.</div>
+      </section>
+
+      <!-- ==================== 슬라이드 18: 웹 AI vs 에이전틱 AI 총정리 ==================== -->
+      <section>
+        <h2>📋 웹 AI vs 에이전틱 AI — 총정리</h2>
+        <table class="vs-table">
+          <thead><tr><th>구분</th><th>💬 웹 AI</th><th>🤖 에이전틱 AI</th></tr></thead>
+          <tbody>
+            <tr><td><strong>비유</strong></td><td>전화 상담원</td><td>전문 비서 (직접 처리)</td></tr>
+            <tr><td><strong>파일</strong></td><td>열 수 없음, 텍스트만</td><td>직접 읽기/쓰기/생성</td></tr>
+            <tr><td><strong>시스템</strong></td><td>브라우저 안에 갇힘</td><td>API로 외부 서비스 연결</td></tr>
+            <tr><td><strong>실행</strong></td><td>방법만 안내</td><td>터미널에서 직접 실행</td></tr>
+            <tr><td><strong>워크플로우</strong></td><td>한 번에 한 질문</td><td>다단계 자율 처리</td></tr>
+            <tr><td><strong>결과물</strong></td><td>텍스트 답변</td><td>완성된 파일·실행 결과</td></tr>
+          </tbody>
+        </table>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          "AI 활용 능력"이란 ChatGPT, Gemini, Claude에 질문 잘 하는 것이 아닙니다.<br>
+          <strong>에이전틱 AI로 업무를 직접 처리하게 하는 것</strong> — 이것이 진짜 AI 활용입니다.
+        </div>
+      </section>
+
+      <!-- ==================== 슬라이드 19: 5단계 업무 편의성 향상 모델 ==================== -->
+      <section>
+        <h2>📈 5단계 업무 편의성 향상 모델</h2>
+        <p style="font-size:0.6em; color:#64748b;">우리 조직은 현재 어디에 있으며, 다음 단계에서 어떤 편리함을 기대할 수 있을까요?</p>
+        <div class="maturity-container">
+          <div class="maturity-bar lv1">
+            <div class="maturity-level" style="color:#16a34a;">Lv.1</div>
+            <div class="maturity-title">정보 검색 편의</div>
+            <div class="maturity-desc">질문하면 답변 받기<br>웹 AI 활용</div>
+          </div>
+          <div class="maturity-bar lv2">
+            <div class="maturity-level" style="color:#2563eb;">Lv.2</div>
+            <div class="maturity-title">문서 작성 보조</div>
+            <div class="maturity-desc">초안 작성, 번역,<br>요약 보조</div>
+          </div>
+          <div class="maturity-bar lv3">
+            <div class="maturity-level" style="color:#7c3aed;">Lv.3</div>
+            <div class="maturity-title">반복 업무 자동화</div>
+            <div class="maturity-desc">파일 처리, 데이터 취합<br>에이전틱 AI 시작</div>
+          </div>
+          <div class="maturity-bar lv4">
+            <div class="maturity-level" style="color:#d97706;">Lv.4</div>
+            <div class="maturity-title">부서 업무 효율화</div>
+            <div class="maturity-desc">워크플로우 자동화<br>시스템 연동</div>
+          </div>
+          <div class="maturity-bar lv5">
+            <div class="maturity-level" style="color:#dc2626;">Lv.5</div>
+            <div class="maturity-title">전사 업무 최적화</div>
+            <div class="maturity-desc">부서 간 자동 협업<br>의사결정 보조</div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          대부분의 조직은 현재 <strong>Lv.1~2 단계</strong>입니다. 에이전틱 AI 도입으로 <strong>Lv.3으로의 전환</strong>이 지금 시작되고 있습니다.
+        </div>
+      </section>
+
+      <!-- ==================== 슬라이드 20: 섹션 — 에이전틱 AI의 등장과 확산 ==================== -->
+      <section data-background-gradient="linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7)" class="section-slide" data-transition="convex">
+        <div class="emoji-hero">⏰</div>
+        <h1>에이전틱 AI의 등장과 확산</h1>
+        <p>불과 3개월 사이에 일어난 변화를 살펴봅니다</p>
+      </section>
+
+      <!-- ==================== 슬라이드 21: 타임라인 — 3개월간의 변화 ==================== -->
+      <section>
+        <h2>📅 불과 <span class="text-glow">3개월 전</span>에 시작된 변화</h2>
+        <table class="timeline-table">
+          <thead><tr><th>시점</th><th>사건</th><th>의미</th></tr></thead>
+          <tbody>
+            <tr><td>2025.11.24</td><td>Claude Opus 4.5 출시</td><td>에이전틱 AI 성능이 실무 수준 돌파</td></tr>
+            <tr><td>2025.12.19</td><td>OpenAI GPT-5.2-Codex 출시</td><td>코딩 특화 에이전틱 AI, 본격 경쟁 시작</td></tr>
+            <tr><td>2026.01.12</td><td>Anthropic Claude Cowork 공개</td><td>비개발자도 웹에서 에이전틱 AI 사용 가능</td></tr>
+            <tr><td>2026.01~02</td><td>SaaS 시장 재편 가속화</td><td>소프트웨어 시장 구조 변화 시작</td></tr>
+            <tr><td><strong>지금</strong></td><td>에이전틱 AI 활용</td><td>본격 확산 초기 단계</td></tr>
+          </tbody>
+        </table>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          🔑 <strong>3개월 만에</strong> 기술 → 제품 → 시장 적용까지 빠르게 진행 중<br>
+          지금 시작하면 늦은 게 아니라, <strong>오히려 빠른 편입니다</strong>
+        </div>
+      </section>
+
+      <!-- ==================== 슬라이드 22: 산업계가 주목하는 변화 ==================== -->
+      <section>
+        <h2>📉 산업계가 주목하는 변화</h2>
+        <p style="font-size:0.6em; color:#64748b;">에이전틱 AI로 직접 만들어 쓰면 되니까 → 기존 SaaS 구독이 불필요 → 시장이 반응</p>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-num">-1조$</div>
+            <div class="stat-label">나스닥 100 시가총액<br>2주간 조정폭</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">-14%</div>
+            <div class="stat-label">Salesforce (CRM)<br>시장 재편 과정에서의 조정</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">-40%</div>
+            <div class="stat-label">Figma / HubSpot<br>연초 대비 가격 조정</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">-35%</div>
+            <div class="stat-label">Atlassian / Adobe<br>시장 구조 변화 반영</div>
+          </div>
+        </div>
+        <div style="text-align:center; font-size:0.75em; font-weight:800; margin:14px 0 10px;">핵심: 이제 <strong>필요한 소프트웨어를 직접 만들어 쓸 수 있는 시대</strong></div>
+        <div class="feature-grid" style="grid-template-columns: 1fr 1fr; gap:10px; max-width:750px; margin:0 auto;">
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">📊 보고서 자동 취합 도구가 필요하다</div>
+            <div class="feature-desc">→ <strong>에이전틱 AI에게 시키면 30분 만에 완성</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">🎬 간단한 동영상 편집기가 필요하다</div>
+            <div class="feature-desc">→ <strong>자막·컷편집 도구를 직접 만들어 쓰면 됨</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">🏢 회의실 예약 프로그램이 필요하다</div>
+            <div class="feature-desc">→ <strong>우리 팀 맞춤 예약 시스템을 직접 만들면 됨</strong></div>
+          </div>
+          <div class="feature-card" style="text-align:left; padding:12px 16px;">
+            <div class="feature-title" style="color:#2563eb;">🚗 렉카·탁송차량 배차 시스템이 필요하다</div>
+            <div class="feature-desc">→ <strong>외주 안 맡기고 직접 만들어 바로 운영 가능</strong></div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:10px auto 0;">
+          💡 비싼 SaaS 구독 대신, <strong>우리 업무에 딱 맞는 도구를 AI로 직접 만드는 시대</strong>
+        </div>
+        <div class="source-note">Source: Bloomberg, Yahoo Finance (2026.01~02)</div>
+      </section>
+
+      <!-- ==================== 곧 사라질 업무 도구들 (신규) ==================== -->
+      <section>
+        <h2>⏳ 에이전틱 AI가 대신하게 될 기존 도구들</h2>
+        <p style="font-size:0.6em; color:#64748b;">지금 익히고 있는 이 도구들, 계속 투자할 가치가 있을까요?</p>
+        <div class="feature-grid" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ Excel VBA 매크로</div>
+            <div class="feature-desc">데이터 취합·정리·보고서 생성을 코드로 자동화 → 에이전틱 AI에게 자연어로 시키면 즉시 처리. 복잡한 코드 작성 불필요</div>
+          </div>
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ RPA (UiPath 등)</div>
+            <div class="feature-desc">정해진 룰대로 완벽하게 작동하지만, 예외 상황에 대응 불가. 에이전틱 AI는 상황을 판단하고 유연하게 처리</div>
+          </div>
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ 복잡한 Excel 수식</div>
+            <div class="feature-desc">VLOOKUP, INDEX-MATCH, 피벗 중첩 → "이 데이터에서 ○○ 기준으로 요약해줘" 한 마디로 해결</div>
+          </div>
+          <div class="feature-card" style="background:rgba(220,38,38,0.04); border-color:rgba(220,38,38,0.15);">
+            <div class="feature-title" style="color:#dc2626;">❌ 수작업 메일 취합</div>
+            <div class="feature-desc">첨부파일 다운로드 → 폴더 정리 → 합치기를 매번 수동으로. 에이전틱 AI가 메일 읽기부터 보고서까지 한번에</div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:12px auto 0;">
+          💡 공통점: <strong>코드를 짜서 자동화</strong>하던 것을 → <strong>말로 시키면 되는 시대</strong><br>
+          <span style="font-size:0.85em; color:#64748b;">VBA 배우는 시간에 에이전틱 AI 활용법을 익히는 것이 더 나은 투자입니다</span>
+        </div>
+      </section>
+
+      <!-- ==================== 슬라이드 23: 도구 안내 ==================== -->
+      <section>
+        <h2>🛠️ 지금 사용할 수 있는 AI 도구들</h2>
+        <p style="font-size:0.6em; color:#64748b;">용도와 접근성에 따라 선택할 수 있습니다</p>
+        <p style="font-size:0.55em; color:#dc2626; font-weight:600; margin-bottom:4px;">🏢 사내 사용 가능</p>
+        <div class="tool-grid" style="grid-template-columns:1fr 1fr; margin-bottom:10px;">
+          <div class="tool-card" style="border-color:rgba(220,38,38,0.3);">
+            <div class="tool-name">Claude Code</div>
+            <div class="tool-desc">터미널 기반 에이전트. 코드 작성, 시스템 자동화, 복잡한 워크플로우 처리</div>
+            <span class="tool-tag tool-tag-company">사내 사용 가능</span>
+          </div>
+          <div class="tool-card" style="border-color:rgba(220,38,38,0.3);">
+            <div class="tool-name">OpenAI Codex</div>
+            <div class="tool-desc">GPT 기반 코딩 에이전트. 코드 생성·리뷰·자동화, CLI/IDE/웹 모두 지원</div>
+            <span class="tool-tag tool-tag-company">사내 사용 가능</span>
+          </div>
+        </div>
+        <p style="font-size:0.55em; color:#94a3b8; font-weight:600; margin-bottom:4px;">📌 참고 — 외부 도구 (개인 구독)</p>
+        <div class="tool-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="tool-card" style="opacity:0.6;">
+            <div class="tool-name">Google Antigravity</div>
+            <div class="tool-desc">Gemini 기반 IDE형 에이전트. 터미널 없이 GUI로 사용. Pro Plan 시 토큰 넉넉</div>
+            <span class="tool-tag tool-tag-external">개인 추천</span>
+          </div>
+          <div class="tool-card" style="opacity:0.6;">
+            <div class="tool-name">ChatGPT Operator</div>
+            <div class="tool-desc">웹 브라우저를 직접 조작하는 에이전트. 웹 업무 자동화에 특화</div>
+            <span class="tool-tag tool-tag-external">개인 구독 필요</span>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:left; max-width:750px; margin:10px auto 0; padding:12px 20px;">
+          <div style="text-align:center; font-size:0.6em; font-weight:800; color:#7c3aed; margin-bottom:8px;">한장희 추천</div>
+          🏢 회사: <strong>Claude Code</strong> + <strong>OpenAI Codex</strong> 바로 사용 가능<br>
+          🏠 집: <strong>Google Antigravity</strong><br>
+          <span style="padding-left:28px;">— IDE 형식, 터미널 없이 편함, Pro Plan($20/월)이면 토큰 충분</span><br>
+          🏠 집: <strong>Claude Code</strong><br>
+          <span style="padding-left:28px;">— Max 20x 플랜($200/월, 부가세 포함 ~$220)으로 제한 없이 사용 가능</span>
+        </div>
+      </section>
+
+      <!-- ==================== AI와 소통하기 좋은 자료 형식 (신규) ==================== -->
+      <section>
+        <h2>📝 AI와 소통하기 좋은 자료 형식</h2>
+        <p style="font-size:0.55em; color:#64748b;">AI를 잘 쓰려면, AI가 잘 인식하는 형식으로 자료를 관리해야 합니다</p>
+        <div style="max-width:900px; margin:10px auto 14px; display:flex; flex-direction:column; gap:6px;">
+          <div style="background:rgba(37,99,235,0.06); border:2px solid rgba(37,99,235,0.2); border-radius:10px; padding:10px 18px; text-align:center;">
+            <div style="font-size:0.55em; color:#1e293b; line-height:1.6;">
+              <strong style="color:#2563eb;">"조 단위 AI 산업의 가장 핵심적인 제어 체계가,<br>한 사람이 블로그용으로 만든 텍스트 형식(Markdown)이다"</strong>
+            </div>
+            <div style="font-size:0.4em; color:#94a3b8; margin-top:4px;">— Anil Dash, "How Markdown Took Over the World" (2026.01)</div>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <div style="flex:1; background:rgba(124,58,237,0.05); border:2px solid rgba(124,58,237,0.2); border-radius:10px; padding:10px 14px; text-align:center;">
+              <div style="font-size:0.5em; color:#1e293b; line-height:1.5;">
+                <strong style="color:#7c3aed;">"최첨단 AI의 모든 작업은<br>마크다운으로 지시되고 있다"</strong>
+              </div>
+              <div style="font-size:0.38em; color:#94a3b8; margin-top:4px;">— Anil Dash, 같은 글</div>
+            </div>
+            <div style="flex:1; background:rgba(22,163,74,0.05); border:2px solid rgba(22,163,74,0.2); border-radius:10px; padding:10px 14px; text-align:center;">
+              <div style="font-size:0.5em; color:#1e293b; line-height:1.5;">
+                <strong style="color:#16a34a;">"마크다운은 LLM의 공용어<br>(lingua franca)가 되었다"</strong>
+              </div>
+              <div style="font-size:0.38em; color:#94a3b8; margin-top:4px;">— HackMD, "How Markdown Heats Up AI" (2025)</div>
+            </div>
+            <div style="flex:1; background:rgba(217,119,6,0.05); border:2px solid rgba(217,119,6,0.2); border-radius:10px; padding:10px 14px; text-align:center;">
+              <div style="font-size:0.5em; color:#1e293b; line-height:1.5;">
+                <strong style="color:#d97706;">Software 3.0 = AI가 읽기 좋은<br>자연어. 그 형식이 마크다운</strong>
+              </div>
+              <div style="font-size:0.38em; color:#94a3b8; margin-top:4px;">— Andrej Karpathy, Software 3.0 이론</div>
+            </div>
+          </div>
+        </div>
+        <div class="compare-grid">
+          <div class="card card-before">
+            <h3>❌ AI가 어려워하는 형식</h3>
+            <ul>
+              <li>Word (.docx) — <strong>복잡한 서식에 내용이 묻힘</strong></li>
+              <li>PPT (.pptx) — <strong>레이아웃 해석에 토큰 낭비</strong></li>
+              <li>Excel (.xlsx) — <strong>병합 셀, 서식, 매크로 혼재</strong></li>
+              <li>구두 전달, 산발적 메모 — <strong>구조 없음</strong></li>
+            </ul>
+          </div>
+          <div class="card card-after">
+            <h3>✅ AI가 바로 처리하는 형식</h3>
+            <ul>
+              <li>Markdown (.md) — <strong>문서, 기획, 지시사항</strong></li>
+              <li>CSV (.csv) — <strong>데이터, 표, 목록</strong></li>
+              <li>Plain Text (.txt) — <strong>회의록, 메모, 로그</strong></li>
+              <li>폴더 구조로 정리 — <strong>AI가 맥락 파악 용이</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:900px; margin:10px auto 0;">
+          핵심: <strong>앞으로 자료를 AI가 바로 처리할 수 있는 형식(.md, .csv, .txt)으로 관리하면</strong><br>
+          같은 AI라도 <strong style="color:#2563eb;">이해도와 처리 속도가 완전히 달라집니다</strong>
+        </div>
+      </section>
+
+      <!-- ==================== 에이전틱 AI가 아직 잘 못하는 것 (신규) ==================== -->
+      <section>
+        <h2>🚧 에이전틱 AI가 아직 잘 못하는 것</h2>
+        <p style="font-size:0.6em; color:#64748b;">만능은 아닙니다 — 현재 기술의 한계를 알아야 제대로 활용할 수 있습니다</p>
+        <div class="dept-grid" style="grid-template-columns: 1fr 1fr;">
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">🎨</div>
+            <div class="dept-name">예쁜 PPT 만들기</div>
+            <div class="dept-use" style="color:#dc2626;">내용 생성은 가능하지만, 인간 수준의 시각 디자인·레이아웃 감각은 아직 부족</div>
+          </div>
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">🤝</div>
+            <div class="dept-name">대면 소통·협상</div>
+            <div class="dept-use" style="color:#dc2626;">회의 참석, 고객 대면, 미묘한 조직 내 역학 판단은 사람의 영역</div>
+          </div>
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">📊</div>
+            <div class="dept-name">복잡한 서식의 엑셀</div>
+            <div class="dept-use" style="color:#dc2626;">병합 셀, 조건부 서식, 피벗 차트가 얽힌 엑셀은 깨지기 쉬움</div>
+          </div>
+          <div class="dept-card" style="border-color:rgba(220,38,38,0.15);">
+            <div class="dept-icon">⚖️</div>
+            <div class="dept-name">주관적 판단·취향</div>
+            <div class="dept-use" style="color:#dc2626;">"이게 더 낫다"는 감각적 판단, 브랜드 톤앤매너 같은 미세 조정</div>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          <strong>잘하는 것에 맡기고, 못하는 것은 사람이 하면 됩니다.</strong><br>
+          AI가 데이터를 정리하면, 사람이 예쁘게 다듬는다 — 이 조합이 가장 효과적입니다.
+        </div>
+      </section>
+
+      <!-- ==================== 에이전틱 AI 시대, 기획자의 역할 변화 (신규) ==================== -->
+      <section>
+        <h2>🧑‍💼 에이전틱 AI 시대, 우리의 역할은?</h2>
+        <p style="font-size:0.6em; color:#64748b;">반복 업무가 줄어든 만큼, 더 가치 있는 일에 집중할 수 있습니다</p>
+        <div class="compare-grid">
+          <div class="card card-before">
+            <h3>📉 줄어드는 업무</h3>
+            <ul>
+              <li>데이터 수작업 취합·정리</li>
+              <li>경쟁사 정보 수동 검색·비교</li>
+              <li>정기 보고서 양식 채우기</li>
+              <li>엑셀 수식·매크로 유지보수</li>
+              <li>단순 문서 변환·서식 작업</li>
+            </ul>
+          </div>
+          <div class="card card-after">
+            <h3>📈 집중하게 되는 업무</h3>
+            <ul>
+              <li><strong>전략적 판단</strong> — 데이터 기반 의사결정</li>
+              <li><strong>기획 품질 향상</strong> — 분석에 더 많은 시간 투자</li>
+              <li><strong>AI 결과 검증</strong> — 산출물 품질 관리</li>
+              <li><strong>팀 간 조율</strong> — 대면 소통·협상·합의</li>
+              <li><strong>AI 활용 설계</strong> — 어떤 업무를 AI에 맡길지 판단</li>
+            </ul>
+          </div>
+        </div>
+        <div class="highlight-box" style="text-align:center; max-width:750px; margin:14px auto 0;">
+          핵심 변화: <strong>"직접 하는 사람"</strong>에서 → <strong>"AI에게 잘 시키고, 결과를 판단하는 사람"</strong>으로<br>
+          <span style="font-size:0.85em; color:#64748b;">기획자의 가치는 줄어드는 게 아니라, 더 높은 곳으로 이동합니다</span>
+        </div>
+      </section>
+
+      <!-- ==================== 슬라이드 24: 현실적 고려사항 ==================== -->
+      <section data-background-gradient="linear-gradient(135deg, #fffbeb, #fef3c7)" data-transition="fade">
+        <h2>⚠️ 현실적 고려사항</h2>
+        <p style="font-size:0.6em; color:#b45309;">기대만큼 중요한 주의점</p>
+        <ul class="warn-list" style="max-width:750px; margin:10px auto 0;">
+          <li>👁️ <strong>사람의 감독은 필수</strong><br>
+            <span style="color:#64748b; font-size:0.85em; padding-left:28px;">AI가 처리한 결과는 반드시 사람이 검토·승인. "유능한 비서에게 맡기듯" 결과물 확인 필요</span></li>
+          <li>⚖️ <strong>100% 완벽하지 않음</strong><br>
+            <span style="color:#64748b; font-size:0.85em; padding-left:28px;">특히 숫자, 날짜, 고유명사는 꼭 확인. 환각(Hallucination) 가능성 인지</span></li>
+          <li>🔒 <strong>보안과 권한 관리</strong><br>
+            <span style="color:#64748b; font-size:0.85em; padding-left:28px;">민감한 데이터 접근 범위를 명확히 설정. 사내 보안 정책과 병행 필수</span></li>
+          <li>📊 <strong>먼저 시작하면 더 큰 효과</strong><br>
+            <span style="color:#64748b; font-size:0.85em; padding-left:28px;">적극 활용하는 팀이 더 빠르게 업무 효율을 높이고 있습니다. 작은 것부터 시작해보세요.</span></li>
+        </ul>
+      </section>
+
+      <!-- ==================== 슬라이드 25: CTA ==================== -->
+      <!-- ==================== 마지막 슬라이드: 감사합니다 + References ==================== -->
+      <section data-transition="zoom">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; margin:0 auto; align-items:center;">
+          <div style="display:flex; flex-direction:column; justify-content:center; align-items:center;">
+            <div style="font-size:2.2em; font-weight:800; color:#1e293b; margin-bottom:20px;">감사합니다</div>
+            <div class="gradient-line" style="width:140px; margin-bottom:20px;"></div>
+            <p style="font-size:0.55em; color:#64748b; line-height:1.7; text-align:center; margin-bottom:16px;">
+              차량개발기획팀 정보공유회<br>2026년 2월
+            </p>
+            <div style="font-size:0.48em; color:#64748b; margin-top:12px; line-height:2.0;">
+              💡 집에서 Google Antigravity 설치해보기<br>
+              <a href="https://blog.naver.com/ryurime88/224148217133" target="_blank" style="color:#2563eb; font-weight:700;">👉 설치 가이드</a><br>
+              📝 마크다운이 왜 중요한지 더 알아보기<br>
+              <a href="https://blog.proagent.kr/ai-%EC%8B%9C%EB%8C%80-%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4-%ED%8F%AC%EB%A7%B7%EC%9D%98-%EC%A4%91%EC%9A%94%EC%84%B1%EA%B3%BC-%ED%99%9C%EC%9A%A9%EA%B0%80%EC%9D%B4%EB%93%9C--60967" target="_blank" style="color:#2563eb; font-weight:700;">👉 AI 시대 마크다운 활용가이드</a>
+            </div>
+          </div>
+          <div style="text-align:left; background:rgba(100,116,139,0.04); border-radius:12px; padding:20px 24px;">
+            <div style="font-size:0.55em; font-weight:800; color:#94a3b8; margin-bottom:12px;">📚 References</div>
+            <ul style="font-size:0.48em; color:#64748b; line-height:2.0; list-style:none; padding:0; margin:0;">
+              <li><strong>MarketsandMarkets</strong> — AI Agents Market Forecast (2024–2030)</li>
+              <li><strong>Gartner</strong> — 2025 AI Agent Enterprise Survey</li>
+              <li><strong>McKinsey Digital</strong> — The State of AI in 2025</li>
+              <li><strong>Bloomberg</strong> — SaaS market valuation (Jan~Feb 2026)</li>
+              <li><strong>Yahoo Finance</strong> — SaaS 개별 종목 주가 데이터</li>
+              <li><strong>Anthropic</strong> — Claude Opus 4.5, Claude Cowork</li>
+              <li><strong>Microsoft</strong> — Copilot Studio</li>
+              <li><strong>Google</strong> — Gemini for Workspace</li>
+              <li><strong>Anil Dash</strong> — "How Markdown Took Over the World"</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      transition: isMobile ? 'none' : 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: isMobile ? 'none' : 'zoom',
+      autoAnimateEasing: 'ease-in-out',
+      autoAnimateDuration: 0.7,
+      width: 1280,
+      height: 720,
+      margin: isMobile ? 0.04 : 0.06,
+      center: true,
+      view: isMobile ? 'scroll' : undefined,
+      scrollProgress: isMobile,
+    });
+  </script>
+</body>
+</html>
